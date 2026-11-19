@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Свой сайт с нуля · Наставничество 42 · Александр Комягин</title>
+<meta name="description" content="Пошаговый план: от вопросов про сайт до публикации на GitHub. Наставничество 42 Александра Комягина.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F5F1;--card:#fff;--ink:#14141A;--muted:#6B6B76;--line:#E6E4DE;--acc:#4F46E5;--acc2:#06B6D4;--ok:#10B981}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--acc)}
+.brand{position:sticky;top:0;z-index:20;background:rgba(246,245,241,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand-in{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:12px;justify-content:space-between}
+.badge{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+.badge b{font-family:Unbounded;font-size:13px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-radius:10px;padding:6px 9px}
+.badge span{color:var(--muted);font-weight:500}
+.progress{flex:1;max-width:220px;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s}
+.pnum{font-size:13px;color:var(--muted);min-width:42px;text-align:right}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px 80px}
+.hero{padding:56px 0 36px}
+.kicker{display:inline-block;font-size:13px;font-weight:600;color:var(--acc);background:#EEF0FF;border-radius:99px;padding:6px 12px;margin-bottom:18px}
+h1{font-family:Unbounded;font-size:clamp(30px,6vw,52px);line-height:1.08;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin-top:18px;font-size:18px;color:var(--muted);max-width:620px}
+.actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+.btn{font:600 15px Inter;border:0;cursor:pointer;border-radius:14px;padding:14px 20px;transition:transform .15s,box-shadow .15s}
+.btn:active{transform:scale(.97)}
+.btn-main{background:var(--ink);color:#fff;box-shadow:0 8px 24px rgba(20,20,26,.18)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.map{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 28px}
+.map a{text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:99px;padding:6px 12px}
+.map a.done{background:#E7F8F1;color:#047857;border-color:#BDEBD8}
+.step{background:var(--card);border:1px solid var(--line);border-radius:24px;margin-bottom:14px;overflow:hidden;transition:border-color .2s}
+.step.done{border-color:#BDEBD8}
+.head{display:flex;align-items:center;gap:16px;padding:22px 24px;cursor:pointer;user-select:none}
+.num{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-family:Unbounded;font-weight:700;background:#F1F0EC}
+.step.done .num{background:var(--ok);color:#fff}
+.head h2{font-family:Unbounded;font-size:18px;font-weight:500;line-height:1.25}
+.head p{font-size:14px;color:var(--muted);margin-top:2px}
+.chev{margin-left:auto;transition:transform .25s;color:var(--muted)}
+.step.open .chev{transform:rotate(180deg)}
+.body{display:none;padding:0 24px 24px 86px}
+.step.open .body{display:block}
+.body p{margin-bottom:12px}
+.body ul,.body ol{margin:0 0 14px 20px}
+.body li{margin-bottom:6px}
+.prompt{position:relative;background:#14141A;color:#E9E9F0;border-radius:16px;padding:18px 18px 18px;margin:14px 0;font-size:14.5px}
+.prompt small{display:block;color:#9B9BAA;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.copy{position:absolute;top:12px;right:12px;font:600 12px Inter;background:#2A2A35;color:#fff;border:0;border-radius:10px;padding:7px 10px;cursor:pointer}
+.task{display:flex;align-items:flex-start;gap:12px;margin-top:16px;padding:16px;border-radius:16px;background:#F7F7FF;border:1px dashed #C9CCF5;cursor:pointer}
+.task input{width:22px;height:22px;accent-color:var(--ok);flex:none;margin-top:1px;cursor:pointer}
+.task b{display:block;font-size:13px;color:var(--acc);text-transform:uppercase;letter-spacing:.05em}
+.blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:12px 0 16px}
+.blocks div{background:#F6F5F1;border-radius:14px;padding:12px 14px;font-size:14px}
+.blocks div b{display:block;font-size:12px;color:var(--acc)}
+.sig{font-size:12px;color:var(--muted);margin-top:14px}
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer b{color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translate(-50%,0)}
+.final{display:none;text-align:center;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-radius:24px;padding:32px 24px;margin-top:20px}
+.final.show{display:block}
+.final h3{font-family:Unbounded;font-size:24px;margin-bottom:6px}
+@media(max-width:640px){.body{padding:0 18px 20px}.head{padding:18px}.num{width:40px;height:40px}.badge span{display:none}.hero{padding:36px 0 24px}}
+</style>
+</head>
+<body>
+
+<div class="brand"><div class="brand-in">
+  <div class="badge"><b>42</b>Наставничество 42 <span>· Александр Комягин</span></div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="pnum" id="pnum">0/8</div>
+</div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="kicker">Наставничество 42 · Александр Комягин</div>
+    <h1>Делаем свой сайт <em>с нуля</em></h1>
+    <p class="lead">Идём по 8 этапам, от вопросов про сайт до живой ссылки в интернете. Работаем в Claude Code или Codex, публикуем через GitHub. Отмечайте галочки, прогресс сохранится.</p>
+    <div class="actions">
+      <button class="btn btn-main" onclick="copyAll()">Скопировать весь план</button>
+      <button class="btn btn-ghost" onclick="openAll()">Раскрыть все этапы</button>
+    </div>
+  </section>
+
+  <nav class="map" id="map"></nav>
+  <div id="steps"></div>
+
+  <div class="final" id="final">
+    <h3>Сайт готов, вы огонь!</h3>
+    <p>Скиньте ссылку в чат Наставничества 42, посмотрим все вместе</p>
+  </div>
+</div>
+
+<footer><b>Наставничество 42</b> · Александр Комягин<br>Пошаговый план «Свой сайт с нуля»</footer>
+<div class="toast" id="toast">Скопировано</div>
+
+<script>
+const S=[
+{t:"Подготовка",s:"Один раз, минут 20",h:`<p>Что сделать до старта:</p><ul><li>Зарегистрироваться на <a href="https://github.com" target="_blank">GitHub</a>, запомнить логин и пароль</li><li>Установить Claude Code или Codex и войти в аккаунт</li><li>Создать на компьютере папку для проекта, например «moy-sait», и открыть её в Claude Code или Codex</li><li>Завести заметку, куда будем складывать ответы, референсы и тексты</li></ul>`,d:"Скрин, что Claude Code или Codex открыт в папке проекта, и ссылку на свой профиль GitHub"},
+{t:"Вопросы про сайт",s:"Самый важный этап",h:`<p>Отвечать удобнее голосом: включаете диктовку и рассказываете, как подруге. Чем подробнее, тем лучше получится сайт.</p><ol><li>Чем вы занимаетесь и что продаёте этим сайтом?</li><li>Кто ваш клиент? Опишите живого человека: возраст, чем занят, что болит, чего хочет</li><li>Какой главный результат получит человек после работы с вами?</li><li>Почему стоит выбрать вас: опыт, кейсы, цифры, отзывы, отличия?</li><li>Какое одно главное действие на сайте: заявка, Telegram, покупка, запись?</li><li>Какие сомнения бывают у клиентов перед покупкой?</li><li>Есть ли цены или пакеты, которые хотите показать?</li><li>Какое настроение у сайта: строгий, тёплый, дерзкий, премиальный, лёгкий?</li><li>Есть ли логотип, фирменные цвета, шрифты?</li><li>Ваши контакты и соцсети, куда вести людей</li></ol>`,d:"Ответы на все 10 вопросов (расшифровка голосовых подходит)"},
+{t:"Референсы",s:"3-5 сайтов, которые нравятся",h:`<p>Необязательно из вашей ниши: цвета можно взять с одного сайта, блоки с другого, атмосферу с третьего.</p><p>Где искать: motionsites, Refero, 21st.dev, Dribbble, Behance, сайты любимых брендов.</p><p>К каждому референсу одна строчка, что понравилось: «классный первый экран», «нравятся цвета», «удобно сделаны отзывы».</p>`,d:"3-5 ссылок или скринов с подписями"},
+{t:"Структура и тексты",s:"Продающая страница без перегруза",h:`<p>Один блок, одна мысль, коротко и по делу. Лишние блоки смело убираем.</p><div class="blocks"><div><b>01</b>Первый экран: заголовок, подзаголовок, кнопка CTA</div><div><b>02</b>Боль клиента</div><div><b>03</b>Решение</div><div><b>04</b>Результат, лучше с цифрами</div><div><b>05</b>Почему вы</div><div><b>06</b>Отзывы</div><div><b>07</b>Тарифы или формат</div><div><b>08</b>Частые вопросы</div><div><b>09</b>Финальный призыв и контакты</div></div><p>Чтобы страницу находили в поиске: понятные title и description с ключевыми словами, один заголовок H1, подписи (alt) у картинок, уникальные тексты.</p><div class="prompt"><small>Промпт</small><span>Вот мои ответы про бизнес. Напиши тексты для одностраничного продающего сайта по структуре: первый экран с кнопкой, боль, решение, результат, почему я, отзывы, тарифы, частые вопросы, финальный призыв. Коротко, без воды, простым языком. Отдельно предложи title и description для поиска.</span></div>`,d:"Готовые тексты по блокам плюс title и description"},
+{t:"Первая версия index.html",s:"Собираем сайт одним файлом",h:`<p>Отдаём Claude Code или Codex всё собранное: ответы, референсы, тексты.</p><div class="prompt"><small>Промпт</small><span>Собери современный одностраничный сайт в файле index.html по этим текстам. Стиль ориентируй на референсы. Сайт должен красиво выглядеть и на телефоне, и на компьютере. Добавь мета-теги title и description для поиска. Кнопки ведут в мой Telegram.</span></div><p>Открываем index.html в браузере двойным кликом и смотрим.</p>`,d:"Скрин первой версии сайта"},
+{t:"Правки",s:"5-10 кругов это нормально",h:`<p>Пишем правки конкретно: «сделай заголовок крупнее», «поменяй синий на тёплый бежевый», «убери блок с тарифами».</p><p>Обязательно проверяем:</p><ul><li>как сайт выглядит на телефоне</li><li>все ли кнопки работают и ведут куда нужно</li><li>нет ли опечаток и лишнего текста</li><li>читается ли текст на фоне</li></ul><div class="prompt"><small>Промпт</small><span>Проверь сайт на мобильной версии: ничего не вылезает за экран, кнопки удобно нажимать пальцем, текст читается. Исправь всё, что найдёшь.</span></div>`,d:"Доработанная версия, которая нравится вам самим"},
+{t:"Свои фото и видео",s:"Живое продаёт лучше стоков",h:`<ul><li>ваши фото: портрет, процесс работы, мероприятия</li><li>фото результатов, продукта, кейсов</li><li>скрины отзывов</li><li>короткое видео, если есть</li></ul><p>Складываем всё в папку проекта, в подпапку images. Тяжёлые файлы лучше сжать, иначе сайт будет долго грузиться.</p><div class="prompt"><small>Промпт</small><span>Вставь мои фото из папки images в подходящие блоки сайта, видео поставь на первый экран. Сожми изображения, чтобы сайт быстро загружался, и добавь им подписи alt.</span></div>`,d:"Версия сайта со своими фото и видео"},
+{t:"Публикация на GitHub",s:"Живая ссылка в интернете",h:`<ol><li>Создаём на GitHub новый публичный репозиторий, например moy-sait</li><li>Просим нейросеть загрузить проект и включить GitHub Pages (промпт ниже)</li><li>Через пару минут сайт откроется по ссылке вида имя.github.io/moy-sait</li><li>Проверяем ссылку на телефоне и на компьютере</li></ol><div class="prompt"><small>Промпт</small><span>Загрузи мой проект в репозиторий moy-sait на GitHub и включи GitHub Pages, чтобы сайт открывался по ссылке. Веди меня по шагам и подсказывай, что нажать.</span></div><p>Красивый адрес вроде вашеимя.ru можно купить и подключить позже.</p>`,d:"Ссылку на опубликованный сайт"}
+];
+const K="nast42-site-v1";let done={};try{done=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(done))}catch(e){}};
+const box=document.getElementById("steps"),map=document.getElementById("map");
+S.forEach((x,i)=>{
+ box.insertAdjacentHTML("beforeend",`<article class="step${i===0?" open":""}" id="s${i}"><div class="head" onclick="tog(${i})"><div class="num">${i}</div><div><h2>${x.t}</h2><p>${x.s}</p></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div><div class="body">${x.h}<label class="task"><input type="checkbox" onchange="mark(${i},this.checked)"><div><b>Что сдать</b>${x.d}</div></label><div class="sig">Наставничество 42 · Александр Комягин</div></div></article>`);
+ map.insertAdjacentHTML("beforeend",`<a href="#s${i}" id="m${i}" onclick="document.getElementById('s${i}').classList.add('open')">${i}. ${x.t}</a>`);
+});
+document.querySelectorAll(".prompt").forEach(p=>{const b=document.createElement("button");b.className="copy";b.textContent="Копировать";b.onclick=()=>cp(p.querySelector("span").innerText,b);p.appendChild(b)});
+function tog(i){document.getElementById("s"+i).classList.toggle("open")}
+function openAll(){document.querySelectorAll(".step").forEach(s=>s.classList.add("open"))}
+function mark(i,v){done[i]=v;save();render();if(v&&i<S.length-1){document.getElementById("s"+(i+1)).classList.add("open")}}
+function render(){let n=0;S.forEach((x,i)=>{const on=!!done[i];if(on)n++;document.getElementById("s"+i).classList.toggle("done",on);document.getElementById("m"+i).classList.toggle("done",on);document.querySelector("#s"+i+" .task input").checked=on});
+ document.getElementById("bar").style.width=(n/S.length*100)+"%";document.getElementById("pnum").textContent=n+"/"+S.length;document.getElementById("final").classList.toggle("show",n===S.length)}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1600)}
+async function cp(t,b){try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}toast("Скопировано");if(b){b.textContent="Готово";setTimeout(()=>b.textContent="Копировать",1500)}}
+function copyAll(){const tmp=document.createElement("div");let out="СВОЙ САЙТ С НУЛЯ: ПОШАГОВЫЙ ПЛАН\nНаставничество 42 · Александр Комягин\n\n";
+ S.forEach((x,i)=>{tmp.innerHTML=x.h;tmp.querySelectorAll("li").forEach(l=>l.prepend("• "));tmp.querySelectorAll("li,p,.blocks div,.prompt").forEach(e=>e.append("\n"));tmp.querySelectorAll(".prompt small").forEach(s=>s.textContent="ПРОМПТ: ");
+ out+=`ЭТАП ${i}. ${x.t.toUpperCase()} (${x.s})\n${tmp.innerText.replace(/\n{2,}/g,"\n").trim()}\nЧто сдать: ${x.d}\n\n`});
+ out+="Наставничество 42 · Александр Комягин";cp(out)}
+render();
+</script>
+</body>
+</html>
