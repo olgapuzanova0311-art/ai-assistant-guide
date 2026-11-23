@@ -59,6 +59,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .top-cd{font:700 14px "JetBrains Mono",monospace;color:var(--muted);white-space:nowrap}
 .top-cd b{color:var(--ink)}
 .top .btn{min-height:44px;padding:0 20px;font-size:15px}
+.ubar{position:sticky;top:env(safe-area-inset-top,0px);z-index:42;display:flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:8px 16px;background:#E5253F;color:#fff;font-weight:800;font-size:16px;text-decoration:none;text-align:center}
+.ubar i{width:9px;height:9px;border-radius:50%;background:#fff;animation:blink 1.2s ease-in-out infinite;flex:none}
 .btn-live{background:#E5253F;color:#fff;box-shadow:0 10px 24px -10px rgba(229,37,63,.7)}
 .btn-live:hover{transform:translateY(-2px)}
 .btn-live i{width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.4s ease-in-out infinite}
@@ -374,6 +376,7 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
 <body>
 
 
+<a class="ubar js-ubar" href="#watch" hidden></a>
 <header class="top gut">
   <div class="wrap">
     <a class="logo" href="#top"><span class="le"></span>Чёрная ИИшница</a>
@@ -428,14 +431,14 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
 <section class="sec gut" id="gifts">
   <div class="wrap">
     <div class="g-top">
-      <div class="sec-head rv" style="margin:0"><span class="kick">Подарки до эфира</span><h2>В каждом яйце <span class="hl">подарок</span></h2><p class="lead">Разбейте яйцо молотком: два удара, и подарок ваш. Три яйца открыты сразу, ещё по одному появляется каждый день в 12:00</p></div>
+      <div class="sec-head rv" style="margin:0"><span class="kick">Подарки до эфира</span><h2>В каждом яйце <span class="hl">подарок</span></h2><p class="lead">Нажмите на яйцо, молоток разобьёт его, и подарок ваш. Три яйца открыты сразу, ещё по одному появляется каждый день в 12:00</p></div>
       <div class="prog rv"><small><span>Разбито</span><b class="js-pn">0 из 6</b></small><div class="bar"><i class="js-pb"></i></div></div>
     </div>
     <div class="gate js-veil"><svg width="56" height="64" viewBox="0 0 58 66" aria-hidden="true"><defs><linearGradient id="lbL1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A5059"/><stop offset=".55" stop-color="#1E2126"/><stop offset="1" stop-color="#0B0B0C"/></linearGradient></defs><path d="M14 28V19a15 15 0 0 1 30 0v9" fill="none" stroke="#C9CDD4" stroke-width="7"/><path d="M16 26V19a13 13 0 0 1 6-11" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/><rect x="4" y="27" width="50" height="37" rx="8" fill="url(#lbL1)"/><circle cx="29" cy="44" r="4.5" fill="#E9EBEE"/><rect x="27" y="45" width="4" height="9" rx="2" fill="#E9EBEE"/></svg><div><b>Яйца с подарками откроются после регистрации</b><p>Имя и Telegram, 30 секунд. Три подарка откроются сразу</p></div><a class="btn btn-p" href="#regform">Зарегистрироваться <span class="arr">↑</span></a></div>
     <div class="legend rv">
       <div><span class="lg-e w"></span><b>Белое яйцо = подарок</b><small>за регистрацию, каждый день до эфира</small></div>
       <div><span class="lg-e g"></span><b>Золотое яйцо = бонус</b><small>сюрприз на 3 часа и главный бонус эфира</small></div>
-      <div><span class="lg-h">🔨</span><b>2 удара = ваше</b><small>нажмите на яйцо дважды</small></div>
+      <div><span class="lg-h">🔨</span><b>1 удар = ваше</b><small>нажмите на яйцо, и оно разобьётся</small></div>
     </div>
     <div class="eggs-wrap">
       <div class="eggs js-eggs"></div>
@@ -688,7 +691,7 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
     var act;
     if(opened)act=g.tool?'<button class="btn btn-p js-tool" data-tool="'+g.tool+'" type="button">Открыть сертификат</button>':'<a class="btn btn-p" href="'+esc(g.go[1])+'"'+(/^https?:/.test(g.go[1])?' target="_blank" rel="noopener"':'')+'>'+esc(g.go[0])+' <span class="arr">→</span></a>';
     else if(!reg)act='<a class="btn btn-g" href="#regform">Откроется после регистрации</a>';
-    else if(avail)act='<span class="tap">Нажмите на яйцо · 2 удара</span>';
+    else if(avail)act='<span class="tap">Нажмите на яйцо, чтобы разбить</span>';
     else act='<div class="lockcd js-lockcd" data-at="'+at+'"><small>Откроется через</small>'+dhm(at-t)+'</div>';
     var gi=GIFTS.indexOf(g);
     var tagl=sur?'<span class="gnum gold">Бонус-сюрприз</span>':'<span class="gnum">Подарок '+(gi+1)+'</span>';
@@ -712,9 +715,8 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
     if(hm){hm.classList.remove("go");void hm.offsetWidth;hm.classList.add("go")}
     setTimeout(function(){
       chips(r.left+r.width/2,r.top+r.height*.3);
-      try{navigator.vibrate&&navigator.vibrate(first?30:[40,50,80])}catch(x){}
-      if(first){card.classList.add("hit1");card.querySelector(".tap").textContent="Ещё удар!";card._busy=false;return}
-      card.classList.add("boom");mem.eggs[card.getAttribute("data-id")]=Date.now();ls("bf_eggs_v2",mem.eggs);
+      try{navigator.vibrate&&navigator.vibrate([40,50,80])}catch(x){}
+      card.classList.add("hit1","boom");mem.eggs[card.getAttribute("data-id")]=Date.now();ls("bf_eggs_v2",mem.eggs);
       setTimeout(function(){renderEggs(true);var n=GIFTS.filter(function(g){return mem.eggs[g.id]}).length;toast(card.getAttribute("data-sur")?"Сюрприз ваш!":n>=6?"Все 6 яиц разбиты. Ждём вас на эфире":"Подарок ваш. Разбито "+n+" из 6")},800);
     },200);
   }
@@ -810,6 +812,10 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
   function tick(){
     var t=now(),ph=phase();
     $$(".js-cd").forEach(function(el){setCd(el,START-t)});setCd($(".js-cd2"),END-t);
+    var ub=$(".js-ubar"),soon=START-t;
+    if(ph==="live"){ub.hidden=false;ub.innerHTML="<i></i>Мы в эфире прямо сейчас. Смотреть на этой странице →"}
+    else if(soon>0&&soon<=3*3600e3){ub.hidden=false;ub.innerHTML="<i></i>Эфир начнётся через "+hms(soon)+". Окно трансляции на этой странице →"}
+    else ub.hidden=true;
     $(".js-topcd").innerHTML=ph==="pre"||ph==="early"?"Эфир через <b>"+dhm(START-t)+"</b>":ph==="live"?"<b>Эфир идёт</b>":ph==="sale"?"До закрытия <b>"+dhm(END-t)+"</b>":"";
     $$(".js-lockcd").forEach(function(el){var at=+el.getAttribute("data-at");if(at-t<=0)renderEggs(true);else el.innerHTML="<small>Откроется через</small>"+dhm(at-t)});
     var s=activeSurprise();$$(".js-surcd").forEach(function(el){if(s)el.textContent=hms(Date.parse(s.to)-t)});
