@@ -19,7 +19,7 @@ function doPost(e) {
     const last = sh.getLastRow();
     const known = last > 1 ? sh.getRange(2, 3, last - 1, 1).getValues().map(r => norm(r[0])) : [];
     if (known.indexOf(norm(contact)) === -1) {
-      sh.appendRow([Utilities.formatDate(new Date(), 'Europe/Moscow', 'dd.MM.yyyy HH:mm'), name, contact, safe(d.src, 120)]);
+      sh.appendRow([Utilities.formatDate(new Date(), 'Europe/Moscow', 'dd.MM.yyyy HH:mm'), name, contact, safe(d.src, 120), d.ads ? 'да' : 'нет', safe(d.cert, 20)]);
     }
     return out({ ok: true });
   } finally {
