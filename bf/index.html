@@ -73,7 +73,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4%,-6%) scale(1.08)}66%{transform:translate(-5%,4%) scale(.94)}}
 .gridbg{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);opacity:.55}
 .hero-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,4vw,56px);align-items:center}
-.hero h1{font-size:clamp(42px,6.2vw,92px);line-height:1;margin-top:22px}
+.hero h1{font-size:clamp(42px,6vw,88px);line-height:1;margin-top:22px}
 .hero h1 .row{padding-top:.08em}
 .hero-bgph{position:absolute;right:0;top:0;bottom:0;width:min(46vw,680px);z-index:-1;pointer-events:none;opacity:.5;mask-image:linear-gradient(90deg,transparent,#000 40%),linear-gradient(180deg,#000 60%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-composite:intersect}
 .hero-bgph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:saturate(1.15) contrast(1.05);mix-blend-mode:luminosity}
@@ -144,9 +144,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .reg-row .done{max-width:620px}
 .ph-wrap{position:relative;justify-self:end;width:100%;max-width:470px}
 .ph-wrap .photo{aspect-ratio:4/5;max-height:72vh;margin-left:auto}
-.hero-cta{display:inline-flex!important;width:auto;margin-top:26px}
+.hero-cta{display:none!important}
 .hero-bgph{display:none}
-@media (max-width:980px){.ph-wrap{justify-self:stretch;max-width:none}.ph-wrap .photo{aspect-ratio:4/4.4;max-height:none;width:100%}.ph-wrap .badge.b1{left:12px;top:14px}.ph-wrap .badge.b2{right:12px;bottom:14px}.heroegg{right:-6px;top:-24px;width:78px;height:96px}.reg-row .js-form{grid-template-columns:1fr}.hero-cta{display:flex!important;width:100%}}
+@media (max-width:980px){.hero-cta{display:flex!important;width:100%;margin-top:22px}.ph-wrap{justify-self:stretch;max-width:none}.ph-wrap .photo{aspect-ratio:4/4.4;max-height:none;width:100%}.ph-wrap .badge.b1{left:12px;top:14px}.ph-wrap .badge.b2{right:12px;bottom:14px}.heroegg{right:-6px;top:-24px;width:78px;height:96px}.reg-row .js-form{grid-template-columns:1fr}.hero-cta{display:flex!important;width:100%}}
 /* marquee */
 .mq{border-block:1px solid var(--line);background:linear-gradient(90deg,rgba(63,107,255,.08),rgba(63,107,255,.02));overflow:hidden;padding:18px 0}
 .mq-t{display:flex;width:max-content;animation:mq 36s linear infinite}
@@ -197,7 +197,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .egg.hit1 .shell{animation:shake .4s}
 @keyframes shake{20%{transform:rotate(-8deg)}40%{transform:rotate(7deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(3deg)}}
 .egg.wait{opacity:.86}
-.egg.wait .ce{filter:grayscale(.6) brightness(.55);animation:none}
+.egg.wait .ce,.egg.wait .eggsvg{filter:grayscale(.6) brightness(.55);animation:none}
 .egg .lockcd{font:700 22px "JetBrains Mono",monospace;letter-spacing:-.03em;margin-top:14px;color:var(--fg)}
 .egg .lockcd small{display:block;font:600 12px Manrope,sans-serif;color:var(--dim);letter-spacing:0;margin-bottom:2px}
 .egg.open{background:linear-gradient(180deg,rgba(91,227,168,.08),var(--card) 45%);border-color:rgba(91,227,168,.35)}
@@ -225,6 +225,27 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .sur-hint b{color:var(--gold)}
 .sur-hint a{color:var(--gold);font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px;padding:0 6px}
 
+.egg .shell{filter:drop-shadow(0 22px 26px rgba(63,107,255,.45))}
+.egg .shell{animation:egg 5s ease-in-out infinite}
+.egg.wait .shell,.egg.open .shell{animation:none}
+.egg .shell .yolk.in{position:absolute;left:50%;top:55%;width:58px;height:58px;margin:-29px 0 0 -29px;opacity:0;transform:scale(.2);animation:none;transition:transform .5s var(--ease) .15s,opacity .3s .15s}
+.eggsvg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.eggsvg .half{transform-box:fill-box;transform-origin:50% 100%;transition:transform .7s var(--ease),opacity .7s}
+.egg.boom .half.l{transform:translate(-40px,10px) rotate(-30deg);opacity:0}
+.egg.boom .half.r{transform:translate(40px,10px) rotate(30deg);opacity:0}
+.egg.boom .yolk.in{opacity:1;transform:scale(1)}
+.egg.boom .crack,.egg.boom .ham{opacity:0}
+.egg .ham{position:absolute;z-index:3;right:-52px;top:-28px;width:78px;height:78px;transform-origin:88% 88%;animation:hamIdle 1.4s ease-in-out infinite;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5));pointer-events:none}
+.egg .ham.go{animation:hamHit .32s cubic-bezier(.5,0,.6,1)}
+@keyframes hamIdle{0%,100%{transform:rotate(4deg)}50%{transform:rotate(24deg)}}
+@keyframes hamHit{0%{transform:rotate(45deg)}55%{transform:rotate(-24deg)}100%{transform:rotate(8deg)}}
+.egg.ready .tap{animation:tapPulse 1.6s ease-in-out infinite}
+@keyframes tapPulse{50%{box-shadow:0 0 0 6px rgba(63,107,255,.25)}}
+@media (max-width:640px){.egg.ready .vis{min-height:170px}.egg .shell{width:96px;height:120px}}
+.keep{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:16px;padding:16px 18px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+.keep span{flex:1 1 260px;font-weight:700;color:var(--muted)}
+.keep .btn{min-height:46px;font-size:14px;padding:0 18px}
+@media (max-width:640px){.keep .btn{flex:1 1 100%}}
 /* hammer fx */
 .hfx{position:fixed;z-index:90;pointer-events:none;width:72px;height:72px;margin:-60px 0 0 -16px;transform-origin:20% 80%;animation:swing .32s var(--ease) forwards}
 @keyframes swing{0%{transform:rotate(-55deg)}60%{transform:rotate(18deg)}100%{transform:rotate(0);opacity:0}}
@@ -260,16 +281,38 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .why-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;padding:22px 26px;border-radius:26px;background:linear-gradient(90deg,rgba(63,107,255,.16),rgba(63,107,255,.04));border:1px solid rgba(127,163,255,.35)}
 .why-cta .cd{margin:0}.why-cta .cd>div{min-width:72px;padding:10px 8px}.why-cta .cd b{font-size:30px}
 @media (max-width:760px){.wi{grid-template-columns:1fr;gap:12px;padding:22px}.wi .wt{justify-self:start;grid-row:1}.wn{display:none}.why-cta{padding:18px}.why-cta .btn{width:100%}.why-cta .cd{width:100%}.why-cta .cd>div{min-width:0}}
-.office{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line2);box-shadow:0 60px 140px -60px rgba(63,107,255,.6)}
-.office img{display:block;width:100%;height:auto}
-.office::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,5,10,.15),transparent 30%,transparent 75%,rgba(4,5,10,.4))}
-.hs{position:absolute;z-index:3;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;background:transparent;display:grid;place-items:center;padding:0}
-.hs i{width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--blue);box-shadow:0 0 0 0 rgba(127,163,255,.8);animation:hsp 2s infinite}
+.off-g{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,4vw,56px);align-items:center}
+.off-g h2{font-size:clamp(32px,4.4vw,60px)}
+.deps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:26px}
+.deps button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px 12px 34px;position:relative;text-align:left;border-radius:16px;border:1px solid var(--line);background:var(--card);font-weight:800;font-size:15px;letter-spacing:-.02em;transition:border-color .25s,background .25s}
+.deps button span{font-weight:600;font-size:13px;color:var(--muted);letter-spacing:0}
+.deps button i{position:absolute;left:14px;top:17px;width:10px;height:10px;border-radius:50%;background:var(--dim)}
+.deps button.on{border-color:rgba(127,163,255,.6);background:linear-gradient(90deg,rgba(63,107,255,.2),var(--card))}
+.deps button.on i{background:var(--blue2);box-shadow:0 0 12px var(--blue2)}
+.office{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line2);box-shadow:0 50px 120px -50px rgba(63,107,255,.6);container-type:inline-size}
+.office img{display:block;width:100%;height:auto;transform-origin:50% 40%;animation:kb2 28s ease-in-out infinite alternate}
+@keyframes kb2{to{transform:scale(1.05)}}
+.office::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,5,10,.1),transparent 30%,transparent 80%,rgba(4,5,10,.35))}
+.walkers{position:absolute;inset:0;pointer-events:none}
+.bot{position:absolute;left:var(--x0);top:var(--y);width:3cqw;height:4.4cqw;margin-top:-4.4cqw;animation:walk var(--d) ease-in-out var(--dl,0s) infinite}
+.bot::before{content:"";position:absolute;left:12%;right:12%;top:0;height:44%;border-radius:45%;background:radial-gradient(circle at 35% 55%,#5BC8FF 0 9%,transparent 11%),radial-gradient(circle at 65% 55%,#5BC8FF 0 9%,transparent 11%),linear-gradient(#fff,#cfd8ee);box-shadow:0 0 8px rgba(120,200,255,.6)}
+.bot::after{content:"";position:absolute;left:18%;right:18%;top:46%;bottom:0;border-radius:30% 30% 40% 40%;background:linear-gradient(#f4f7ff,#aeb9d6);animation:bob .5s ease-in-out infinite alternate}
+@keyframes walk{0%{left:var(--x0)}45%{left:var(--x1)}50%{left:var(--x1)}95%{left:var(--x0)}100%{left:var(--x0)}}
+@keyframes bob{to{transform:translateY(-8%)}}
+.scr{position:absolute;border-radius:4px;background:rgba(90,170,255,.22);mix-blend-mode:screen;animation:flick 2.6s ease-in-out infinite}
+@keyframes flick{0%,100%{opacity:.15}50%{opacity:.75}}
+.pkt{position:absolute;z-index:3;left:46%;top:12%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(63,107,255,.6),0 0 24px 6px rgba(127,163,255,.9);opacity:0;transition:left 1.2s cubic-bezier(.6,0,.3,1),top 1.2s cubic-bezier(.6,0,.3,1),opacity .3s;pointer-events:none}
+.flow{position:absolute;z-index:4;left:12px;right:12px;bottom:12px;display:flex;justify-content:center;pointer-events:none}
+.flow span{padding:10px 14px;border-radius:14px;background:rgba(8,11,22,.85);border:1px solid var(--line2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-weight:700;font-size:14px;animation:pop .35s var(--ease);max-width:100%}
+.flow span b{color:var(--ice)}
+.hs{position:absolute;z-index:5;width:40px;height:40px;margin:-20px 0 0 -20px;border:0;background:transparent;display:grid;place-items:center;padding:0}
+.hs i{width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 0 0 0 rgba(127,163,255,.8);animation:hsp 2s infinite}
 .hs.on i{background:var(--blue);border-color:#fff}
-@keyframes hsp{70%{box-shadow:0 0 0 16px rgba(127,163,255,0)}100%{box-shadow:0 0 0 0 rgba(127,163,255,0)}}
-.hs-card{position:absolute;z-index:4;width:min(300px,78%);padding:16px 18px;border-radius:18px;background:rgba(8,11,22,.9);border:1px solid var(--line2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pop .3s var(--ease)}
-.hs-card b{display:block;font-size:17px;font-weight:800;letter-spacing:-.02em}
-.hs-card span{display:block;margin-top:6px;font-size:14px;color:var(--muted);line-height:1.45}
+@keyframes hsp{70%{box-shadow:0 0 0 14px rgba(127,163,255,0)}100%{box-shadow:0 0 0 0 rgba(127,163,255,0)}}
+.flow2{display:none}
+@media (max-width:980px){.off-g{grid-template-columns:1fr}}
+@media (max-width:640px){.flow{display:none}.flow2{display:block;margin-top:12px;min-height:44px}.flow2 span{display:block;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line2);font-weight:700;font-size:14px;animation:pop .35s var(--ease)}.flow2 b{color:var(--ice)}}
+@media (max-width:640px){.deps button{padding:10px 10px 10px 30px;font-size:14px}.deps button i{left:12px;top:15px}.hs{width:32px;height:32px;margin:-16px 0 0 -16px}.hs i{width:12px;height:12px;border-width:2px}.flow span{font-size:12.5px;padding:8px 10px}}
 .cap{margin:12px 0 0;color:var(--dim);font-size:13px}
 @media (max-width:640px){.office{margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));border-radius:0;border-inline:0}.hs{width:36px;height:36px;margin:-18px 0 0 -18px}.hs i{width:14px;height:14px;border-width:3px}.hs-card{left:12px!important;right:12px;width:auto!important;top:auto!important;bottom:12px}}
 /* only live */
@@ -426,7 +469,6 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
 <section class="hero gut" id="reg">
   <div class="aur" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="gridbg" aria-hidden="true"></div>
-  <div class="hero-bgph" aria-hidden="true"><img src="olga-chrome.jpg" alt=""></div>
   <div class="wrap hero-g">
     <div>
       <span class="live-pill js-pill"><i></i>26 ноября · 19:00 мск · прямо здесь</span>
@@ -435,18 +477,10 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
       <a class="btn btn-p hero-cta js-herocta" href="#regform">Занять место и забрать подарки <span class="arr">↓</span></a>
       <div class="cd js-cd" aria-label="До эфира"><div><b>00</b><span>дней</span></div><div><b>00</b><span>часов</span></div><div><b>00</b><span>минут</span></div><div><b>00</b><span>секунд</span></div></div>
     </div>
-    <div class="ph-wrap">
-      <div class="photo"><img src="olga-chrome.jpg" alt="Ольга Пузанова"></div>
-      <div class="badge b1"><b>13 000+</b><span>прошли мои программы</span></div>
-      <div class="badge b2"><b>26.11 · 19:00</b><span>эфир прямо на сайте</span></div>
-      <div class="heroegg"><div class="ce"></div></div>
-    </div>
-  </div>
-  <div class="wrap reg-row">
+    <div>
       <div class="fcard js-fcard" id="regform">
         <form class="js-form js-regf" novalidate>
           <div class="fl">
-          <div class="host"><img src="olga-chrome.jpg" alt=""><span><b>Ольга Пузанова</b>ведущая эфира</span></div>
           <h3>Занять место <span class="acc">и забрать 3 подарка</span></h3>
           <div class="g3">
             <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg>Набор селлера</span>
@@ -473,28 +507,62 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
             <a class="btn btn-g js-gcal" target="_blank" rel="noopener" href="#">Google Календарь</a>
             <a class="btn btn-g js-ics" href="#">Календарь телефона</a>
           </div>
+          <div class="row2" style="margin-top:10px">
+            <button class="btn btn-g js-bm" type="button">Сохранить в закладки</button>
+            <a class="btn btn-g js-chan" target="_blank" rel="noopener" href="#">Напоминания в Telegram</a>
+          </div>
           <button class="btn btn-g js-share" type="button" style="width:100%;margin-top:10px;min-height:48px;font-size:14px">Позвать друга на эфир</button>
         </div>
       </div>
+    </div>
   </div>
 </section>
 
 <div class="mq" aria-hidden="true"><div class="mq-t js-mq"></div></div>
 
 <section class="sec gut" id="office">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="kick"><span class="n">01</span>ИИ-офис</span><h2>Вот так <span class="acc">выглядит офис</span>, который работает без меня</h2><p class="lead" style="margin:0">Каждый этаж это отдел, в каждом отделе ИИ-сотрудники. Нажмите на точку, чтобы посмотреть, кто там работает</p></div>
-    <div class="office rv">
-      <img src="ai-office.jpg" alt="ИИ-офис: здание, где на каждом этаже работают ИИ-сотрудники" loading="lazy">
-      <button class="hs" style="left:46%;top:13%" data-h="Кабинет директора|Оркестратор принимает задачу и раздаёт её остальным агентам. Его шаблон получат зрители эфира" type="button" aria-label="Кабинет директора"><i></i></button>
-      <button class="hs" style="left:52%;top:27%" data-h="Контент-студия|Сценарист рилс, контент-завод и автор постов вашим голосом" type="button" aria-label="Контент-студия"><i></i></button>
-      <button class="hs" style="left:30%;top:41%" data-h="Отдел продаж|Продавец в Telegram отвечает клиентам 24/7 и передаёт тёплые заявки" type="button" aria-label="Отдел продаж"><i></i></button>
-      <button class="hs" style="left:23%;top:54%" data-h="Аналитика|Дашборд продаж и юнит-экономика: цифры приходят сами каждое утро" type="button" aria-label="Аналитика"><i></i></button>
-      <button class="hs" style="left:56%;top:69%" data-h="Автоматизации|Агенты, которые связывают чаты, таблицы и календарь между собой" type="button" aria-label="Автоматизации"><i></i></button>
-      <button class="hs" style="left:30%;top:88%" data-h="Ресепшн|Ассистент по задачам собирает дела из чатов и календаря и каждое утро присылает план" type="button" aria-label="Ресепшн"><i></i></button>
-      <div class="hs-card js-hscard" hidden><b></b><span></span></div>
+  <div class="wrap off-g">
+    <div class="off-l rv">
+      <span class="kick"><span class="n">01</span>ИИ-офис</span>
+      <h2 style="margin-top:18px">Офис, который <span class="acc">работает без меня</span></h2>
+      <p class="lead">Каждый этаж это отдел с ИИ-сотрудниками. Оркестратор раздаёт задачи, агенты делают</p>
+      <div class="deps js-deps">
+        <button type="button" data-i="0"><i></i>Оркестратор<span>раздаёт задачи</span></button>
+        <button type="button" data-i="1"><i></i>Контент-студия<span>сценарии и посты</span></button>
+        <button type="button" data-i="2"><i></i>Отдел продаж<span>заявки 24/7</span></button>
+        <button type="button" data-i="3"><i></i>Аналитика<span>цифры каждое утро</span></button>
+        <button type="button" data-i="4"><i></i>Автоматизации<span>связки сервисов</span></button>
+        <button type="button" data-i="5"><i></i>Ресепшн<span>план дня</span></button>
+      </div>
     </div>
-    <p class="cap rv">Иллюстрация. На эфире покажу, как этот офис работает вживую</p>
+    <div class="rv">
+      <div class="office js-office">
+        <img src="ai-office.jpg" alt="ИИ-офис: здание, где на каждом этаже работают ИИ-сотрудники" loading="lazy">
+        <div class="walkers" aria-hidden="true">
+          <span class="bot" style="--y:17%;--d:19s;--x0:14%;--x1:70%"></span>
+          <span class="bot" style="--y:32%;--d:15s;--x0:40%;--x1:88%;--dl:-6s"></span>
+          <span class="bot" style="--y:46%;--d:22s;--x0:8%;--x1:60%;--dl:-3s"></span>
+          <span class="bot" style="--y:46%;--d:17s;--x0:55%;--x1:92%;--dl:-9s"></span>
+          <span class="bot" style="--y:61%;--d:20s;--x0:30%;--x1:82%;--dl:-12s"></span>
+          <span class="bot" style="--y:75%;--d:16s;--x0:45%;--x1:78%;--dl:-4s"></span>
+          <span class="bot" style="--y:94%;--d:24s;--x0:20%;--x1:70%;--dl:-8s"></span>
+          <span class="scr" style="left:42%;top:6%;width:22%;height:6%"></span>
+          <span class="scr" style="left:65%;top:25%;width:11%;height:5%;animation-delay:-1.2s"></span>
+          <span class="scr" style="left:15%;top:48%;width:16%;height:8%;animation-delay:-.6s"></span>
+          <span class="scr" style="left:45%;top:66%;width:23%;height:5%;animation-delay:-2s"></span>
+        </div>
+        <span class="pkt js-pkt" aria-hidden="true"></span>
+        <div class="flow js-flow" aria-live="polite"></div>
+        <button class="hs" style="left:46%;top:12%" data-i="0" type="button" aria-label="Оркестратор"><i></i></button>
+        <button class="hs" style="left:52%;top:27%" data-i="1" type="button" aria-label="Контент-студия"><i></i></button>
+        <button class="hs" style="left:30%;top:41%" data-i="2" type="button" aria-label="Отдел продаж"><i></i></button>
+        <button class="hs" style="left:23%;top:55%" data-i="3" type="button" aria-label="Аналитика"><i></i></button>
+        <button class="hs" style="left:60%;top:69%" data-i="4" type="button" aria-label="Автоматизации"><i></i></button>
+        <button class="hs" style="left:30%;top:87%" data-i="5" type="button" aria-label="Ресепшн"><i></i></button>
+      </div>
+      <div class="flow2 js-flow2"></div>
+      <p class="cap">Иллюстрация. На эфире покажу, как этот офис работает вживую</p>
+    </div>
   </div>
 </section>
 
@@ -539,6 +607,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
         <a class="btn btn-p" href="#regform">Зарегистрироваться <span class="arr">↑</span></a>
       </div>
     </div>
+    <div class="keep rv"><span>Новое яйцо каждый день в 12:00. Чтобы не пропустить:</span><button class="btn btn-g js-bm" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3h12v18l-6-4-6 4z"/></svg>В закладки</button><a class="btn btn-p js-chan" target="_blank" rel="noopener" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>Напоминания в Telegram</a></div>
     <div class="sur-hint rv js-surhint"><div class="ce gold"></div><p><b>Яйцо-сюрприз.</b> В случайный час здесь появится золотое яйцо и будет висеть 3 часа. Когда оно появится, напишу в канале.</p><a href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener" class="js-chan">В канал →</a></div>
   </div>
 </section>
@@ -690,6 +759,14 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
   </div>
 </footer>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="egB" cx="32%" cy="24%" r="85%"><stop offset="0" stop-color="#fff"/><stop offset=".12" stop-color="#E4EDFF"/><stop offset=".32" stop-color="#93B3FF"/><stop offset=".6" stop-color="#3F6BFF"/><stop offset="1" stop-color="#1A2E9E"/></radialGradient>
+<radialGradient id="egG" cx="32%" cy="24%" r="85%"><stop offset="0" stop-color="#fff"/><stop offset=".12" stop-color="#FFF3D1"/><stop offset=".34" stop-color="#FFD27A"/><stop offset=".65" stop-color="#E69A2E"/><stop offset="1" stop-color="#9A5A0E"/></radialGradient>
+<radialGradient id="egS" cx="70%" cy="85%" r="60%"><stop offset="0" stop-color="#000025" stop-opacity=".35"/><stop offset="1" stop-color="#000025" stop-opacity="0"/></radialGradient>
+<filter id="egBl"><feGaussianBlur stdDeviation="3"/></filter>
+<clipPath id="ecl" clipPathUnits="userSpaceOnUse"><polygon points="-10,-10 52,-10 46,40 58,52 46,68 58,84 49,140 -10,140"/></clipPath>
+<clipPath id="ecr" clipPathUnits="userSpaceOnUse"><polygon points="51,-10 110,-10 110,140 48,140 57,84 45,68 57,52 45,40"/></clipPath>
+</defs></svg>
 <div class="mbar js-mbar"><a class="btn btn-p js-mbtn" href="#regform">Занять место на эфире</a></div>
 
 <div class="modal js-modal" hidden><div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mt"><button class="mx js-mx" type="button" aria-label="Закрыть"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button><h3 id="mt" class="js-mt"></h3><div class="js-mb"></div></div></div>
@@ -775,16 +852,20 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
   /* ===== яйца ===== */
   var IC_LOCK='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
   var IC_OK='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>';
+  var HAM='<svg class="ham" viewBox="0 0 64 64" aria-hidden="true"><g transform="rotate(-45 32 32)"><rect x="28.5" y="20" width="7" height="40" rx="3.5" fill="#C08A52" stroke="#0b1020" stroke-width="1.5"/><rect x="13" y="6" width="38" height="17" rx="5" fill="#E6ECFF" stroke="#0b1020" stroke-width="2"/></g></svg>';
+  var EGGP='M50 2C79 2 98 44 98 77C98 105 77 123 50 123C23 123 2 105 2 77C2 44 21 2 50 2Z';
+  function eggSvg(g){var f=g?'url(#egG)':'url(#egB)';var inner='<path d="'+EGGP+'" fill="'+f+'"/><path d="'+EGGP+'" fill="url(#egS)"/><ellipse cx="34" cy="26" rx="10" ry="7" fill="#fff" opacity=".8" filter="url(#egBl)"/>';return '<svg class="eggsvg" viewBox="0 0 100 125" aria-hidden="true"><g class="half l" clip-path="url(#ecl)">'+inner+'</g><g class="half r" clip-path="url(#ecr)">'+inner+'</g></svg>'}
   var CRACK='<svg class="crack" viewBox="0 0 104 130" aria-hidden="true"><path d="M52 18 L45 40 L58 50 L46 66 L58 80 L50 100" fill="none" stroke="#08103a" stroke-width="3" stroke-linejoin="round"/><path d="M58 50 L72 55 M46 66 L32 72" stroke="#08103a" stroke-width="2.4"/></svg>';
   function activeSurprise(){var t=now();for(var i=0;i<SURPRISE.length;i++){var s=SURPRISE[i];if(t>=Date.parse(s.from)&&t<Date.parse(s.to))return s}return null}
   function eggHtml(g,i,sur){
     var t=now(), at=g.at?Date.parse(g.at):0, opened=!!mem.eggs[g.id], avail=!at||t>=at, reg=isReg();
     var cls="egg"+(sur?" surprise":"")+(opened?" open":avail&&reg?" ready":" wait");
     var when = opened ? '<span class="when got">'+IC_OK+'ваш</span>' : sur ? '<span class="when">бонусное яйцо · ещё <span class="js-surcd">'+hms(Date.parse(sur.to)-t)+'</span></span>' : !at ? '<span class="when go">сразу</span>' : avail ? '<span class="when go">открыто</span>' : '<span class="when">'+IC_LOCK+msk(g.at)+'</span>';
-    var vis = opened ? '<div class="yolk"></div>' : '<div class="shell"><div class="ce'+(sur?" gold":"")+'"></div>'+CRACK+'</div>';
+    var gc=sur?" gold":"";
+    var vis = opened ? '<div class="yolk"></div>' : '<div class="shell">'+eggSvg(!!sur)+CRACK+'<div class="yolk in"></div>'+(avail&&reg?HAM:'')+'</div>';
     var bottom = "";
     if(opened){ bottom = g.tool ? '<button class="btn btn-p take js-tool" data-tool="'+g.tool+'" type="button">Открыть сертификат</button>' : '<a class="btn btn-p take" href="'+esc(g.go[1])+'"'+(/^https?:/.test(g.go[1])?' target="_blank" rel="noopener"':'')+'>'+esc(g.go[0])+' <span class="arr">→</span></a>'; }
-    else if(avail){ bottom = '<span class="tap">Ударить молотком · 2 раза</span>'; }
+    else if(avail){ bottom = '<span class="tap">Тапните по яйцу · 2 удара</span>'; }
     else { bottom = '<div class="lockcd js-lockcd" data-at="'+at+'"><small>Откроется через</small>'+dhm(at-t)+'</div>'; }
     return '<div class="'+cls+'" data-id="'+g.id+'"'+(sur?' data-sur="1"':'')+(avail&&!opened&&reg?' role="button" tabindex="0" aria-label="Разбить яйцо: '+esc(g.t)+'"':'')+'>'+when+'<div class="vis">'+vis+'</div><h4>'+esc(g.t)+'</h4><p>'+esc(g.d)+'</p>'+bottom+'</div>';
   }
@@ -801,6 +882,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
     $(".js-veil").hidden=isReg();
     $(".js-surhint").hidden=!!sur;
   }
+  function chips(x,y){for(var i=0;i<12;i++){var c=document.createElement("div");c.className="chipfx";c.style.left=x+"px";c.style.top=y+"px";c.style.setProperty("--dx",(Math.random()*160-80)+"px");c.style.setProperty("--dy",(Math.random()*-120-10)+"px");document.body.appendChild(c);(function(el){setTimeout(function(){el.remove()},720)})(c)}}
   function hammer(x,y){
     var h=document.createElement("div");h.className="hfx";h.style.left=x+"px";h.style.top=y+"px";
     h.innerHTML='<svg viewBox="0 0 72 72" width="72" height="72"><rect x="31" y="24" width="9" height="46" rx="4" fill="#C08A52" stroke="#111" stroke-width="2"/><rect x="12" y="8" width="46" height="20" rx="6" fill="#E6ECFF" stroke="#111" stroke-width="2"/></svg>';
@@ -809,11 +891,22 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
   }
   function hit(card,x,y){
     if(!card.classList.contains("ready")) return;
-    var r=card.querySelector(".shell").getBoundingClientRect();
-    hammer(x||r.left+r.width/2,y||r.top+r.height/3);
-    if(!card.classList.contains("hit1")){card.classList.add("hit1");card.querySelector(".tap").textContent="Ещё один удар";return}
-    var id=card.getAttribute("data-id"); mem.eggs[id]=Date.now(); ls("bf_eggs_v2",mem.eggs);
-    renderEggs(true);
+    if(card._busy) return; card._busy=true;
+    var sh=card.querySelector(".shell"), r=sh.getBoundingClientRect(), hm=card.querySelector(".ham");
+    if(hm){hm.classList.remove("go");void hm.offsetWidth;hm.classList.add("go")}
+    var first=!card.classList.contains("hit1");
+    setTimeout(function(){
+      chips(r.left+r.width/2,r.top+r.height*0.3);
+      try{navigator.vibrate&&navigator.vibrate(first?30:[40,50,80])}catch(x){}
+      if(first){card.classList.add("hit1");card.querySelector(".tap").textContent="Ещё удар!";card._busy=false;return}
+      card.classList.add("boom");
+      var id=card.getAttribute("data-id"); mem.eggs[id]=Date.now(); ls("bf_eggs_v2",mem.eggs);
+      setTimeout(function(){renderEggs(true);
+        var n=GIFTS.filter(function(g){return mem.eggs[g.id]}).length;
+        toast(card.getAttribute("data-sur")?"Сюрприз ваш!":n>=6?"Все 6 яиц разбиты. Ждём вас на эфире":"Подарок ваш. Разбито "+n+" из 6");
+      },800);
+    },200);
+    return;
     var n=GIFTS.filter(function(g){return mem.eggs[g.id]}).length;
     toast(card.getAttribute("data-sur")?"Сюрприз ваш!":n>=6?"Все 6 яиц разбиты. Ждём вас на эфире":"Подарок ваш. Разбито "+n+" из 6");
   }
@@ -838,7 +931,28 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
   });
 
   $(".js-share").addEventListener("click",function(){var u=location.href.split("#")[0].split("?")[0],t="26 ноября в 19:00 Ольга Пузанова собирает ИИ-офис из 10 агентов в прямом эфире. Регистрация и подарки тут: "+u;try{navigator.clipboard.writeText(t).then(function(){toast("Приглашение скопировано, отправьте другу")},function(){openModal("Позвать друга","<p class='muted'>"+esc(t)+"</p>")})}catch(x){openModal("Позвать друга","<p class='muted'>"+esc(t)+"</p>")}});
-  (function(){var card=$(".js-hscard"),off=$(".office");$$(".hs").forEach(function(h){h.addEventListener("click",function(e){e.stopPropagation();var on=h.classList.contains("on");$$(".hs").forEach(function(x){x.classList.remove("on")});if(on){card.hidden=true;return}h.classList.add("on");var d=h.getAttribute("data-h").split("|");card.querySelector("b").textContent=d[0];card.querySelector("span").textContent=d[1];card.hidden=false;var L=parseFloat(h.style.left),T=parseFloat(h.style.top);card.style.left=(L>55?"auto":"calc("+L+"% + 28px)");card.style.right=(L>55?"calc("+(100-L)+"% + 28px)":"auto");card.style.top=(T>60?"calc("+T+"% - 120px)":"calc("+T+"% + 10px)")})});document.addEventListener("click",function(e){if(!e.target.closest(".office")){card.hidden=true;$$(".hs").forEach(function(x){x.classList.remove("on")})}})})();
+  (function(){
+    var D=[["Оркестратор","получил задачу «запуск на неделю» и раздаёт её отделам"],["Контент-студия","пишет 3 сценария рилс и пост в канал"],["Отдел продаж","ответил 12 заявкам в Telegram, 3 тёплые передал менеджеру"],["Аналитика","собрала отчёт по продажам и прислала его в 9:00"],["Автоматизации","связали таблицу, календарь и бота"],["Ресепшн","прислал план дня: 5 задач, 2 горят"]];
+    var hs=$$(".office .hs"), deps=$$(".js-deps button"), pkt=$(".js-pkt"), flow=$(".js-flow"), cur=-1, auto=true, timer;
+    function pos(i){return [hs[i].style.left,hs[i].style.top]}
+    function show(i,fromAuto){
+      cur=i; hs.forEach(function(h,k){h.classList.toggle("on",k===i)}); deps.forEach(function(d,k){d.classList.toggle("on",k===i)});
+      flow.innerHTML='<span><b>'+D[i][0]+'</b> '+D[i][1]+'</span>'; $(".js-flow2").innerHTML=flow.innerHTML;
+      if(i>0){ var a=pos(0),b=pos(i); pkt.style.transition="none"; pkt.style.left=a[0]; pkt.style.top=a[1]; pkt.style.opacity=1; void pkt.offsetWidth; pkt.style.transition=""; setTimeout(function(){pkt.style.left=b[0];pkt.style.top=b[1]},60); setTimeout(function(){pkt.style.opacity=0},1500); }
+    }
+    function loop(){ if(!auto) return; show((cur+1)%D.length,true); timer=setTimeout(loop,3400) }
+    function pick(i){ auto=false; clearTimeout(timer); show(i); clearTimeout(pick._t); pick._t=setTimeout(function(){auto=true;loop()},9000) }
+    hs.forEach(function(h){h.addEventListener("click",function(){pick(+h.getAttribute("data-i"))})});
+    deps.forEach(function(d){d.addEventListener("click",function(){pick(+d.getAttribute("data-i"))})});
+    var started=false;
+    if("IntersectionObserver" in window){ new IntersectionObserver(function(es){ if(es[0].isIntersecting&&!started){started=true;loop()} }).observe($(".js-office")); } else loop();
+  })();
+  $$(".js-bm").forEach(function(b){b.addEventListener("click",function(){
+    var ua=navigator.userAgent, mac=/Mac|iPhone|iPad/.test(ua), mob=/iPhone|iPad|Android/.test(ua), ios=/iPhone|iPad/.test(ua);
+    var how = ios ? "Нажмите «Поделиться» внизу Safari и выберите «Добавить на экран Домой» или «Добавить в закладки»" : mob ? "Откройте меню браузера (три точки) и нажмите «Добавить в закладки» или «Добавить на главный экран»" : "Нажмите "+(mac?"⌘ + D":"Ctrl + D")+", и страница сохранится в закладках";
+    openModal("Сохранить страницу","<p class='muted' style='font-size:15px;color:var(--fg)'>"+how+"</p><p class='muted'>Эфир 26.11 в 19:00 будет прямо на этой странице.</p><button class='btn btn-g js-copy' type='button' data-t='"+esc(location.href.split("#")[0].split("?")[0])+"'>Скопировать ссылку</button>");
+  })});
+  $$(".js-chan").forEach(function(a){a.href=CHANNEL});
   /* ===== кодовое слово ===== */
   $(".js-codeform").addEventListener("submit",function(e){
     e.preventDefault();var m=$(".js-codemsg"),v=$(".js-code").value.trim().toLowerCase().replace(/ё/g,"е");m.hidden=false;
