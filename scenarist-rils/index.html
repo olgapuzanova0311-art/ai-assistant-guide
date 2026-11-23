@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Серия 7 Чёрной ИИшницы: Telegram-бот, который пишет сценарии рилс твоим голосом. Готовый промпт для Claude Code">
+<title>Сценарист рилс · Серия 7</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #0E0E0E; --panel: #1A1917; --panel-2: #24221F;
+  --fg: #F4F1EA; --muted: #9A968E; --orange: #E8744F; --blue: #6E9BFF; --ink: #0E0E0E;
+  --font: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 18px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0;
+}
+.wrap { max-width: 1040px; margin: 0 auto; }
+section { padding-block: 64px; display: grid; gap: 28px; }
+section + section { border-top: 1px solid var(--panel-2); }
+h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: clamp(44px, 7vw, 84px); font-weight: 900; line-height: 0.95; }
+h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.1; }
+p { margin: 0; max-width: 64ch; }
+.lead { font-size: clamp(19px, 2.2vw, 25px); color: var(--muted); font-weight: 500; max-width: 46ch; }
+.label { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.o { color: var(--orange); } .b { color: var(--blue); }
+a { color: var(--blue); }
+
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 28px; }
+.brand { font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; font-size: 14px; }
+.ep { display: inline-flex; align-items: center; gap: 10px; background: var(--panel); border: 1px solid var(--panel-2); border-radius: 999px; padding: 8px 16px; font-weight: 800; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+.ep i { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(232,116,79,.18); }
+.hero { padding-block: 72px 56px; }
+.series { display: flex; gap: 6px; flex-wrap: wrap; }
+.series { flex-wrap: nowrap; max-width: 400px; }
+.series span { flex: 1; min-width: 0; height: 8px; border-radius: 4px; background: var(--panel-2); }
+.series span.done { background: var(--muted); }
+.series span.now { background: var(--orange); }
+
+.chat { background: var(--panel); border-radius: 26px; padding: 20px; display: grid; gap: 12px; max-width: 560px; }
+.msg { background: var(--panel-2); border-radius: 18px 18px 18px 6px; padding: 14px 16px; font-size: 15px; display: grid; gap: 6px; }
+.msg.me { background: var(--blue); color: var(--ink); border-radius: 18px 18px 6px 18px; justify-self: end; font-weight: 600; }
+.msg .sc { font-family: var(--mono); font-size: 13px; color: var(--fg); background: var(--bg); border-radius: 10px; padding: 10px 12px; }
+.kbd { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.kbd span { background: var(--bg); border-radius: 10px; padding: 8px 6px; text-align: center; font-size: 12px; font-weight: 700; }
+.heroGrid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: end; }
+.heroGrid > * { min-width: 0; }
+
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card { background: var(--panel); border-radius: 22px; padding: 24px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card p { color: var(--muted); font-size: 16px; }
+.card .big { font-size: 24px; font-weight: 800; line-height: 1.15; }
+.card .em { font-size: 30px; }
+
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.btns span { background: var(--panel); border: 1px solid var(--panel-2); border-radius: 14px; padding: 12px 16px; font-weight: 700; font-size: 16px; }
+.btns span em { font-style: normal; color: var(--muted); font-weight: 500; }
+
+.need { display: grid; gap: 10px; }
+.need div { background: var(--panel); border-radius: 16px; padding: 16px 20px; display: grid; grid-template-columns: 240px 1fr; gap: 16px; align-items: baseline; }
+.need b { font-size: 18px; }
+.need span { color: var(--muted); font-size: 16px; }
+
+ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; counter-reset: s; }
+ol.steps li { background: var(--panel); border-radius: 18px; padding: 20px 22px 20px 72px; position: relative; counter-increment: s; font-size: 17px; }
+ol.steps li::before { content: counter(s); position: absolute; left: 22px; top: 16px; font-size: 30px; font-weight: 800; color: var(--orange); line-height: 1; }
+ol.steps li b { display: block; font-size: 19px; margin-bottom: 4px; }
+ol.steps li span { color: var(--muted); }
+code.inl { font-family: var(--mono); font-size: 15px; background: var(--panel-2); padding: 2px 7px; border-radius: 6px; color: var(--fg); }
+
+.prompt-box { background: var(--panel); border-radius: 26px; overflow: hidden; display: grid; }
+.prompt-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 16px 20px; background: var(--panel-2); position: sticky; top: env(safe-area-inset-top, 0px); }
+.prompt-bar .t { font-weight: 700; font-size: 16px; }
+.prompt-bar .hint { color: var(--muted); font-size: 14px; }
+.copy { font-family: var(--font); font-weight: 800; font-size: 17px; border: 0; cursor: pointer; background: var(--orange); color: var(--ink); padding: 14px 26px; border-radius: 14px; }
+.copy:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.copy.done { background: var(--blue); }
+.copy.big { font-size: 20px; padding: 18px 34px; border-radius: 16px; }
+pre.prompt { margin: 0; padding: 22px; max-height: 560px; overflow: auto; font-family: var(--mono); font-size: 14px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; color: var(--fg); }
+
+.accent { background: var(--orange); color: var(--ink); border-radius: 30px; padding: clamp(28px, 5vw, 56px); display: grid; gap: 12px; }
+.accent h2 { font-size: clamp(30px, 5vw, 60px); }
+.accent p { font-size: clamp(18px, 2vw, 22px); font-weight: 600; max-width: 50ch; }
+
+.faq { display: grid; gap: 12px; }
+.faq details { background: var(--panel); border-radius: 16px; padding: 18px 22px; }
+.faq summary { font-weight: 700; font-size: 18px; cursor: pointer; }
+.faq details p { color: var(--muted); font-size: 16px; margin-top: 10px; }
+footer { padding-block: 36px 60px; color: var(--muted); font-size: 15px; }
+
+@media (max-width: 1000px) { .heroGrid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) {
+  .grid3, .heroGrid { grid-template-columns: 1fr; }
+  .need div { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 620px) {
+  section { padding-block: 48px; }
+  .grid2 { grid-template-columns: 1fr; }
+  ol.steps li { padding-left: 60px; }
+  .kbd span { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="topbar">
+  <div class="brand">Чёрная <span class="o">ИИ</span>шница</div>
+  <div class="ep"><i></i>Серия 7 из 10</div>
+</div>
+
+<header class="hero">
+  <div class="heroGrid">
+    <div style="display:grid;gap:26px">
+      <div class="series" aria-label="Серия 7 из 10"><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="now"></span><span></span><span></span><span></span></div>
+      <h1>Сценарист <span class="o">рилс</span></h1>
+      <p class="lead">Бот в Telegram, который знает, что тебе сказать в камеру. Кидаешь тему, голосовое или чужой ролик, получаешь готовый текст твоим голосом</p>
+      <div><button class="copy big" data-copy="prompt">Скопировать промпт</button></div>
+    </div>
+    <div class="chat" aria-hidden="true">
+      <div class="msg me">instagram.com/reel/…</div><div class="msg">⏳ Скачиваю и слушаю ролик…</div>
+      <div class="msg"><b>🎬 Рутина больше не моя</b><span style="color:var(--muted);font-size:13px">Формат: до/после · ~36 сек · Оценка 9/10</span><div class="sc">Раньше я тратила на отчёты весь понедельник. Теперь 15 минут…</div></div>
+      <div class="kbd"><span>🪝 Другой хук</span><span>✂️ Короче</span><span>😄 Смешнее</span><span>🔄 Переписать</span><span>✍️ Вручную</span><span>✅ Беру</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="label">Что умеет</div>
+  <h2>Одна тема, <span class="o">три разных ролика</span></h2>
+  <div class="grid3">
+    <div class="card"><div class="em">🎬</div><div class="big">Тема</div><p>Три сценария с разными хуками, форматами и примерами</p></div>
+    <div class="card"><div class="em">🔁</div><div class="big">Чужой ролик</div><p>Кидаешь ссылку на Reels, TikTok или Shorts. Бот сам скачивает, расшифровывает и переписывает под твою нишу. Ни одной фразы оригинала</p></div>
+    <div class="card"><div class="em">🎙</div><div class="big">Голосовое</div><p>Наговорила историю, получила сценарий. Расшифровка прямо на маке, бесплатно</p></div>
+    <div class="card"><div class="em">📅</div><div class="big">План на неделю</div><p>7 тем, все форматы разные, у каждой готовый хук</p></div>
+    <div class="card"><div class="em">🧐</div><div class="big">Сам себя проверяет</div><p>Редактор оценивает каждый сценарий по 10 пунктам. Ниже 8 из 10 переписывает до того, как ты увидишь</p></div>
+    <div class="card"><div class="em">🪪</div><div class="big">Карточка автора</div><p>6 вопросов о тебе один раз, дальше пишет твоим тоном и твоими словечками</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="label">Под каждым сценарием</div>
+  <h2>Не зашло? <span class="b">Жми кнопку</span></h2>
+  <div class="btns">
+    <span>🪝 Другой хук</span><span>✂️ Короче</span><span>😄 Смешнее</span><span>🔥 Дерзче</span><span>🧸 Проще</span><span>🔄 Переписать целиком</span><span>✍️ Исправить вручную</span><span>🧐 Проверить</span><span>✅ Беру</span><span>🎥 Как снять</span>
+  </div>
+  <p class="lead">Меняется только то, что нажала. Все версии сохраняются, текст копируется одним тапом в суфлёр</p>
+</section>
+
+<section>
+  <div class="label">Что нужно</div>
+  <h2>Мак, подписка и 30 минут</h2>
+  <div class="need">
+    <div><b>Мак</b><span>Любой: на M1–M4 и на Intel. Бот работает, пока мак включён</span></div>
+    <div><b>Подписка Claude</b><span>Pro или Max. Никаких API-ключей, бот тратит лимиты подписки</span></div>
+    <div><b>Claude Code</b><span>Установлен и вошёл в аккаунт по подписке</span></div>
+    <div><b>Бот в Telegram</b><span>Создаёшь сама в @BotFather, Claude проведёт по шагам</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="label">Как собрать</div>
+  <h2>Четыре шага</h2>
+  <ol class="steps">
+    <li><b>Открой Терминал и запусти Claude Code</b><span>Набери <code class="inl">claude</code>. Если просит вход, введи <code class="inl">/login</code> и выбери аккаунт Claude, а не API-ключ</span></li>
+    <li><b>Скопируй промпт ниже и вставь в Claude Code</b><span>Целиком, ничего не меняй</span></li>
+    <li><b>Делай то, что он попросит руками</b><span>Создать бота в @BotFather, вставить токен в файл, ввести пароль от мака. Он объяснит каждый шаг</span></li>
+    <li><b>Напиши боту «привет»</b><span>Ответь голосом на 6 вопросов, и можно снимать</span></li>
+  </ol>
+</section>
+
+<section id="prompt-section">
+  <div class="label">Промпт</div>
+  <h2>Вставь это в <span class="o">Claude Code</span></h2>
+  <div class="prompt-box">
+    <div class="prompt-bar">
+      <div><div class="t">Промпт: бот «Сценарист рилс»</div><div class="hint">Для Claude Code на маке</div></div>
+      <button class="copy" data-copy="prompt">Скопировать промпт</button>
+    </div>
+    <pre class="prompt" id="prompt"># Задача
+
+Собери мне Telegram-бота «Сценарист рилс». Он пишет сценарии коротких вертикальных видео (Reels, Shorts, клипы VK, TikTok), которые я сам читаю в камеру. Бот работает на моём маке и думает через Claude Code по моей подписке Claude (Pro или Max).
+
+Я не программист. Сначала прочитай задачу целиком, составь план и делай сам. Всё, что нужно сделать мне руками, объясняй простыми словами, по одному шагу за раз, и жди, пока я напишу «готово». По ходу тестируй сам.
+
+# Шаг 0. Проверь мой мак (до любого кода)
+
+1. Узнай процессор (`uname -m`): arm64 это Apple Silicon (M1–M4), x86_64 это Intel. От этого зависит, чем расшифровывать голосовые (ниже).
+2. Проверь и, если нет, поставь: Homebrew, Python 3.11+, ffmpeg, yt-dlp. Если для установки нужен мой пароль от мака, скажи, что ввести его надо мне в Терминале, и что символы при вводе не видны, это нормально.
+3. Проверь, что Claude Code залогинен по подписке: выполни `claude -p &quot;ответь одним словом: работает&quot;`. Если просит логин, объясни мне: открыть Терминал, набрать `claude`, ввести `/login`, выбрать вход через аккаунт Claude (подписка), а не API-ключ.
+4. Проведи меня по созданию бота: открыть в Telegram @BotFather, отправить /newbot, придумать имя и username (должен заканчиваться на bot), скопировать токен. Потом скажи, какой файл открыть и куда вставить токен. Сам токен в чат мне не присылай и у меня не проси.
+
+# Жёсткие правила
+
+1. Никаких API-ключей Claude, OpenAI и других платных API. Все ответы нейросети идут через `claude -p` (Claude Code в headless-режиме), токены тратятся из моей подписки.
+2. Если в окружении есть переменная ANTHROPIC_API_KEY, при вызове `claude -p` убирай её из env подпроцесса (и не прописывай в launchd), иначе Claude начнёт списывать деньги с API вместо подписки.
+3. Токен бота я вставлю сам в `~/reels-bot/.env` (строка `BOT_TOKEN=`). В чат его не проси, в логи не пиши.
+4. Голосовые расшифровывай локально, без ключей: на Apple Silicon через `mlx-whisper` (модель `mlx-community/whisper-medium-mlx`), на Intel через `faster-whisper` (модель small, int8). Язык ru. Модель скачай заранее и предупреди меня, что первый раз это займёт пару минут.
+5. Telegram работает через long polling, без вебхуков и серверов.
+6. Пиши на Python 3.11+ с `python-telegram-bot` v21 (async). Всё ставь в venv в `~/reels-bot/.venv`.
+7. Автозапуск сделай через launchd (`~/Library/LaunchAgents/com.reelsbot.plist`), чтобы бот поднимался при включении мака и перезапускался при падении. Логи пиши в `~/reels-bot/logs/`.
+
+# Структура проекта
+
+```
+~/reels-bot/
+  bot.py                 # Telegram, кнопки, состояния
+  brain.py               # вызовы claude -p, сборка промптов, разбор JSON
+  voice.py               # расшифровка голосовых через mlx-whisper
+  storage.py             # хранение в SQLite (data/bot.db)
+  prompts/
+    writer.md            # мозг сценариста (текст ниже)
+    critic.md            # проверяющий (текст ниже)
+    onboarding.md        # 6 вопросов и сборка карточки
+  data/bot.db            # users, cards, scripts, history
+  .env
+  logs/
+  README.md              # как запустить, остановить, обновить промпты
+```
+
+# Как вызывать Claude
+
+- Через `asyncio.create_subprocess_exec`: `claude -p --output-format json --append-system-prompt &quot;&lt;содержимое prompts/*.md + карточка автора&gt;&quot;`. Пользовательский запрос подавай через stdin.
+- Таймаут 180 секунд. Пока ждём, каждые 4 секунды шли `sendChatAction typing`.
+- На каждый чат держи очередь (asyncio.Lock), чтобы запросы одного человека не путались.
+- Внутри промптов проси модель отвечать строго JSON по схемам ниже. Парсить надежно: найти первый `{` и последний `}`. Если JSON битый, один раз повтори запрос с припиской «верни только валидный JSON».
+- Ошибку человеку показывай по-человечески («Что-то пошло не так, нажми ещё раз»), а технические детали пиши только в лог.
+
+# Пользовательский путь
+
+## 1. /start и знакомство
+
+Если карточки автора нет:
+- Сообщение: «Привет! Я твой сценарист рилс 🎬 Чтобы писать твоим голосом, задам 6 коротких вопросов. Отвечать можно голосовым, так быстрее»
+- Задаём вопросы по одному. После каждого ответа бот коротко подтверждает и задаёт следующий. Под каждым вопросом есть инлайн-кнопки: «💡 Предложи варианты» (бот даёт 3 варианта ответа кнопками) и «⏭ Пропустить».
+  1. Чем ты занимаешься и что продаёшь?
+  2. Кто твой зритель: кто он, что у него болит, чего он хочет?
+  3. Куда ведёшь зрителя в конце ролика? (кодовое слово в директ, подписка, ссылка в шапке, подарок)
+  4. Какой у тебя тон: серьёзный, дружеский, с юмором, дерзкий?
+  5. Какие словечки и фразы ты часто говоришь?
+  6. Что ты точно не хочешь говорить или обещать?
+- После шестого ответа Claude собирает «Карточку автора» (схема ниже) и бот показывает её с кнопками «✅ Всё верно», «✍️ Исправить» (человек пишет или наговаривает, что поменять, Claude обновляет карточку) и «🔄 Заново».
+- Карточку сохраняем в БД. Дальше она подмешивается в каждый запрос к сценаристу и больше не спрашивается.
+
+## 2. Главное меню (постоянная клавиатура внизу)
+
+```
+🎬 Сценарий на тему     🔁 Переделать чужой ролик
+🎙 Из моей истории      📅 План на неделю
+📚 Мои сценарии         🪪 Моя карточка
+```
+
+- «🎬 Сценарий на тему»: «О чём ролик? Напиши или наговори тему». В ответ приходят 3 разных сценария.
+- «🔁 Переделать чужой ролик»: «Кинь ссылку на ролик (Instagram, TikTok, YouTube, VK), сам ролик, текст или голосовой пересказ». В ответ приходит 1 сценарий плюс короткая строка, какую механику мы взяли.
+- «🎙 Из моей истории»: «Расскажи голосом, что случилось». В ответ приходит 1 сценарий.
+- «📅 План на неделю»: 7 тем. У каждой есть формат, хук и кнопка «Написать сценарий».
+- «📚 Мои сценарии»: последние 10 сценариев со статусами (черновик, беру, снят). Каждый открывается со всеми кнопками.
+- «🪪 Моя карточка»: показать, исправить или пройти заново.
+- Если человек просто пишет текст или шлёт голосовое без кнопки, бот сам понимает, что это: тема, чужой ролик, история или правка последнего сценария.
+- Голосовое сначала расшифровываем и показываем «🎙 Услышал: …», потом работаем.
+
+## 2а. Ссылка на чужой ролик
+
+Если в сообщении есть ссылка на Instagram Reels, TikTok, YouTube Shorts или VK Клипы (в любом режиме, в том числе после кнопки «🔁 Переделать чужой ролик»):
+1. Ответь «⏳ Скачиваю и слушаю ролик…».
+2. Скачай видео через `yt-dlp` (поставь через brew, держи свежим: раз в неделю `brew upgrade yt-dlp`). Для Instagram используй куки из браузера: `--cookies-from-browser` (сначала chrome, если нет, safari). Если Instagram не отдаёт ролик, честно скажи: «Инста не отдала ролик, зайди в инсту в Chrome на этом маке и пришли ссылку ещё раз, или перешли сам ролик файлом».
+3. Вытащи звук через ffmpeg и расшифруй тем же локальным Whisper, что и голосовые.
+4. Возьми ещё подпись к ролику (описание), если yt-dlp её отдал, и длительность.
+5. Покажи «📝 Расшифровка оригинала» (свёрнуто в одно сообщение, до 1500 символов) и сразу сделай адаптацию под карточку автора по правилам «ЧУЖОЙ РОЛИК». В mechanics одной строкой: тип хука, структура, приём удержания, почему ролик, скорее всего, залетел.
+6. Если ролик без речи (только музыка и текст на экране), скажи об этом и предложи прислать текст с экрана или описать ролик голосом.
+7. Видео и звук после расшифровки удаляй, чтобы не забивать диск.
+Если прислали сам видеофайл (переслали ролик), делай то же самое без скачивания.
+
+## 3. Как показывать сценарий
+
+Каждый сценарий отправляй двумя сообщениями.
+
+Первое сообщение, карточка сценария (HTML parse_mode):
+```
+&lt;b&gt;🎬 Название&lt;/b&gt;
+Формат: ошибка · Хук: до/после · ~38 сек · 92 слова
+Оценка: 9/10
+
+&lt;b&gt;Хук:&lt;/b&gt; …
+&lt;b&gt;Призыв:&lt;/b&gt; …
+&lt;b&gt;В кадре:&lt;/b&gt; …
+&lt;b&gt;Ещё хуки:&lt;/b&gt;
+1. …
+2. …
+3. …
+```
+
+Второе сообщение: только текст для чтения, целиком в `&lt;code&gt;…&lt;/code&gt;`, чтобы копировался одним тапом в телесуфлёр. Хук в начале, призыв в конце, всё сплошным текстом.
+
+Под вторым сообщением идут инлайн-кнопки:
+```
+🪝 Другой хук     ✂️ Короче       😄 Смешнее
+🔥 Дерзче         🧸 Проще        🔄 Переписать целиком
+✍️ Исправить вручную              🧐 Проверить
+✅ Беру            🎥 Как снять
+```
+
+- «🪝 Другой хук», «✂️ Короче», «😄 Смешнее», «🔥 Дерзче», «🧸 Проще»: меняется только это, остальное остаётся. Новая версия приходит целиком и сохраняется как версия 2, 3 и так далее. Кнопка «↩️ Предыдущая версия» появляется, если версий больше одной.
+- «🔄 Переписать целиком»: тот же смысл, новый угол и новый пример.
+- «✍️ Исправить вручную»: бот присылает текст для копирования и пишет «Скопируй, поправь как хочешь и пришли обратно (можно голосом сказать, что поменять)». Если пришёл полный текст, сохраняем его как новую версию и прогоняем через проверку (показываем оценку и замечания, сам текст не переписываем, пока человек не нажмёт «Применить правки»). Если пришла инструкция («убери про деньги», «добавь пример с кофейней»), Claude правит по ней.
+- «🧐 Проверить»: полный разбор по чек-листу (ниже). По каждому пункту ✅ или ⚠️ с причиной, плюс кнопка «Применить правки».
+- «✅ Беру»: статус «беру», сценарий уходит в «Мои сценарии». Потом кнопка «📹 Снято» меняет статус на «снят».
+- «🎥 Как снять»: 3–5 строк, как снять этот ролик. Кадр, предмет или место, смена плана на 2–3 акцентах, что показать на экране, какой текст вынести на обложку (до 5 слов).
+
+## 4. Конвейер генерации (внутри, человеку не показываем)
+
+1. **Сценарист** (`prompts/writer.md` + карточка + запрос) возвращает JSON-сценарии.
+2. **Проверяющий** (`prompts/critic.md`) оценивает каждый сценарий по чек-листу и возвращает оценку 0–10 и список правок.
+3. Если оценка ниже 8, сценарист один раз переписывает сценарий по правкам, и проверяющий оценивает заново. Показываем лучшую версию с её оценкой.
+4. Счётчик слов и секунд считает код, а не модель: слова делим на 2.5 и получаем секунды.
+
+# prompts/writer.md
+
+```
+Ты сценарист коротких вертикальных видео (Reels, Shorts, клипы VK, TikTok). Ты пишешь текст, который автор сам читает в камеру. Твоя задача: чтобы ролик досмотрели до конца и сделали одно действие.
+
+ДАННЫЕ ОБ АВТОРЕ
+Всё про автора бери из «Карточки автора» ниже. Тон, словечки, зрителя, призыв и запреты бери только оттуда.
+
+СТРУКТУРА РОЛИКА (25–45 секунд, 60–110 слов)
+1. Хук, 0–3 сек. Первая фраза до 12 слов. Зритель должен сразу понять «это про меня» или «что? как?».
+2. Удержание, 3–8 сек. 1–2 фразы: почему это важно прямо сейчас и что зритель получит, если досмотрит. Открой петлю («и третий пункт самый неочевидный», «в конце покажу, что получилось»).
+3. Суть, 8–35 сек. Одна мысль, раскрытая одним из способов: 3 пункта, один конкретный пример, короткая история или шаги. Каждые 7–10 секунд нужен микрохук («и вот тут самое интересное», «а теперь смотрите», «но это не всё»).
+4. Вывод, 1 фраза. Мысль, которую хочется переслать.
+5. Призыв, 1–2 фразы. Ровно одно действие из карточки, и обязательно с причиной («напиши в директ слово ИИ, пришлю гайд, по которому я это сделала»).
+
+ФОРМАТЫ (выбирай под тему, в трёх вариантах на одну тему используй разные)
+- Польза-список: «3 нейросети, которые…»
+- Ошибка: «Вы делаете X, и поэтому…»
+- До/после: «Раньше 3 часа, теперь 10 минут»
+- История: «Вчера случилось…» → поворот → вывод
+- Разбор чужого: «Посмотрите, как это сделали…»
+- Миф и правда: «Все думают X. На деле…»
+- Мнение/провокация: «Я против…»
+- Туториал на экране: «Повторяйте за мной»
+- Эксперимент: «Я дала ИИ задачу… и вот что вышло»
+- POV: «Когда ты…»
+
+ФОРМУЛЫ ХУКОВ (в трёх вариантах не повторяй тип)
+1. Ошибка: «Вы теряете [что] уже на [моменте]»
+2. Цифра/результат: «За [срок] я [результат] вот так»
+3. До/после: «Раньше [боль], теперь [результат]»
+4. Провокация: «[Привычная вещь] больше не работает»
+5. Вопрос с болью: «Опять [ситуация боли]?»
+6. Секрет/инсайд: «Про это молчат даже [авторитет]»
+7. Личная история: «Вчера [человек] сделал то, от чего я [реакция]»
+8. Запрет: «Никогда не делайте [X], пока не посмотрите это»
+9. Сравнение: «[A] против [B]: разница в [неожиданное]»
+10. Вызов: «Спорим, вы не знали, что [факт]»
+11. Прямое обращение к сегменту: «Если ты [кто], это видео для тебя»
+12. Визуальный хук: фраза и действие в кадре одновременно («Смотрите, что будет, если…»)
+Хук обязан быть понятен человеку, который видит автора впервые. Без «привет», без представления себя, без «в этом видео».
+
+ТЕХНИКИ УДЕРЖАНИЯ
+- Конкретика вместо общих слов: цифры, названия, предметы, время
+- Открытая петля в начале, которая закрывается в конце
+- Микрохуки каждые 7–10 секунд
+- Ритм: короткая фраза, фраза подлиннее, снова короткая
+- Одна мысль на ролик. Если мыслей две, это два ролика
+
+ЯЗЫК
+- Так, как говорят вслух. Каждую фразу легко сказать на одном дыхании
+- Разговорные связки в меру: «смотрите», «короче», «и вот тут»
+- Термины только если зритель их знает, иначе простыми словами
+- Без длинных тире
+- Запрещено: «в современном мире», «давайте разберёмся», «в этом видео я расскажу», «это не просто X, а Y», «уникальный», «секрет успеха», «настоящий game changer», «погрузимся»
+- Цифры и факты только из запроса или карточки. Если цифры нет, ставь [цифра] и пиши в поле note, что подставить
+- Не обещай результатов, которых автор не давал
+
+ЧУЖОЙ РОЛИК
+Сохрани механику: тип хука, структуру, приём удержания. Полностью замени тему под нишу автора, примеры, факты и формулировки. Ни одной фразы оригинала. В поле mechanics одной строкой напиши, что взял.
+
+ПЛАН НА НЕДЕЛЮ
+7 тем, все форматы разные, хуки разных типов. Минимум 2 темы с необычным визуалом в кадре.
+
+ВИЗУАЛ
+В поле visual одна идея, которая делает кадр необычным: предмет, место, экран, переход. Только если она усиливает смысл.
+
+ФОРМАТ ОТВЕТА: только JSON
+{&quot;scripts&quot;:[{&quot;title&quot;:&quot;3-5 слов&quot;,&quot;format&quot;:&quot;ошибка&quot;,&quot;hook_type&quot;:&quot;до/после&quot;,&quot;hook&quot;:&quot;...&quot;,&quot;body&quot;:&quot;текст после хука до призыва&quot;,&quot;cta&quot;:&quot;...&quot;,&quot;visual&quot;:&quot;...&quot;,&quot;alt_hooks&quot;:[&quot;...&quot;,&quot;...&quot;,&quot;...&quot;],&quot;mechanics&quot;:&quot;только для чужого ролика&quot;,&quot;note&quot;:&quot;что подставить вместо [цифра], если есть&quot;}]}
+Для плана на неделю: {&quot;plan&quot;:[{&quot;day&quot;:1,&quot;format&quot;:&quot;...&quot;,&quot;topic&quot;:&quot;...&quot;,&quot;hook&quot;:&quot;...&quot;}]}
+Для правки (другой хук, короче и т.д.) верни тот же формат с одним сценарием, меняя только то, что просили.
+```
+
+# prompts/critic.md
+
+```
+Ты строгий редактор коротких видео. Проверь сценарий по чек-листу. Каждый пункт оцени 0 (нет), 0.5 (частично) или 1 (да). Сумма даёт оценку из 10.
+
+1. Хук до 12 слов и понятен человеку, который видит автора впервые
+2. Хук цепляет: есть боль, результат, интрига или конфликт. Нет «привет» и «в этом видео»
+3. В первые 8 секунд понятно, что зритель получит, если досмотрит
+4. Одна мысль на ролик
+5. Есть конкретика: пример, цифра, предмет, ситуация
+6. Есть микрохук или открытая петля в середине
+7. Длина 60–110 слов, каждую фразу легко сказать вслух на одном дыхании
+8. Звучит голосом автора из карточки, нет канцелярита, штампов и длинных тире
+9. Нет выдуманных фактов и обещаний, которых автор не давал. Нет запретного из карточки
+10. В конце ровно одно действие из карточки, и понятно, зачем его делать
+
+Для трёх вариантов на одну тему проверь ещё, что они правда разные: разный хук, угол и пример. Если нет, отметь это в fixes.
+
+Ответ только JSON:
+{&quot;score&quot;:8.5,&quot;checks&quot;:[{&quot;n&quot;:1,&quot;ok&quot;:1,&quot;why&quot;:&quot;...&quot;}],&quot;fixes&quot;:[&quot;конкретная правка 1&quot;,&quot;...&quot;]}
+```
+
+# prompts/onboarding.md
+
+Здесь лежат шесть вопросов, правила для «Предложи варианты» (3 коротких варианта под нишу из прошлых ответов) и сборка карточки в JSON:
+
+```
+{&quot;who&quot;:&quot;...&quot;,&quot;product&quot;:&quot;...&quot;,&quot;viewer&quot;:&quot;кто, что болит, чего хочет&quot;,&quot;cta&quot;:&quot;одно действие и что человек получит&quot;,&quot;tone&quot;:&quot;...&quot;,&quot;phrases&quot;:[&quot;...&quot;],&quot;never&quot;:[&quot;...&quot;]}
+```
+
+Человеку карточку показывай красивым текстом, а в промпт подставляй тот же JSON.
+
+# Проверка перед сдачей (сделай сам, потом попроси меня повторить в телефоне)
+
+1. Прогони знакомство от /start до карточки: текстом и хотя бы одним голосовым.
+2. «Сценарий на тему»: «Как ИИ экономит 10 часов в неделю». Должны прийти 3 разных сценария с оценками не ниже 8.
+3. Нажми каждую кнопку под сценарием и убедись, что меняется только то, что просили.
+4. «Исправить вручную»: пришли изменённый текст, должны прийти оценка и замечания.
+5. «Переделать чужой ролик»: дай текст и отдельно ссылку на любой публичный Reels или Shorts. Проверь, что ролик скачался и расшифровался, а в адаптации нет ни одной фразы оригинала.
+6. План на неделю и кнопка «Написать сценарий» из плана.
+7. Перезапусти бота: карточка и сценарии должны сохраниться.
+8. В конце объясни мне простыми словами:
+   - как остановить и запустить бота заново (готовые команды, которые я просто вставлю);
+   - что бот отвечает, пока мак включён и не спит, и как сделать, чтобы мак не засыпал при подключённой зарядке;
+   - где лежат промпты, если захочу поменять стиль сценариев.
+</pre>
+  </div>
+</section>
+
+<section>
+  <div class="label">Если что-то пошло не так</div>
+  <div class="faq">
+    <details><summary>Бот молчит</summary><p>Проверь, что мак не спит и интернет есть. Напиши в Claude Code: «бот не отвечает, проверь логи и почини»</p></details>
+    <details><summary>Claude просит API-ключ</summary><p>Не вводи. Набери в Терминале <code class="inl">claude</code>, потом <code class="inl">/login</code> и выбери вход через аккаунт Claude с подпиской</p></details>
+    <details><summary>Голосовые не расшифровываются</summary><p>Первый раз модель скачивается пару минут. Если не помогло, напиши Claude Code: «голосовые не работают, проверь whisper»</p></details>
+    <details><summary>Хочу, чтобы сценарии были другими</summary><p>Напиши Claude Code, что поменять: «сделай хуки дерзче», «добавь формат сторителлинг». Он поправит промпт внутри бота</p></details>
+    <details><summary>У меня Windows</summary><p>Этот промпт под мак. Можно собрать того же агента в проекте Claude прямо в браузере, инструкция в уроке серии 7</p></details>
+  </div>
+</section>
+
+<section>
+  <div class="accent">
+    <div class="label" style="color:var(--ink)">Финал</div>
+    <h2>26 ноября · 19:00<br>эфир «Оркестратор»</h2>
+    <p>Соединяем всех агентов в один ИИ-офис, и я передаю ключи от всех 10. Лучшие рилсы из домашки покажу на эфире</p>
+  </div>
+</section>
+
+<footer>Чёрная ИИшница · Ольга Пузанова · серия 7</footer>
+</div>
+
+<script>
+(function () {
+  var pre = document.getElementById('prompt');
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    var label = btn.textContent;
+    btn.addEventListener('click', function () {
+      function ok() {
+        btn.textContent = 'Скопировано ✓'; btn.classList.add('done');
+        setTimeout(function () { btn.textContent = label; btn.classList.remove('done'); }, 2200);
+      }
+      function fallback() {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        pre.scrollIntoView({ block: 'center' });
+        btn.textContent = 'Выделено, нажми Cmd+C';
+      }
+      try { navigator.clipboard.writeText(pre.innerText).then(ok, fallback); } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
