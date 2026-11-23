@@ -206,6 +206,29 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .band .card{background:var(--bandCard);border-color:var(--bandLine)}
 
 /* efir */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vs-c{padding:clamp(22px,3vw,34px);border-radius:28px;background:var(--card);border:1px solid var(--line)}
+.vs-c.on{background:var(--kingBg);color:var(--kingInk);border-color:transparent}
+.vs-t{font:700 13px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.vs-n{display:block;margin:14px 0 18px;font-size:clamp(36px,4.4vw,60px);font-weight:800;letter-spacing:-.05em;line-height:1}
+.vs-n small{display:block;font-size:17px;letter-spacing:0;font-weight:600;opacity:.7;margin-top:6px}
+.vs-c ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.vs-c li{position:relative;padding-left:28px;font-size:17px;line-height:1.4}
+.vs-c li::before{content:"✕";position:absolute;left:0;top:0;opacity:.5;font-weight:800}
+.vs-c.on li::before{content:"✓";opacity:1;color:var(--kingBtn)}
+.take{margin-top:16px;padding:clamp(22px,3vw,34px);border-radius:28px;border:2px solid var(--ink)}
+.take h3{font-size:clamp(24px,2.4vw,32px);margin-bottom:18px}
+.take-g{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.take-g span{font:700 14px "JetBrains Mono",monospace;color:var(--muted)}
+.take-g b{display:block;font-size:19px;letter-spacing:-.02em;margin:6px 0 6px;line-height:1.2}
+.take-g p{color:var(--muted);font-size:16px;line-height:1.45}
+.who{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
+.who span{font-weight:800;font-size:17px;margin-right:6px}
+.who b{padding:10px 16px;border-radius:99px;background:var(--chip);font-size:16px}
+.why-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:24px}
+.why-cta span{color:var(--muted);font-size:16px}
+@media (max-width:980px){.vs{grid-template-columns:1fr}.take-g{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.take-g{grid-template-columns:1fr}.why-cta .btn{width:100%}}
 .ef-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);align-items:center}
 .ph{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;background:#000}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
@@ -304,6 +327,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .faq summary::-webkit-details-marker{display:none}
 .faq summary i{flex:none;font-style:normal;font-size:22px;transition:transform .3s}
 .faq details[open] summary i{transform:rotate(45deg)}
+.faq-main{grid-column:1/-1;border-width:2px!important;border-color:var(--ink)!important}
+.faq-main summary{font-size:22px}
+.fa{padding:0 22px 22px}.fa p{padding:0!important;color:var(--ink)!important;font-size:18px!important}
+.fa ol{margin:16px 0 0;padding-left:22px;display:grid;gap:10px;font-size:17px;line-height:1.5;color:var(--muted)}.fa ol b{color:var(--ink)}
 .faq details p{padding:0 22px 20px;color:var(--muted);font-size:17px;line-height:1.55}
 footer{border-top:1px solid var(--line);padding-block:32px calc(32px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:space-between}
@@ -429,6 +456,29 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
 
 <div class="mq" aria-hidden="true"><div class="mq-t js-mq"></div></div>
 
+<section class="sec gut" id="why">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kick">Зачем приходить</span><h2>Команда на 600&nbsp;000&nbsp;₽ в&nbsp;месяц <span class="hl">или ИИ-офис</span></h2><p class="lead">10 сотрудников, которых я бы нанимала на эти задачи, стоили бы около 600 000 ₽ в месяц. На эфире покажу, как их работу делают ИИ-агенты</p></div>
+    <div class="vs">
+      <div class="vs-c rv"><span class="vs-t">Живая команда</span><b class="vs-n">≈ 600 000 ₽<small>в месяц</small></b>
+        <ul><li>Найм, обучение и контроль каждого</li><li>Отпуска, больничные, увольнения</li><li>Работают с 10 до 19, ночью заявки ждут</li><li>Вы всё равно держите всё в голове</li></ul></div>
+      <div class="vs-c on rv"><span class="vs-t">ИИ-офис из 10 агентов</span><b class="vs-n">1 подписка<small>Claude</small></b>
+        <ul><li>Контент, продажи, отчёты и задачи делают агенты</li><li>Работают 24/7 и отвечают клиентам ночью</li><li>Оркестратор сам раздаёт им задачи</li><li>Вы получаете готовый результат в Telegram</li></ul></div>
+    </div>
+    <div class="take rv">
+      <h3>С эфира вы уйдёте с</h3>
+      <div class="take-g">
+        <div><span>01</span><b>Шаблоном оркестратора</b><p>Главный агент офиса, который раздаёт задачи остальным</p></div>
+        <div><span>02</span><b>Планом своего офиса</b><p>Каких агентов ставить первыми именно в вашем бизнесе</p></div>
+        <div><span>03</span><b>6 подарками из яиц</b><p>Набор селлера, форматы рилс, ассистент, скиллы и сертификат</p></div>
+        <div><span>04</span><b>Лучшими условиями года</b><p>Бонусы первых 24 часов Чёрной пятницы только для зрителей</p></div>
+      </div>
+    </div>
+    <div class="who rv"><span>Для кого:</span><b>селлеры Ozon и WB</b><b>эксперты и онлайн-школы</b><b>бизнес услуг</b><b>те, кто запускается с нуля</b></div>
+    <div class="why-cta rv"><a class="btn btn-p js-whybtn" href="#regform">Занять место бесплатно <span class="arr">→</span></a><span>Регистрация 30 секунд, 3 подарка сразу</span></div>
+  </div>
+</section>
+
 <section class="sec gut" id="gifts">
   <div class="wrap">
     <div class="g-top">
@@ -548,6 +598,16 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
   <div class="wrap">
     <div class="sec-head rv"><span class="kick">Вопросы</span><h2>Отвечаю <span class="hl">заранее</span></h2></div>
     <div class="faq">
+      <details class="rv faq-main" open><summary>Что будет на эфире?<i>+</i></summary><div class="fa">
+        <p>За один эфир в режиме онлайн соберём полноценный ИИ-офис: 10 ИИ-сотрудников, которые закрывают работу команды. Если нанимать на эти задачи живых людей, это примерно 600 000 ₽ в месяц.</p>
+        <ol>
+          <li><b>Покажу офис целиком.</b> Какие отделы в нём есть: контент, продажи, аналитика, задачи и автоматизации, и кто из агентов за что отвечает.</li>
+          <li><b>Соберу оркестратора вживую.</b> Даю ему одну задачу, например «запуск на неделю», и вы видите, как он раздаёт её агентам и собирает готовый результат.</li>
+          <li><b>Разберу, как повторить у себя.</b> С какого агента начать, что подключить и как всё связать между собой. Без кода и API-ключей, на обычной подписке Claude.</li>
+          <li><b>Отвечу на ваши вопросы</b> и подскажу, какого сотрудника поставить первым в вашем бизнесе.</li>
+          <li><b>Раздам бонусы зрителям.</b> Шаблон оркестратора, кодовое слово для золотого яйца и бонусы первых 24 часов Чёрной пятницы.</li>
+        </ol>
+      </div></details>
       <details class="rv"><summary>Я совсем не разбираюсь в нейросетях. Мне будет понятно?<i>+</i></summary><p>Да. Я показываю на своём реальном бизнесе и объясняю простыми словами, без кода и терминов. Если что-то непонятно, пишите вопрос в чат эфира, я отвечаю по ходу.</p></details>
       <details class="rv"><summary>Мне нужно что-то покупать или устанавливать заранее?<i>+</i></summary><p>Нет, на эфир можно прийти просто посмотреть. Всех агентов я собираю на обычной подписке Claude, без API-ключей и программирования. Как повторить у себя, покажу на эфире.</p></details>
       <details class="rv"><summary>У меня не маркетплейсы, а услуги или экспертный бизнес. Мне подойдёт?<i>+</i></summary><p>Да. В офисе есть агенты для контента, продаж, задач и отчётов, они нужны любому бизнесу. На эфире подскажу, с какого агента начать именно в вашей нише.</p></details>
@@ -786,8 +846,8 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
   /* ===== фазы ===== */
   var main=$(".js-main"),lastPh="";
   function order(ph){
-    var S={};["reg","gifts","efir","watch","office","lots","faq","final"].forEach(function(id){S[id]=$("#"+id)});var mq=$(".mq");
-    var seq=ph==="live"?[S.watch,S.efir,S.reg,mq,S.gifts,S.office,S.lots,S.faq,S.final]:(ph==="sale"||ph==="closed")?[S.lots,S.watch,S.reg,mq,S.gifts,S.efir,S.office,S.faq,S.final]:[S.reg,mq,S.gifts,S.efir,S.watch,S.office,S.lots,S.faq,S.final];
+    var S={};["reg","why","gifts","efir","watch","office","lots","faq","final"].forEach(function(id){S[id]=$("#"+id)});var mq=$(".mq");
+    var seq=ph==="live"?[S.watch,S.efir,S.reg,mq,S.why,S.gifts,S.office,S.lots,S.faq,S.final]:(ph==="sale"||ph==="closed")?[S.lots,S.watch,S.reg,mq,S.why,S.gifts,S.efir,S.office,S.faq,S.final]:[S.reg,mq,S.why,S.gifts,S.efir,S.watch,S.office,S.lots,S.faq,S.final];
     seq.forEach(function(n){main.appendChild(n)});
     S.watch.style.paddingTop=(ph==="live"||ph==="sale"||ph==="closed")?"":"0";
     S.lots.style.paddingTop=(ph==="sale"||ph==="closed")?"":"0";
@@ -804,6 +864,7 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
     if(ph==="live"){$(".js-wh").innerHTML='Мы <span class="hl">в эфире</span>';$(".js-wp").textContent="Смотрите прямо в этом окне. Кодовое слово прозвучит в конце"}
     if(ph==="sale"||ph==="closed"){$(".js-wh").innerHTML='Запись <span class="hl">эфира</span>';$(".js-wp").textContent=ph==="sale"?"Доступна до 30 ноября":"Эфир прошёл"}
     var cta=ph==="early"&&reg?["Смотреть лоты","#lots"]:ph==="live"?["Смотреть эфир","#watch"]:ph==="sale"?["Выбрать лот","#lots"]:ph==="closed"?["Написать нам",MANAGER]:reg?["Мои подарки","#gifts"]:["Занять место","#regform"];
+    var wb=$(".js-whybtn");wb.href=reg?"#gifts":"#regform";wb.innerHTML=(reg?"К моим подаркам":"Занять место бесплатно")+' <span class="arr">→</span>';
     [$(".js-topbtn"),$(".js-mbtn")].forEach(function(b){b.href=cta[1];b.textContent=cta[0]});
     if(ph==="sale")$(".js-finh").innerHTML='До 30.11<br><span class="hl">23:59</span>';
     if(ph==="live")$(".js-finh").innerHTML='Мы<br><span class="hl">в эфире</span>';
@@ -816,7 +877,7 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
     if(ph==="closed"){$(".js-lotsh").innerHTML='Чёрная пятница <span class="hl">закрыта</span>';$(".js-lotsp").textContent="Спасибо всем, кто был с нами. Вопросы: @puzanovateam"}
     $(".js-b24").hidden=!pre;
     $$(".lot .price").forEach(function(x){x.hidden=ph==="closed"});
-    ["#gifts","#efir","#watch","#office"].forEach(function(id){$(id).hidden=ph==="closed"});$(".mq").hidden=ph==="closed";
+    ["#gifts","#efir","#watch","#office","#why"].forEach(function(id){$(id).hidden=ph==="closed"});$(".mq").hidden=ph==="closed";
     var p1=$(".js-p1");p1.textContent=open?(PRICE1||"Цену скажет менеджер"):"на эфире";p1.classList.toggle("sm",open&&!PRICE1);$(".js-p2").textContent=open?PRICE2:"на эфире";
     renderEggs(force);renderPlayer(ph);
   }
