@@ -8,7 +8,7 @@
 <meta name="description" content="Финальный эфир Чёрной ИИшницы 26 ноября в 19:00 прямо на этой странице. Подарки за регистрацию каждый день">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600;1,700&family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
 :root {
   --bg: #050507;
@@ -23,8 +23,8 @@
   --blue-2: #7C95FF;
   --ice: #CFD8FF;
   --hot: #FF3D5A;
-  --display: "Unbounded", "Manrope", system-ui, sans-serif;
-  --text: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Onest", system-ui, sans-serif;
+  --text: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   color-scheme: dark;
 }
@@ -495,6 +495,134 @@ footer { padding-block: 44px 40px; }
   .form-card h3 { padding-right: 64px; }
 }
 
+/* ===== v5: типографика, анимации, яйца ===== */
+:root { --serif: "Playfair Display", Georgia, serif; }
+h1, h2 { font-family: var(--text); font-weight: 800; text-transform: uppercase; letter-spacing: -0.035em; line-height: .98; }
+h1 .glow, h1 .chrome, h2 .glow, h2 .chrome { font-family: var(--serif); font-style: italic; font-weight: 600; letter-spacing: -0.01em; text-transform: none; padding-right: .06em; }
+h3 { font-family: var(--text); font-weight: 700; letter-spacing: -0.01em; }
+.reg h1 { font-size: clamp(40px, 6vw, 92px); }
+.eyebrow { display: inline-flex; gap: 10px; align-items: center; }
+.eyebrow .num { color: #fff; background: rgba(124,149,255,.18); border-radius: 6px; padding: 3px 7px; }
+.ico { width: 1.1em; height: 1.1em; flex: none; vertical-align: -0.18em; }
+.btn .ico { width: 18px; height: 18px; }
+.logo-egg { width: 26px; height: 26px; }
+.perks li span .ico { width: 22px; height: 22px; color: var(--blue-2); }
+.agent .em .ico, .b .em .ico, .own .em .ico { width: 30px; height: 30px; color: var(--blue-2); }
+.b.wow .em .ico { width: 40px; height: 40px; color: #FFC24D; }
+.hit .ico { width: 14px; height: 14px; vertical-align: -2px; }
+.lk .ico { width: 44px; height: 44px; }
+.pl-fs .ico { width: 20px; height: 20px; }
+.modal-x .ico { width: 18px; height: 18px; }
+.done .ok .ico { width: 26px; height: 26px; stroke-width: 3; }
+
+/* живой фон первого экрана */
+.reg { overflow: hidden; }
+.reg .aurora { position: absolute; inset: -20%; z-index: 0; pointer-events: none; background:
+  radial-gradient(40% 35% at 70% 40%, rgba(59,91,255,.35), transparent 70%),
+  radial-gradient(30% 30% at 20% 80%, rgba(155,91,255,.22), transparent 70%),
+  radial-gradient(25% 25% at 85% 85%, rgba(255,176,32,.12), transparent 70%);
+  animation: aurora 18s ease-in-out infinite alternate; filter: blur(10px); }
+@keyframes aurora { 0% { transform: translate(0,0) rotate(0); } 50% { transform: translate(-4%, 3%) rotate(6deg); } 100% { transform: translate(3%, -2%) rotate(-4deg); } }
+.egg-canvas { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.reg .wrap { position: relative; z-index: 2; }
+.reg .gridbg { z-index: 1; }
+
+/* стеклянная форма с бегущей рамкой */
+@property --a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.form-card { background: rgba(14,17,38,.62); backdrop-filter: blur(22px) saturate(1.3); -webkit-backdrop-filter: blur(22px) saturate(1.3); }
+.form-card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; background: conic-gradient(from var(--a), transparent 0 60%, #7C95FF 75%, #FFC24D 85%, transparent 95%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: spinb 6s linear infinite; pointer-events: none; }
+@keyframes spinb { to { --a: 360deg; } }
+.fegg { display: none; }
+
+/* появление первого экрана */
+.rg-head > *, .form-card, .rg-perks li { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+.rg-head > *:nth-child(2) { animation-delay: .08s; } .rg-head > *:nth-child(3) { animation-delay: .16s; }
+.form-card { animation-delay: .22s; }
+.rg-perks li:nth-child(1) { animation-delay: .3s; } .rg-perks li:nth-child(2) { animation-delay: .36s; } .rg-perks li:nth-child(3) { animation-delay: .42s; } .rg-perks li:nth-child(4) { animation-delay: .48s; } .rg-perks li:nth-child(5) { animation-delay: .54s; } .rg-perks li:nth-child(6) { animation-delay: .6s; }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+
+/* подсветка под курсором */
+.spot { position: relative; isolation: isolate; }
+.spot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1; background: radial-gradient(260px circle at var(--mx, -999px) var(--my, -999px), rgba(124,149,255,.16), transparent 60%); }
+
+/* калькулятор: понятно, куда жать */
+.calc-hint { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-bottom: 14px; }
+.calc-hint .step { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; }
+.calc-hint .step i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); display: grid; place-items: center; font-size: 13px; }
+.calc-hint .count { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.calc-hint button { font-family: var(--text); font-weight: 700; font-size: 14px; border: 0; cursor: pointer; background: rgba(255,255,255,.07); color: #fff; border-radius: 999px; padding: 11px 16px; box-shadow: 0 0 0 1px var(--line-2) inset; min-height: 44px; }
+.role { position: relative; padding-top: 18px; }
+.role .ri { color: var(--blue-2); }
+.role .ri .ico { width: 24px; height: 24px; }
+.role .tick { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.08); box-shadow: 0 0 0 1px var(--line-2) inset; transition: background .2s, transform .2s; }
+.role .tick .ico { width: 16px; height: 16px; }
+.role .tick .c { display: none; }
+.role[aria-pressed="true"] .tick { background: var(--blue); box-shadow: none; transform: scale(1.08); }
+.role[aria-pressed="true"] .tick .p { display: none; }
+.role[aria-pressed="true"] .tick .c { display: block; }
+.role:hover .tick { background: rgba(124,149,255,.3); }
+.calc-roles.fresh .role:first-child { animation: nudge 1.8s ease-in-out infinite; }
+@keyframes nudge { 0%, 100% { box-shadow: 0 0 0 1px var(--line) inset, 0 0 0 0 rgba(124,149,255,.5); } 50% { box-shadow: 0 0 0 1px var(--blue-2) inset, 0 0 0 8px rgba(124,149,255,0); } }
+.calc-out b { transition: color .3s; }
+.calc-out .empty { color: var(--muted); font-size: 15px; }
+
+/* игра «разбей яйца» */
+.eggs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; margin: 6px 0 16px; }
+.eggs-head h3 { font-size: clamp(22px, 2.6vw, 32px); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; }
+.eggs-head .cnt { font-family: var(--mono); font-size: 15px; color: var(--ice); background: rgba(59,91,255,.15); border-radius: 999px; padding: 8px 14px; }
+.eggs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 34px; }
+.eggcard { position: relative; min-height: 340px; border-radius: 26px; background: radial-gradient(120% 90% at 50% 0%, #1A2048, #0C0E1A 70%); box-shadow: 0 0 0 1px var(--line) inset; overflow: hidden; cursor: pointer; border: 0; color: var(--fg); font-family: var(--text); text-align: left; padding: 0; }
+.eggcard:focus-visible { outline: 3px solid var(--ice); outline-offset: 3px; }
+.eggcard .shell { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px; transition: opacity .4s .25s; }
+.eggcard .shell svg.egg-svg { width: 112px; height: 140px; filter: drop-shadow(0 20px 30px rgba(0,0,0,.5)); transition: transform .3s; }
+.eggcard:hover .shell svg.egg-svg { transform: rotate(-6deg) translateY(-4px); }
+.eggcard .shell span { font-weight: 700; font-size: 15px; color: #C3C7D6; }
+.eggcard .shell em { font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.eggcard.hint .shell svg.egg-svg { animation: wobble 2.2s ease-in-out infinite; }
+@keyframes wobble { 0%, 70%, 100% { transform: rotate(0); } 75% { transform: rotate(-8deg); } 82% { transform: rotate(7deg); } 89% { transform: rotate(-4deg); } }
+.eggcard.cracking .shell svg.egg-svg { animation: crackit .5s ease-in forwards; }
+@keyframes crackit { 0% { transform: rotate(0) scale(1); } 30% { transform: rotate(-10deg) scale(1.05); } 60% { transform: rotate(10deg) scale(1.08); } 100% { transform: scale(1.6); opacity: 0; } }
+.eggcard .inside { position: absolute; inset: 0; padding: 22px; display: grid; gap: 10px; align-content: start; opacity: 0; transform: scale(.96); transition: opacity .5s .3s, transform .5s .3s; }
+.eggcard.open { cursor: default; background: radial-gradient(120% 90% at 0% 0%, rgba(59,91,255,.4), transparent 60%), #0E1124; box-shadow: 0 0 0 1px rgba(124,149,255,.55) inset, 0 24px 60px rgba(59,91,255,.22); }
+.eggcard.open .shell { opacity: 0; pointer-events: none; }
+.eggcard.open .inside { opacity: 1; transform: none; }
+.eggcard .inside .gi { width: 46px; height: 46px; border-radius: 14px; background: rgba(124,149,255,.18); color: var(--ice); display: grid; place-items: center; }
+.eggcard .inside .gi .ico { width: 24px; height: 24px; }
+.eggcard .inside h4 { margin: 0; font-size: 20px; font-weight: 800; line-height: 1.15; }
+.eggcard .inside p { font-size: 14px; color: #B9BDCC; line-height: 1.45; }
+.eggcard .inside .val { font-family: var(--mono); font-size: 12px; color: var(--ice); }
+.eggcard .inside .links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+.eggcard .inside .links a, .eggcard .inside .links button { font-family: var(--text); text-decoration: none; border: 0; cursor: pointer; font-weight: 800; font-size: 14px; background: var(--blue); color: #fff; padding: 12px 16px; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
+.eggcard .lockb { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,.45); display: grid; place-items: center; color: #fff; }
+.eggcard .lockb .ico { width: 16px; height: 16px; }
+.toast { position: fixed; z-index: 90; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); background: #fff; color: #050507; font-weight: 700; padding: 14px 20px; border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,.5); opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; max-width: calc(100% - 32px); }
+.toast.show { opacity: 1; transform: translateX(-50%); }
+.sched-title { font-size: clamp(20px, 2.2vw, 26px); font-weight: 800; text-transform: uppercase; margin: 0 0 14px; letter-spacing: -0.02em; }
+.gifts { grid-template-columns: repeat(4, 1fr); }
+.gift.feature { grid-column: span 4; }
+.gift .egg .ico { width: 28px; height: 28px; color: var(--blue-2); }
+.gift.locked .egg .ico { color: var(--muted); }
+.gift .st .ico { width: 15px; height: 15px; }
+.gift .links a .ico, .gift .links button .ico { width: 16px; height: 16px; }
+.cab.veiled .eggs { filter: none; }
+
+/* окно при уходе */
+.exit .modal-box { text-align: center; justify-items: center; }
+.exit .modal-box h3 { padding-right: 0; text-transform: uppercase; }
+.exit .modal-box p { color: #C3C7D6; max-width: 44ch; }
+
+@media (max-width: 1080px) { .eggs { grid-template-columns: repeat(2, 1fr); } .gifts { grid-template-columns: repeat(2, 1fr); } .gift.feature { grid-column: span 2; } }
+@media (max-width: 600px) { .eggs { grid-template-columns: 1fr 1fr; gap: 10px; } .eggcard { min-height: 300px; } .eggcard .shell svg.egg-svg { width: 84px; height: 106px; } .eggcard .inside { padding: 16px; } .eggcard .inside h4 { font-size: 17px; } .gifts { grid-template-columns: 1fr; } .gift.feature { grid-column: auto; } }
+@media (prefers-reduced-motion: reduce) { .reg .aurora, .form-card::before, .eggcard.hint .shell svg.egg-svg, .calc-roles.fresh .role:first-child { animation: none; } .rg-head > *, .form-card, .rg-perks li { animation: none; } }
+
+.eggcard.open .inside { position: relative; inset: auto; min-height: 340px; }
+.eggcard .inside .links { padding-top: 6px; }
+.reg h1 { font-size: clamp(36px, 5.2vw, 80px); }
+.form-card { background: rgba(14,17,38,.42); backdrop-filter: blur(8px) saturate(1.4); -webkit-backdrop-filter: blur(8px) saturate(1.4); }
+@media (max-width: 600px) { .eggcard.open .inside { min-height: 300px; } }
+
+.eggcard .shell { text-align: center; padding: 0 12px; justify-items: center; }
+@media (max-width: 600px) { .eggcard.open { grid-column: span 2; } .eggcard:not(.open) { min-height: 230px; } }
 /* reveal */
 .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
 .rv.in { opacity: 1; transform: none; }
@@ -545,14 +673,14 @@ footer { padding-block: 44px 40px; }
 <div class="noise" aria-hidden="true"></div>
 
 <div class="ticker" aria-hidden="true"><div class="track">
-  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
-  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
-  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
-  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>✦</b> эфир прямо на этой странице <b>✦</b> 26 ноября в 19:00 <b>✦</b> новое блюдо каждый день <b>✦</b> 10 ИИ-сотрудников в одном офисе <b>✦</b></span>
+  <span>Чёрная ИИшница <b>✦</b> эфир прямо на этой странице <b>✦</b> 26 ноября в 19:00 <b>✦</b> новое блюдо каждый день <b>✦</b> 10 ИИ-сотрудников в одном офисе <b>✦</b></span>
+  <span>Чёрная ИИшница <b>✦</b> эфир прямо на этой странице <b>✦</b> 26 ноября в 19:00 <b>✦</b> новое блюдо каждый день <b>✦</b> 10 ИИ-сотрудников в одном офисе <b>✦</b></span>
+  <span>Чёрная ИИшница <b>✦</b> эфир прямо на этой странице <b>✦</b> 26 ноября в 19:00 <b>✦</b> новое блюдо каждый день <b>✦</b> 10 ИИ-сотрудников в одном офисе <b>✦</b></span>
 </div></div>
 
 <nav class="nav gut js-nav"><div class="wrap">
-  <a class="logo" href="#top"><span aria-hidden="true">🍳</span><span>Чёрная <i>ИИ</i>шница</span></a>
+  <a class="logo" href="#top"><svg class="logo-egg" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c6 0 13 4 13 11 0 8-6 15-14 15S3 24 3 17C3 9 9 3 16 3z" fill="#F5F6FA"/><circle cx="15" cy="16" r="6" fill="#FFB020"/><circle cx="13" cy="14" r="2" fill="#FFE29A"/></svg><span>Чёрная <i>ИИ</i>шница</span></a>
   <div class="links"><a href="#efir">Эфир</a><a href="#office">Офис</a><a href="#lots">Лоты</a><a href="#bonus">Бонусы</a><a href="#faq">Вопросы</a></div>
   <a class="btn btn-primary js-cta" href="#lots">Забрать офис</a>
 </div></nav>
@@ -579,7 +707,7 @@ footer { padding-block: 44px 40px; }
         <p class="crowd js-crowd" hidden></p>
       </form>
       <div class="done js-done" hidden>
-        <div class="ok">✓</div>
+        <div class="ok"><i data-ic="check"></i></div>
         <h3>Готово, <span class="js-uname"></span>!</h3>
         <p>Первые подарки уже на столе. Эфир 26 ноября в 19:00 будет прямо на этой странице, сохраните её в закладки</p>
         <div class="nextbox"><small>Следующее блюдо через</small><b class="js-next">00:00:00</b></div>
@@ -590,12 +718,12 @@ footer { padding-block: 44px 40px; }
       </div>
     </div>
     <ul class="perks rg-perks js-perks">
-      <li><span>🎬</span><div><b>Сценарист рилс</b> пишет сценарии вашим голосом</div></li>
-      <li><span>🪝</span><div><b>Генератор хуков</b> прямо на сайте</div></li>
-      <li><span>📚</span><div><b>30 промптов «ИИ-офис в кармане»</b> по 10 ролям</div></li>
-      <li><span>📊</span><div><b>Набор селлера:</b> дашборд и юнит-экономика</div></li>
-      <li><span>🧠</span><div><b>ИИ-ассистент по задачам</b> и аудит рутины</div></li>
-      <li><span>⏰</span><div><b>Цены Чёрной пятницы на час раньше</b> всех</div></li>
+      <li><span><i data-ic="film"></i></span><div><b>Сценарист рилс</b> пишет сценарии вашим голосом</div></li>
+      <li><span><i data-ic="zap"></i></span><div><b>Генератор хуков</b> прямо на сайте</div></li>
+      <li><span><i data-ic="book"></i></span><div><b>30 промптов «ИИ-офис в кармане»</b> по 10 ролям</div></li>
+      <li><span><i data-ic="chart"></i></span><div><b>Набор селлера:</b> дашборд и юнит-экономика</div></li>
+      <li><span><i data-ic="tasks"></i></span><div><b>ИИ-ассистент по задачам</b> и аудит рутины</div></li>
+      <li><span><i data-ic="clock"></i></span><div><b>Цены Чёрной пятницы на час раньше</b> всех</div></li>
     </ul>
   </div>
 </section>
@@ -603,14 +731,14 @@ footer { padding-block: 44px 40px; }
 <section class="gut stream-sec js-stream" id="efir">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Эфир «Оркестратор» · 26.11 · 19:00 мск</div>
+      <div class="eyebrow"><span class="num">01</span>Эфир «Оркестратор» · 26.11 · 19:00 мск</div>
       <h2 class="js-st-h">Эфир пройдёт <span class="glow">прямо здесь</span></h2>
       <p class="js-st-p">Ссылки искать не придётся: 26 ноября в 19:00 трансляция начнётся в этом окне. Соберу всех 10 агентов в один ИИ-офис, отвечу на вопросы и открою Чёрную пятницу</p>
     </div>
     <div class="player js-player">
       <img class="pl-bg" src="olga-stage.jpg" alt="">
       <span class="pl-live"><span class="dot"></span><span class="js-pl-badge">26.11 · 19:00</span></span>
-      <button class="pl-fs js-fs" type="button" aria-label="На весь экран">⛶</button>
+      <button class="pl-fs js-fs" type="button" aria-label="На весь экран"><i data-ic="max"></i></button>
       <div class="pl-center">
         <div class="pan" aria-hidden="true"><div class="pan-egg js-pan-egg"></div></div>
         <h3 class="js-pl-h">Эфир начнётся через</h3>
@@ -619,7 +747,7 @@ footer { padding-block: 44px 40px; }
         <a class="btn btn-primary js-pl-btn" href="#" target="_blank" rel="noopener" hidden>Смотреть эфир <span class="arr">→</span></a>
       </div>
       <div class="pl-lock js-pl-lock">
-        <span class="lk">🔒</span>
+        <span class="lk"><i data-ic="lock"></i></span>
         <b>Откроется после регистрации</b>
         <a class="btn btn-primary" href="#reg">Занять место на эфире</a>
       </div>
@@ -636,16 +764,17 @@ footer { padding-block: 44px 40px; }
 <section class="gut calc-sec js-calc-sec">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Посчитайте сами</div>
+      <div class="eyebrow"><span class="num">02</span>Посчитайте сами</div>
       <h2>Сколько стоил бы <span class="chrome">ваш офис</span></h2>
-      <p>Отметьте задачи, которые сейчас делаете сами или держите на них людей. Цифры это средние зарплаты сотрудников на такие задачи</p>
+      <p>Цифры это средние зарплаты сотрудников на такие задачи в месяц</p>
     </div>
+    <div class="calc-hint"><span class="step"><i>1</i>Нажмите на сотрудников, которые нужны вашему бизнесу</span><span class="count js-calc-count">выбрано 0 из 10</span><button type="button" class="js-calc-all">Выбрать всех</button></div>
     <div class="calc">
-      <div class="calc-roles js-calc"></div>
+      <div class="calc-roles fresh js-calc"></div>
       <div class="calc-out">
         <small>Люди на этих задачах стоили бы</small>
         <b class="js-calc-m">0 ₽</b>
-        <span class="js-calc-y">в месяц</span>
+        <span class="js-calc-y empty">Нажмите на карточки сотрудников</span>
         <p>На эфире покажу, как поставить на эти задачи ИИ-сотрудников</p>
         <a class="btn btn-primary js-calc-cta" href="#reg">Занять место на эфире</a>
       </div>
@@ -656,14 +785,17 @@ footer { padding-block: 44px 40px; }
 <section class="gut cab js-cab" id="gifts">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Меню Чёрной ИИшницы</div>
-      <h2>Что подаём <span class="glow">до эфира</span></h2>
-      <p>Каждый подарок это готовый ИИ-сотрудник или инструмент, который вы забираете и запускаете у себя. Новое блюдо появляется по расписанию, поэтому заглядывайте каждый день</p>
+      <div class="eyebrow"><span class="num">03</span>Меню Чёрной ИИшницы</div>
+      <h2>Подарки, которые <span class="glow">уже ваши</span></h2>
+      <p>Каждый подарок это готовый ИИ-сотрудник или инструмент, который вы забираете и запускаете у себя. Четыре лежат в яйцах прямо сейчас, остальные появятся по расписанию</p>
     </div>
+    <div class="eggs-head"><h3>Разбейте 4 яйца</h3><span class="cnt js-egg-cnt">0 / 4</span></div>
+    <div class="eggs js-eggs"></div>
     <div class="gifts-wrap">
+      <h3 class="sched-title">Дальше по расписанию</h3>
       <div class="gifts js-gifts"></div>
       <div class="veil js-veil">
-        <span class="lk">🔒</span>
+        <span class="lk"><i data-ic="lock"></i></span>
         <b>Откроется после регистрации</b>
         <p>Имя и Telegram, один шаг</p>
         <a class="btn btn-primary" href="#reg">Открыть меню</a>
@@ -674,7 +806,7 @@ footer { padding-block: 44px 40px; }
 
 <div class="modal js-modal" hidden>
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-    <button class="modal-x js-modal-x" type="button" aria-label="Закрыть">✕</button>
+    <button class="modal-x js-modal-x" type="button" aria-label="Закрыть"><i data-ic="x"></i></button>
     <h3 id="mTitle" class="js-m-title"></h3>
     <div class="js-m-body"></div>
   </div>
@@ -757,16 +889,16 @@ footer { padding-block: 44px 40px; }
       <p>Столько стоили бы живые люди на этих задачах. Каждого агента я собрала в Чёрной ИИшнице, а вы получаете готовые ключи: инструкции, промпты и шаблоны</p>
     </div>
     <div class="office rv">
-      <div class="agent"><span class="n">01</span><span class="em">🧠</span><h3>Ассистент</h3><p>Собирает задачи из чатов, календаря и зумов и пушит по ним в Telegram</p><span class="sal">в штате <s>60&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">02</span><span class="em">🤝</span><h3>Менеджер</h3><p>Ведёт заявки и напоминает, кому и что пора написать</p><span class="sal">в штате <s>50&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">03</span><span class="em">📊</span><h3>Аналитик</h3><p>Отчёт, который приходит сам: что выросло, что упало, что делать</p><span class="sal">в штате <s>100&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">04</span><span class="em">🗂</span><h3>Секретарь</h3><p>Встречи, письма и документы без ручной возни</p><span class="sal">в штате <s>45&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">05</span><span class="em">✍️</span><h3>Автор постов</h3><p>Пишет вашим голосом так, что подписчики не заметят подмены</p><span class="sal">в штате <s>55&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">06</span><span class="em">🎬</span><h3>Сценарист рилс</h3><p>Тема, голосовое или чужой ролик превращаются в готовый сценарий</p><span class="sal">в штате <s>60&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">07</span><span class="em">🖋</span><h3>Копирайтер</h3><p>Тексты для карточек, рассылок и прогревов</p><span class="sal">в штате <s>66&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">08</span><span class="em">💬</span><h3>Продавец</h3><p>Отвечает лидам быстро и доводит до оплаты</p><span class="sal">в штате <s>80&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">09</span><span class="em">⭐</span><h3>Отзывы</h3><p>Отвечает покупателям живым языком, без канцелярита</p><span class="sal">в штате <s>40&nbsp;000&nbsp;₽</s></span></div>
-      <div class="agent"><span class="n">10</span><span class="em">📥</span><h3>Входящие</h3><p>Срочное сразу с черновиком ответа, остальное одним дайджестом</p><span class="sal">в штате <s>40&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">01</span><span class="em"><i data-ic="tasks"></i></span><h3>Ассистент</h3><p>Собирает задачи из чатов, календаря и зумов и пушит по ним в Telegram</p><span class="sal">в штате <s>60&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">02</span><span class="em"><i data-ic="users"></i></span><h3>Менеджер</h3><p>Ведёт заявки и напоминает, кому и что пора написать</p><span class="sal">в штате <s>50&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">03</span><span class="em"><i data-ic="chart"></i></span><h3>Аналитик</h3><p>Отчёт, который приходит сам: что выросло, что упало, что делать</p><span class="sal">в штате <s>100&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">04</span><span class="em"><i data-ic="folder"></i></span><h3>Секретарь</h3><p>Встречи, письма и документы без ручной возни</p><span class="sal">в штате <s>45&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">05</span><span class="em"><i data-ic="pen"></i></span><h3>Автор постов</h3><p>Пишет вашим голосом так, что подписчики не заметят подмены</p><span class="sal">в штате <s>55&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">06</span><span class="em"><i data-ic="film"></i></span><h3>Сценарист рилс</h3><p>Тема, голосовое или чужой ролик превращаются в готовый сценарий</p><span class="sal">в штате <s>60&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">07</span><span class="em"><i data-ic="type"></i></span><h3>Копирайтер</h3><p>Тексты для карточек, рассылок и прогревов</p><span class="sal">в штате <s>66&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">08</span><span class="em"><i data-ic="msg"></i></span><h3>Продавец</h3><p>Отвечает лидам быстро и доводит до оплаты</p><span class="sal">в штате <s>80&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">09</span><span class="em"><i data-ic="star"></i></span><h3>Отзывы</h3><p>Отвечает покупателям живым языком, без канцелярита</p><span class="sal">в штате <s>40&nbsp;000&nbsp;₽</s></span></div>
+      <div class="agent spot"><span class="n">10</span><span class="em"><i data-ic="inbox"></i></span><h3>Входящие</h3><p>Срочное сразу с черновиком ответа, остальное одним дайджестом</p><span class="sal">в штате <s>40&nbsp;000&nbsp;₽</s></span></div>
     </div>
     <div class="total rv">
       <span class="l">Столько в месяц стоили бы люди на этих задачах</span>
@@ -802,7 +934,7 @@ footer { padding-block: 44px 40px; }
       </article>
 
       <article class="lot king rv">
-        <span class="hit">👑 Главный лот</span>
+        <span class="hit"><i data-ic="crown"></i> Главный лот</span>
         <span class="tag">Лот 2 · Царь лот</span>
         <h3>Весь 2027 год<br>с <span class="chrome">ИИшницей</span></h3>
         <p class="for">Для тех, кто хочет результат с кураторами и потоками весь год</p>
@@ -837,15 +969,15 @@ footer { padding-block: 44px 40px; }
       <p>Такого набора больше не будет. Часть бонусов уходит каждый день, поэтому чем раньше, тем больше вы забираете</p>
     </div>
     <div class="bon">
-      <div class="b wow rv">
-        <span class="em">🏆</span>
+      <div class="b wow rv spot">
+        <span class="em"><i data-ic="trophy"></i></span>
         <h3>Розыгрыш ИИ-офиса под ключ</h3>
         <p>Среди всех, кто заберёт царь лот до 30 ноября, разыграем внедрение ИИ-офиса под ключ. Моя команда соберёт его под ваш бизнес. Обычно такая разработка стоит от 500&nbsp;000&nbsp;₽. Условия розыгрыша опубликую на эфире 26 ноября</p>
       </div>
-      <div class="b rv"><span class="em">🔑</span><h3>Ключи от ИИ-офиса</h3><p>Инструкции, промпты и шаблоны всех 10 агентов. Берёте и запускаете у себя</p></div>
-      <div class="b rv"><span class="em">🎞</span><h3>10 серий навсегда</h3><p>В канале серии сгорали за 24 часа. Здесь они остаются у вас</p></div>
-      <div class="b rv"><span class="em">🧬</span><h3>Год клуба SYNAPSE AI</h3><p>Новые инструменты, разборы и люди, которые тоже внедряют ИИ</p></div>
-      <div class="b rv"><span class="lim">мест мало</span><span class="em">🤖</span><h3>Бот-ассистент от команды</h3><p>Разворачиваем вам ассистента, как у меня. Только первым покупателям, сколько успевает команда</p></div>
+      <div class="b rv spot"><span class="em"><i data-ic="key"></i></span><h3>Ключи от ИИ-офиса</h3><p>Инструкции, промпты и шаблоны всех 10 агентов. Берёте и запускаете у себя</p></div>
+      <div class="b rv spot"><span class="em"><i data-ic="play"></i></span><h3>10 серий навсегда</h3><p>В канале серии сгорали за 24 часа. Здесь они остаются у вас</p></div>
+      <div class="b rv spot"><span class="em"><i data-ic="spark"></i></span><h3>Год клуба SYNAPSE AI</h3><p>Новые инструменты, разборы и люди, которые тоже внедряют ИИ</p></div>
+      <div class="b rv spot"><span class="lim">мест мало</span><span class="em"><i data-ic="bot"></i></span><h3>Бот-ассистент от команды</h3><p>Разворачиваем вам ассистента, как у меня. Только первым покупателям, сколько успевает команда</p></div>
     </div>
 
     <div class="seg rv" id="pack">
@@ -890,9 +1022,9 @@ footer { padding-block: 44px 40px; }
       <p>Открываются по датам. Заходите сюда каждый вечер</p>
     </div>
     <div class="secret">
-      <a class="vid locked rv" data-open="2026-11-27T09:00:00Z" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener"><span class="day">27</span><div><span class="st">🔒 откроется 27.11</span><h3 style="margin-top:12px">Первая неделя офиса</h3><p>Как агенты отработали без меня: цифры и косяки</p></div></a>
-      <a class="vid locked rv" data-open="2026-11-28T09:00:00Z" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener"><span class="day">28</span><div><span class="st">🔒 откроется 28.11</span><h3 style="margin-top:12px">Кейс ученика</h3><p>Собрал агента в марафоне. Что изменилось в работе</p></div></a>
-      <a class="vid locked rv" data-open="2026-11-29T09:00:00Z" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener"><span class="day">29</span><div><span class="st">🔒 откроется 29.11</span><h3 style="margin-top:12px">Ответы на вопросы</h3><p>Время, деньги, «я не программист» и всё, что вы спрашивали</p></div></a>
+      <a class="vid locked rv" data-open="2026-11-27T09:00:00Z" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener"><span class="day">27</span><div><span class="st">откроется 27.11</span><h3 style="margin-top:12px">Первая неделя офиса</h3><p>Как агенты отработали без меня: цифры и косяки</p></div></a>
+      <a class="vid locked rv" data-open="2026-11-28T09:00:00Z" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener"><span class="day">28</span><div><span class="st">откроется 28.11</span><h3 style="margin-top:12px">Кейс ученика</h3><p>Собрал агента в марафоне. Что изменилось в работе</p></div></a>
+      <a class="vid locked rv" data-open="2026-11-29T09:00:00Z" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener"><span class="day">29</span><div><span class="st">откроется 29.11</span><h3 style="margin-top:12px">Ответы на вопросы</h3><p>Время, деньги, «я не программист» и всё, что вы спрашивали</p></div></a>
     </div>
   </div>
 </section>
@@ -918,21 +1050,21 @@ footer { padding-block: 44px 40px; }
   <div class="wrap">
     <div class="own">
       <div class="rv">
-        <span class="em" style="font-size:32px">💙</span>
+        <span class="em"><i data-ic="heart"></i></span>
         <h3>Уже покупали у меня?</h3>
         <p>Для своих отдельная версия: Ключи от ИИ-офиса и пакет под вашу задачу бесплатно. Напишите менеджеру кодовое слово</p>
         <div class="code"><kbd>СВОИ</kbd><button type="button" data-copy="СВОИ">скопировать</button></div>
         <a class="btn btn-ghost" href="https://t.me/puzanovateam" target="_blank" rel="noopener">Написать менеджеру</a>
       </div>
       <div class="rv">
-        <span class="em" style="font-size:32px">🎁</span>
+        <span class="em"><i data-ic="gift"></i></span>
         <h3>Подарить офис</h3>
         <p>Можно оформить любой лот в подарок другу, партнёру или сотруднику</p>
         <div class="code"><kbd>ПОДАРОК</kbd><button type="button" data-copy="ПОДАРОК">скопировать</button></div>
         <a class="btn btn-ghost" href="https://t.me/puzanovateam" target="_blank" rel="noopener">Подарить</a>
       </div>
       <div class="rv">
-        <span class="em" style="font-size:32px">🏢</span>
+        <span class="em"><i data-ic="building"></i></span>
         <h3>Нужно для компании?</h3>
         <p>Обучение команды и ИИ-офис под ключ для бизнеса. Посчитаем на созвоне</p>
         <div class="code"><kbd>КОМПАНИЯ</kbd><button type="button" data-copy="КОМПАНИЯ">скопировать</button></div>
@@ -977,7 +1109,7 @@ footer { padding-block: 44px 40px; }
 </main>
 
 <footer class="gut"><div class="wrap foot">
-  <div class="fcol"><b>🍳 Чёрная ИИшница</b><span>Школа ИИшница Ольги Пузановой</span><span>ИП Пузанова Ольга Валерьевна</span></div>
+  <div class="fcol"><b>Чёрная ИИшница</b><span>Школа ИИшница Ольги Пузановой</span><span>ИП Пузанова Ольга Валерьевна</span></div>
   <div class="fcol"><b>Связаться</b><a href="https://t.me/puzanovateam" target="_blank" rel="noopener">Менеджер в Telegram</a><a href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener">Канал Чёрной ИИшницы</a><a href="mailto:olgapuzanova003@yandex.ru">olgapuzanova003@yandex.ru</a></div>
   <div class="fcol"><b>Документы</b><a href="privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a><a href="privacy.html#consent" target="_blank" rel="noopener">Согласие на обработку данных</a><a href="privacy.html#ads" target="_blank" rel="noopener">Согласие на рекламу</a></div>
 </div></footer>
@@ -989,6 +1121,43 @@ footer { padding-block: 44px 40px; }
 
 <script>
 (function () {
+  // ===== Иконки (свои, линейные) =====
+  var IC = {
+    lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>',
+    x: '<path d="M18 6 6 18M6 6l12 12"/>',
+    max: '<path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M16 21h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>',
+    film: '<rect x="2" y="8" width="20" height="13" rx="2"/><path d="M2 12h20M6 8l2-5M11 8l2-5M16 8l2-5"/>',
+    zap: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+    book: '<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>',
+    chart: '<path d="M3 3v18h18M7 16v-5M12 16V8M17 16V6"/>',
+    tasks: '<path d="m3 6 2 2 4-4M3 14l2 2 4-4M13 6h8M13 12h8M13 18h8"/>',
+    clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+    search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    key: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m11.5 11.5 9.5-9.5M17 6l3 3"/>',
+    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+    folder: '<path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/>',
+    pen: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    type: '<path d="M4 7V4h16v3M9 20h6M12 4v16"/>',
+    msg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    star: '<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>',
+    inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1z"/>',
+    crown: '<path d="m3 7 5 5 4-7 4 7 5-5-2 11H5zM5 21h14"/>',
+    trophy: '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 15v3l-3 4M14 15v3l3 4M18 2H6v7a6 6 0 0 0 12 0z"/>',
+    play: '<path d="m7 4 13 8-13 8z"/>',
+    spark: '<path d="m12 3 1.9 5.8L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.2z"/>',
+    bot: '<rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 14h.01M16 14h.01"/>',
+    heart: '<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/>',
+    gift: '<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',
+    building: '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/>',
+    flame: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+    arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    cal: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'
+  };
+  function svg(n, cls) { return '<svg class="ico' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (IC[n] || "") + "</svg>"; }
+  document.querySelectorAll("[data-ic]").forEach(function (el) { el.outerHTML = svg(el.getAttribute("data-ic"), el.className); });
+
   // ===== Настройки =====
   var MANAGER = "https://t.me/puzanovateam";
   var REG_URL = "";      // ссылка веб-приложения Google Apps Script (…/exec): регистрации падают в Google Таблицу
@@ -1022,30 +1191,63 @@ footer { padding-block: 44px 40px; }
   function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   var GIFTS = [
-    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "🎬", t: "Сценарист рилс", d: "Агент пишет сценарии рилс вашим голосом: хук на первые 3 секунды, текст на 30 секунд, идея для кадра и 3 запасных хука. Плюс промпт, который соберёт из него Telegram-бота с голосовыми и ссылками на чужие ролики", val: "Сценарист в штате стоит 60 000 ₽ в месяц", links: [["Забрать агента", BASE + "scenarist-rils/"]] },
-    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "🪝", t: "Генератор хуков", d: "Пишете тему ролика и сразу получаете 10 первых фраз разных типов: ошибка, провокация, до/после, секрет. Работает прямо на этой странице", val: "Хук решает, досмотрят ли ролик", tool: ["Открыть генератор", "hooks"] },
-    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "📚", t: "30 промптов «ИИ-офис в кармане»", d: "По 3 рабочих промпта на каждого из 10 сотрудников офиса: ассистент, менеджер, аналитик, секретарь, автор постов, сценарист, копирайтер, продавец, отзывы, входящие. С поиском и копированием в один клик", val: "Готовые задачи на каждый день", tool: ["Открыть библиотеку", "prompts"] },
-    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "📊", t: "Набор селлера", d: "Промпт, который собирает дашборд продаж из отчётов Ozon, WB и Яндекс Маркета, и калькулятор юнит-экономики: маржа, точка безубыточности и где утекают деньги", val: "Такие дашборды продают на заказ за 10 000-100 000 ₽", links: [["Дашборд", "https://t.me/aivwb/1361"], ["Юнит-экономика", "https://t.me/aivwb/1370"]] },
-    { at: "2026-11-24T09:00:00Z", em: "🧠", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов, каждое утро присылает план в Telegram и пушит по тому, что горит. Тот самый, которого я собрала себе в марафоне", val: "Ассистент в штате стоит 60 000 ₽ в месяц", links: [["Забрать ассистента", BASE]] },
-    { at: "2026-11-25T09:00:00Z", em: "🔍", t: "Аудит рутины", d: "Мини-приложение: отмечаете, что делаете руками каждую неделю, и видите, сколько часов это съедает и каких ИИ-сотрудников поставить первыми", val: "Ваш личный план офиса за 2 минуты", tool: ["Пройти аудит", "audit"] },
-    { at: "2026-11-26T15:00:00Z", em: "🔑", t: "Цены на час раньше всех", d: "Лоты и бонусы Чёрной пятницы откроются вам в 18:00, за час до эфира. Самые сильные бонусы ограничены по местам, и у вас будет фора", val: "Первыми забирают бонусы с лимитом", links: [["Открыть лоты", "#lots"]] },
-    { at: "2026-11-26T16:00:00Z", feature: true, em: "🍳", t: "Финальное блюдо: шаблон оркестратора", d: "На эфире каждый зритель получит шаблон агента-оркестратора: вы пишете ему одну задачу, а он раздаёт её остальным сотрудникам и приносит готовый результат", val: "Выдаём на эфире 26 ноября в 19:00", links: [["К эфиру", "#efir"]] }
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "film", t: "Сценарист рилс", d: "Агент пишет сценарии рилс вашим голосом: хук на первые 3 секунды, текст на 30 секунд, идея для кадра и 3 запасных хука. Плюс промпт, который соберёт из него Telegram-бота с голосовыми и ссылками на чужие ролики", val: "Сценарист в штате стоит 60 000 ₽ в месяц", links: [["Забрать агента", BASE + "scenarist-rils/"]] },
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "zap", t: "Генератор хуков", d: "Пишете тему ролика и сразу получаете 10 первых фраз разных типов: ошибка, провокация, до/после, секрет. Работает прямо на этой странице", val: "Хук решает, досмотрят ли ролик", tool: ["Открыть генератор", "hooks"] },
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "book", t: "30 промптов «ИИ-офис в кармане»", d: "По 3 рабочих промпта на каждого из 10 сотрудников офиса: ассистент, менеджер, аналитик, секретарь, автор постов, сценарист, копирайтер, продавец, отзывы, входящие. С поиском и копированием в один клик", val: "Готовые задачи на каждый день", tool: ["Открыть библиотеку", "prompts"] },
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "chart", t: "Набор селлера", d: "Промпт, который собирает дашборд продаж из отчётов Ozon, WB и Яндекс Маркета, и калькулятор юнит-экономики: маржа, точка безубыточности и где утекают деньги", val: "Такие дашборды продают на заказ за 10 000-100 000 ₽", links: [["Дашборд", "https://t.me/aivwb/1361"], ["Юнит-экономика", "https://t.me/aivwb/1370"]] },
+    { at: "2026-11-24T09:00:00Z", em: "tasks", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов, каждое утро присылает план в Telegram и пушит по тому, что горит. Тот самый, которого я собрала себе в марафоне", val: "Ассистент в штате стоит 60 000 ₽ в месяц", links: [["Забрать ассистента", BASE]] },
+    { at: "2026-11-25T09:00:00Z", em: "search", t: "Аудит рутины", d: "Мини-приложение: отмечаете, что делаете руками каждую неделю, и видите, сколько часов это съедает и каких ИИ-сотрудников поставить первыми", val: "Ваш личный план офиса за 2 минуты", tool: ["Пройти аудит", "audit"] },
+    { at: "2026-11-26T15:00:00Z", em: "key", t: "Цены на час раньше всех", d: "Лоты и бонусы Чёрной пятницы откроются вам в 18:00, за час до эфира. Самые сильные бонусы ограничены по местам, и у вас будет фора", val: "Первыми забирают бонусы с лимитом", links: [["Открыть лоты", "#lots"]] },
+    { at: "2026-11-26T16:00:00Z", feature: true, em: "flame", t: "Финальное блюдо: шаблон оркестратора", d: "На эфире каждый зритель получит шаблон агента-оркестратора: вы пишете ему одну задачу, а он раздаёт её остальным сотрудникам и приносит готовый результат", val: "Выдаём на эфире 26 ноября в 19:00", links: [["К эфиру", "#efir"]] }
   ];
   function fmtWhen(ms) { return new Date(ms).toLocaleString("ru-RU", { timeZone: "Europe/Moscow", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }); }
   function dur(ms) { var s = Math.max(0, Math.floor(ms / 1000)), D = Math.floor(s / 86400), H = Math.floor(s % 86400 / 3600), M = Math.floor(s % 3600 / 60), S = s % 60; return (D ? D + "д " : "") + pad(H) + ":" + pad(M) + ":" + pad(S); }
   var giftsEl = document.querySelector(".js-gifts");
+  var EGGK = "bf_eggs_v1", cracked = {};
+  try { cracked = JSON.parse(localStorage.getItem(EGGK) || "{}"); } catch (e) {}
+  var EGG_SVG = '<svg class="egg-svg" viewBox="0 0 100 125" aria-hidden="true"><defs><radialGradient id="egS" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#E6EAF7"/><stop offset="1" stop-color="#9AA4C8"/></radialGradient></defs><path d="M50 4C24 4 6 44 6 74c0 27 20 47 44 47s44-20 44-47C94 44 76 4 50 4z" fill="url(#egS)"/><ellipse cx="33" cy="38" rx="8" ry="15" fill="#fff" opacity=".75" transform="rotate(-20 33 38)"/></svg>';
+  var eggsEl = document.querySelector(".js-eggs");
+  function giftFoot(g) {
+    if (g.tool) return '<div class="links"><button type="button" data-tool="' + g.tool[1] + '">' + g.tool[0] + " " + svg("arrow") + "</button></div>";
+    return '<div class="links">' + g.links.map(function (l) { var ext = l[1].charAt(0) !== "#"; return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + l[0] + " " + svg("arrow") + "</a>"; }).join("") + "</div>";
+  }
+  function renderEggs() {
+    var reg = isReg(), html = "", n = 0, first = true;
+    GIFTS.forEach(function (g, i) {
+      if (!g.when) return;
+      var open = reg && cracked[i];
+      if (open) n++;
+      var hint = !open && first; if (!open) first = false;
+      html += '<div class="eggcard spot' + (open ? " open" : "") + (hint ? " hint" : "") + '" data-egg="' + i + '" role="button" tabindex="' + (open ? "-1" : "0") + '" aria-label="' + (open ? g.t : "Разбить яйцо") + '">' +
+        '<div class="shell">' + EGG_SVG + "<span>" + (reg ? "Нажмите, чтобы разбить" : "Откроется после регистрации") + "</span><em>подарок " + (i + 1) + "</em></div>" +
+        (reg ? "" : '<span class="lockb">' + svg("lock") + "</span>") +
+        '<div class="inside"><span class="gi">' + svg(g.em) + "</span><h4>" + g.t + "</h4><p>" + g.d + '</p><span class="val">' + g.val + "</span>" + (open ? giftFoot(g) : "") + "</div></div>";
+    });
+    eggsEl.innerHTML = html;
+    document.querySelector(".js-egg-cnt").textContent = n + " / 4";
+  }
+  eggsEl.addEventListener("click", function (e) {
+    var c = e.target.closest("[data-egg]"); if (!c || c.classList.contains("open")) return;
+    if (!isReg()) { toast("Сначала займите место, это один шаг"); goReg(); return; }
+    var i = +c.getAttribute("data-egg");
+    c.classList.add("cracking");
+    setTimeout(function () { cracked[i] = 1; try { localStorage.setItem(EGGK, JSON.stringify(cracked)); } catch (x) {} renderEggs(); var k = Object.keys(cracked).length; if (k === 4) toast("Все 4 подарка ваши. Следующее блюдо завтра"); }, 480);
+  });
+  eggsEl.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-egg]")) { e.preventDefault(); e.target.click(); } });
   function renderGifts() {
+    renderEggs();
     var t = now(), reg = isReg(), html = "";
     GIFTS.forEach(function (g, i) {
+      if (g.when) return;
       var at = Date.parse(g.at), open = reg && t >= at;
       var foot;
-      if (open && g.tool) foot = '<div class="links"><button type="button" data-tool="' + g.tool[1] + '">' + g.tool[0] + " →</button></div>";
-      else if (open) foot = '<div class="links">' + g.links.map(function (l) { var ext = l[1].charAt(0) !== "#"; return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + l[0] + " →</a>"; }).join("") + "</div>";
-      else if (!reg) foot = '<span class="st">🔒 после регистрации</span>';
-      else foot = '<span class="st" data-i="' + i + '">🥚 разобьём через ' + dur(at - t) + "</span>";
-      html += '<div class="gift ' + (open ? "open" : "locked") + (g.feature ? " feature" : "") + '">' +
+      if (open && g.tool) foot = '<div class="links"><button type="button" data-tool="' + g.tool[1] + '">' + g.tool[0] + " " + svg("arrow") + "</button></div>";
+      else if (open) foot = '<div class="links">' + g.links.map(function (l) { var ext = l[1].charAt(0) !== "#"; return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + l[0] + " " + svg("arrow") + "</a>"; }).join("") + "</div>";
+      else if (!reg) foot = '<span class="st">' + svg("lock") + ' после регистрации</span>';
+      else foot = '<span class="st" data-i="' + i + '">' + svg("clock") + ' <span>откроется через ' + dur(at - t) + "</span></span>";
+      html += '<div class="gift spot ' + (open ? "open" : "locked") + (g.feature ? " feature" : "") + '">' +
         '<span class="when">' + (g.when || "Подаём " + fmtWhen(at)) + "</span>" +
-        '<div class="ghead"><span class="egg">' + (open ? g.em : "🥚") + "</span><h3>" + g.t + "</h3></div>" +
+        '<div class="ghead"><span class="egg">' + svg(open ? g.em : "lock") + "</span><h3>" + g.t + "</h3></div>" +
         "<p>" + g.d + '</p><span class="val">' + g.val + "</span>" + foot + "</div>";
     });
     giftsEl.innerHTML = html;
@@ -1054,7 +1256,7 @@ footer { padding-block: 44px 40px; }
   function updateTimers() {
     var t = now(), next = null;
     GIFTS.forEach(function (g) { var at = Date.parse(g.at); if (t < at && (next === null || at < next)) next = at; });
-    giftsEl.querySelectorAll(".st[data-i]").forEach(function (st) { var at = Date.parse(GIFTS[+st.getAttribute("data-i")].at); st.textContent = "🥚 разобьём через " + dur(at - t); });
+    giftsEl.querySelectorAll(".st[data-i]").forEach(function (st) { var at = Date.parse(GIFTS[+st.getAttribute("data-i")].at); var sp = st.querySelector("span"); if (sp) sp.textContent = "откроется через " + dur(at - t); });
     var nb = document.querySelector(".js-next"); if (nb) nb.textContent = next ? dur(next - t) : "все открыты";
   }
   giftsEl.addEventListener("click", function (e) { var b = e.target.closest("[data-tool]"); if (b) openTool(b.getAttribute("data-tool")); });
@@ -1062,7 +1264,7 @@ footer { padding-block: 44px 40px; }
   // ===== Модалка и инструменты =====
   var modal = document.querySelector(".js-modal"), mTitle = document.querySelector(".js-m-title"), mBody = document.querySelector(".js-m-body"), lastFocus = null;
   function openModal(title, html) { lastFocus = document.activeElement; mTitle.textContent = title; mBody.innerHTML = html; modal.hidden = false; document.body.style.overflow = "hidden"; modal.querySelector(".js-modal-x").focus(); }
-  function closeModal() { modal.hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
+  function closeModal() { modal.classList.remove("exit"); modal.hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
   modal.addEventListener("click", function (e) { if (e.target === modal || e.target.closest(".js-modal-x")) closeModal(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
   function copyText(txt, btn) {
@@ -1155,22 +1357,34 @@ footer { padding-block: 44px 40px; }
   }
   function openTool(k) {
     if (!isReg()) { location.hash = "#reg"; return; }
-    if (k === "hooks") { openModal("🪝 Генератор хуков", '<input class="tin js-hook-in" placeholder="Тема ролика, например «отчёт по продажам»" maxlength="80"><div class="js-hook-out">' + hooksHtml("") + "</div>"); mBody.querySelector(".js-hook-in").focus(); }
-    if (k === "prompts") { openModal("📚 30 промптов «ИИ-офис в кармане»", '<input class="tin js-pr-in" placeholder="Поиск: отзывы, отчёт, пост, клиент…" maxlength="40"><div class="prs js-pr-out"></div>'); renderPrompts(""); }
-    if (k === "audit") { openModal("🔍 Аудит рутины", auditHtml()); }
+    if (k === "hooks") { openModal("Генератор хуков", '<input class="tin js-hook-in" placeholder="Тема ролика, например «отчёт по продажам»" maxlength="80"><div class="js-hook-out">' + hooksHtml("") + "</div>"); mBody.querySelector(".js-hook-in").focus(); }
+    if (k === "prompts") { openModal("30 промптов «ИИ-офис в кармане»", '<input class="tin js-pr-in" placeholder="Поиск: отзывы, отчёт, пост, клиент…" maxlength="40"><div class="prs js-pr-out"></div>'); renderPrompts(""); }
+    if (k === "audit") { openModal("Аудит рутины", auditHtml()); }
   }
 
   // ===== Калькулятор офиса =====
-  var ROLES = [["🧠", "Ассистент", 60000], ["🤝", "Менеджер", 50000], ["📊", "Аналитик", 100000], ["🗂", "Секретарь", 45000], ["✍️", "Автор постов", 55000], ["🎬", "Сценарист рилс", 60000], ["🖋", "Копирайтер", 66000], ["💬", "Продавец", 80000], ["⭐", "Отзывы", 40000], ["📥", "Входящие", 40000]];
+  var ROLES = [["tasks", "Ассистент", 60000], ["users", "Менеджер", 50000], ["chart", "Аналитик", 100000], ["folder", "Секретарь", 45000], ["pen", "Автор постов", 55000], ["film", "Сценарист рилс", 60000], ["type", "Копирайтер", 66000], ["msg", "Продавец", 80000], ["star", "Отзывы", 40000], ["inbox", "Входящие", 40000]];
   var calcEl = document.querySelector(".js-calc");
-  calcEl.innerHTML = ROLES.map(function (r, i) { return '<button type="button" class="role" aria-pressed="false" data-r="' + i + '"><span>' + r[0] + "</span><b>" + r[1] + "</b><em>" + r[2].toLocaleString("ru-RU") + " ₽</em></button>"; }).join("");
+  calcEl.innerHTML = ROLES.map(function (r, i) { return '<button type="button" class="role spot" aria-pressed="false" data-r="' + i + '"><span class="ri">' + svg(r[0]) + '</span><span class="tick">' + svg("plus", "p") + svg("check", "c") + "</span><b>" + r[1] + "</b><em>" + r[2].toLocaleString("ru-RU") + " ₽ в месяц</em></button>"; }).join("");
   function fmtRub(n) { return n.toLocaleString("ru-RU") + " ₽"; }
   calcEl.addEventListener("click", function (e) {
     var b = e.target.closest("[data-r]"); if (!b) return;
     b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
-    var sum = 0; calcEl.querySelectorAll('[aria-pressed="true"]').forEach(function (x) { sum += ROLES[+x.getAttribute("data-r")][2]; });
+    calcUpd();
+  });
+  function calcUpd() {
+    calcEl.classList.remove("fresh");
+    var sum = 0, n = 0; calcEl.querySelectorAll('[aria-pressed="true"]').forEach(function (x) { sum += ROLES[+x.getAttribute("data-r")][2]; n++; });
     document.querySelector(".js-calc-m").textContent = fmtRub(sum);
-    document.querySelector(".js-calc-y").textContent = sum ? "в месяц, или " + fmtRub(sum * 12) + " в год" : "в месяц";
+    var y = document.querySelector(".js-calc-y"); y.classList.toggle("empty", !sum);
+    y.textContent = sum ? "в месяц, или " + fmtRub(sum * 12) + " в год" : "Нажмите на карточки сотрудников";
+    document.querySelector(".js-calc-count").textContent = "выбрано " + n + " из 10";
+    document.querySelector(".js-calc-all").textContent = n === 10 ? "Сбросить" : "Выбрать всех";
+  }
+  document.querySelector(".js-calc-all").addEventListener("click", function () {
+    var all = calcEl.querySelectorAll('[aria-pressed="true"]').length === 10;
+    calcEl.querySelectorAll(".role").forEach(function (b) { b.setAttribute("aria-pressed", all ? "false" : "true"); });
+    calcUpd();
   });
 
   // ===== Календарь =====
@@ -1206,7 +1420,7 @@ footer { padding-block: 44px 40px; }
   });
   function loadCrowd() {
     if (!REG_URL) return;
-    try { fetch(REG_URL + "?stats=1", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { if (j && j.count >= 30) { var c = document.querySelector(".js-crowd"); c.hidden = false; c.textContent = "🔥 Уже на кухне: " + j.count + " человек"; } }).catch(function () {}); } catch (e) {}
+    try { fetch(REG_URL + "?stats=1", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { if (j && j.count >= 30) { var c = document.querySelector(".js-crowd"); c.hidden = false; c.textContent = "Уже на кухне: " + j.count + " человек"; } }).catch(function () {}); } catch (e) {}
   }
   loadCrowd();
   if (isReg()) showDone();
@@ -1304,7 +1518,7 @@ footer { padding-block: 44px 40px; }
     // секретные видео
     document.querySelectorAll(".vid").forEach(function (v) {
       var o = Date.parse(v.getAttribute("data-open")), st = v.querySelector(".st");
-      if (t >= o) { v.classList.remove("locked"); v.classList.add("open"); st.textContent = "▶ смотреть в канале"; v.removeAttribute("aria-disabled"); }
+      if (t >= o) { v.classList.remove("locked"); v.classList.add("open"); st.textContent = "смотреть"; v.removeAttribute("aria-disabled"); }
       else { v.setAttribute("aria-disabled", "true"); }
     });
     return ph;
@@ -1382,6 +1596,72 @@ footer { padding-block: 44px 40px; }
   var bar = document.querySelector(".js-bar"), hero = document.querySelector(".hero");
   function onScroll() { bar.classList.toggle("show", hero.getBoundingClientRect().bottom < 0); }
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  // ===== v5: живое яйцо из частиц на первом экране =====
+  (function () {
+    var host = document.querySelector(".reg"); if (!host) return;
+    var cv = document.createElement("canvas"); cv.className = "egg-canvas"; cv.setAttribute("aria-hidden", "true");
+    var au = document.createElement("div"); au.className = "aurora";
+    host.insertBefore(cv, host.firstChild); host.insertBefore(au, host.firstChild);
+    var ctx = cv.getContext("2d"), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), P = [], mx = 0, my = 0, tmx = 0, tmy = 0, running = true;
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function build() {
+      var mobile = W < 900, N = mobile ? 900 : 1900; P = [];
+      for (var i = 0; i < N; i++) {
+        var yolk = Math.random() < 0.24, a = Math.random() * Math.PI * 2, r, z;
+        if (yolk) { r = 0.32 * Math.sqrt(Math.random()); z = (1 - Math.pow(r / 0.32, 2)) * 0.16; }
+        else { var R = 1 + 0.13 * Math.sin(3 * a + 1.3) + 0.07 * Math.sin(5 * a + 0.4); r = R * Math.sqrt(0.08 + 0.92 * Math.random()); z = 0.03 * Math.random(); }
+        P.push({ x: Math.cos(a) * r + (yolk ? -0.08 : 0), y: Math.sin(a) * r * 0.86 + (yolk ? -0.04 : 0), z: z, y0: yolk, s: 0.8 + Math.random() * 1.3, ph: Math.random() * 6.28, sp: 1 + Math.random() * 2 });
+      }
+    }
+    function size() { var r = host.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); build(); }
+    function frame(t) {
+      t = t || 0; mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
+      ctx.clearRect(0, 0, W, H);
+      var mobile = W < 900, cx = mobile ? W * 0.8 : W * 0.7, cy = mobile ? H * 0.14 : H * 0.48, S = mobile ? W * 0.45 : Math.min(W, H) * 0.46;
+      var rz = t * 0.00012 + mx * 0.35, tilt = 1.05 + my * 0.25, cz = Math.cos(rz), sz = Math.sin(rz), ct = Math.cos(tilt), st = Math.sin(tilt);
+      ctx.globalCompositeOperation = "lighter";
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i], jx = Math.sin(t * 0.002 * p.sp + p.ph) * 0.006, jz = Math.cos(t * 0.003 * p.sp + p.ph) * 0.01;
+        var x = p.x + jx, y = p.y, z = p.z + jz;
+        var x1 = x * cz - y * sz, y1 = x * sz + y * cz;
+        var y2 = y1 * ct - z * st, z2 = y1 * st + z * ct;
+        var f = 3 / (3 + z2), px = cx + x1 * S * f, py = cy + y2 * S * f;
+        var a = (p.y0 ? 0.85 : 0.5) * (mobile ? 0.6 : 1);
+        ctx.fillStyle = p.y0 ? "rgba(255,170,40," + a + ")" : "rgba(190,205,255," + (a * 0.75) + ")";
+        ctx.beginPath(); ctx.arc(px, py, p.s * f * (p.y0 ? 1.25 : 1), 0, 6.283); ctx.fill();
+      }
+      ctx.globalCompositeOperation = "source-over";
+      if (running && !reduce) requestAnimationFrame(frame);
+    }
+    window.addEventListener("pointermove", function (e) { tmx = e.clientX / innerWidth - 0.5; tmy = e.clientY / innerHeight - 0.5; }, { passive: true });
+    window.addEventListener("resize", function () { size(); if (reduce) frame(0); });
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { var vis = es[0].isIntersecting; if (vis && !running) { running = true; if (!reduce) requestAnimationFrame(frame); } running = vis; }).observe(host);
+    size(); requestAnimationFrame(frame);
+  })();
+
+  // ===== подсветка карточек под курсором =====
+  document.addEventListener("pointermove", function (e) {
+    var el = e.target.closest && e.target.closest(".spot"); if (!el) return;
+    var r = el.getBoundingClientRect(); el.style.setProperty("--mx", (e.clientX - r.left) + "px"); el.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true });
+
+  // ===== тост =====
+  var toastEl = document.createElement("div"); toastEl.className = "toast"; toastEl.setAttribute("role", "status"); document.body.appendChild(toastEl);
+  var toastT; function toast(m) { toastEl.textContent = m; toastEl.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove("show"); }, 2600); }
+  function goReg() { var r = document.getElementById("reg"); if (r) r.scrollIntoView({ behavior: "smooth", block: "start" }); setTimeout(function () { var n = document.querySelector('.js-form input[name="name"]'); if (n && !document.querySelector(".js-form").hidden) n.focus({ preventScroll: true }); }, 700); }
+  document.addEventListener("click", function (e) { var a = e.target.closest('a[href="#reg"]'); if (a) { e.preventDefault(); goReg(); } });
+
+  // ===== окно при попытке уйти =====
+  (function () {
+    var shown = false; try { shown = sessionStorage.getItem("bf_exit") === "1"; } catch (e) {}
+    document.addEventListener("mouseout", function (e) {
+      if (shown || isReg() || e.relatedTarget || e.clientY > 0 || !modal.hidden) return;
+      shown = true; try { sessionStorage.setItem("bf_exit", "1"); } catch (x) {}
+      modal.classList.add("exit");
+      openModal("Подождите, на сковородке ещё подарки", '<p>4 подарка достаются сразу после регистрации: сценарист рилс, генератор хуков, 30 промптов офиса и набор селлера. И место на эфире 26 ноября в 19:00</p><button class="btn btn-primary js-exit-go" type="button">Забрать подарки ' + svg("arrow") + "</button>");
+    });
+    mBody.addEventListener("click", function (e) { if (e.target.closest(".js-exit-go")) { closeModal(); modal.classList.remove("exit"); goReg(); } });
+  })();
 })();
 </script>
 
