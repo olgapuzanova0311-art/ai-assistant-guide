@@ -1,7 +1,11 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></head><body>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Чёрная пятница ИИшницы</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Ключи от ИИ-офиса на 600 000 ₽: все курсы в записи или весь 2027 год с кураторами и бонусами Чёрной пятницы. 26–30 ноября">
+<meta name="description" content="Финальный эфир Чёрной ИИшницы 26 ноября в 19:00 прямо на этой странице. Подарки за регистрацию каждый день">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
@@ -254,7 +258,7 @@ section { position: relative; padding-block: clamp(72px, 10vw, 130px); }
 .cheap { margin-top: 70px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 18px; color: var(--muted); font-size: 15px; }
 .cheap a { color: var(--fg); font-weight: 700; text-underline-offset: 4px; }
 
-footer { border-top: 1px solid var(--line); padding-block: 34px calc(110px + env(safe-area-inset-bottom, 0px)); color: var(--muted); font-size: 14px; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: space-between; }
 
 /* sticky bar (mobile) */
@@ -360,6 +364,137 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
 @media (max-width: 1080px) { .gifts { grid-template-columns: repeat(2, 1fr); } .gift.feature { grid-column: span 2; } }
 @media (max-width: 600px) { .gifts { grid-template-columns: 1fr; } .gift.feature { grid-column: auto; grid-template-columns: 1fr; } .fegg i { width: 76px; height: 66px; right: -6px; top: -50px; } .form-card h3 { padding-right: 64px; } }
 
+/* ===== v4 ===== */
+.reg { min-height: calc(100svh - 104px); display: grid; align-items: center; }
+.reg-grid { grid-template-columns: 1.1fr .9fr; grid-template-areas: "head form" "perks form"; align-items: start; row-gap: 26px; }
+.rg-head { grid-area: head; align-self: end; }
+.form-card { grid-area: form; align-self: center; }
+.rg-perks { grid-area: perks; margin: 0; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+.rg-perks li { font-size: 15px; align-items: start; }
+.reg h1 { font-size: clamp(38px, 5.6vw, 80px); }
+.form-card h3 { padding-right: 80px; }
+.chk { display: grid !important; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; font-weight: 500 !important; font-size: 14px !important; color: #B9BDCC !important; cursor: pointer; }
+.chk input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--blue); padding: 0; box-shadow: none; }
+.chk a { color: var(--ice); }
+.form-card .btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
+.row2 { display: grid; gap: 10px; }
+.row2 .btn { width: 100%; padding: 15px 18px; font-size: 15px; }
+
+.stream-sec { padding-top: 0; }
+.player { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 32px; overflow: hidden; background: #0B0C12; box-shadow: 0 0 0 1px rgba(124,149,255,.35) inset, 0 50px 140px rgba(59,91,255,.3); display: grid; place-items: center; }
+.player:fullscreen { border-radius: 0; }
+.pl-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(18px) brightness(.32) saturate(1.2); transform: scale(1.1); }
+.player.has-video .pl-center, .player.has-video .pl-bg { display: none; }
+.player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 3; }
+.pl-live { position: absolute; z-index: 4; top: 20px; left: 20px; display: inline-flex; gap: 8px; align-items: center; font-family: var(--mono); font-size: 13px; letter-spacing: .14em; background: rgba(0,0,0,.55); border-radius: 999px; padding: 8px 14px; }
+.pl-fs { position: absolute; z-index: 4; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 12px; border: 0; background: rgba(0,0,0,.55); color: #fff; font-size: 20px; cursor: pointer; }
+.pl-center { position: relative; z-index: 2; display: grid; gap: 16px; justify-items: center; text-align: center; padding: 24px; }
+.pl-center h3 { font-size: clamp(22px, 3vw, 40px); font-weight: 900; }
+.pl-center p { color: #C3C7D6; }
+.pan { position: relative; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #3A3F52, #14161F 70%); box-shadow: 0 0 0 6px #23263A, 0 20px 40px rgba(0,0,0,.5); }
+.pan::after { content: ""; position: absolute; right: -78px; top: 52px; width: 84px; height: 16px; border-radius: 8px; background: #23263A; }
+.pan-egg { position: absolute; inset: 18px; border-radius: 50%; background: radial-gradient(circle at 50% 50%, #FFC24D 0 calc(18% + 6% * var(--cook, 0)), #FF9A1F calc(22% + 6% * var(--cook, 0)), rgba(255,255,255,calc(.35 + .65 * var(--cook, 0))) calc(24% + 6% * var(--cook, 0)), rgba(255,255,255,calc(.25 + .7 * var(--cook, 0))) 66%, transparent 70%); animation: sizzle 2.4s ease-in-out infinite; }
+.player { --cook: 0; }
+@keyframes sizzle { 50% { transform: scale(1.03) rotate(4deg); } }
+.player .cd div { background: rgba(0,0,0,.45); }
+.pl-lock { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; align-content: center; gap: 14px; text-align: center; background: rgba(5,5,7,.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 20px; }
+.pl-lock[hidden] { display: none !important; }
+.lk { font-size: 46px; line-height: 1; }
+.pl-lock b, .veil b { font-family: var(--display); font-size: clamp(20px, 2.4vw, 28px); }
+.pl-under { margin-top: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.pl-under div { background: var(--card); border-radius: 18px; padding: 18px; box-shadow: 0 0 0 1px var(--line) inset; display: grid; gap: 6px; }
+.pl-under b { font-family: var(--mono); color: var(--blue-2); font-size: 14px; }
+.pl-under span { font-size: 15px; color: #C3C7D6; }
+
+.calc-sec { padding-top: 0; }
+.calc { display: grid; grid-template-columns: 1.4fr .6fr; gap: 16px; align-items: stretch; }
+.calc > * { min-width: 0; }
+.calc-roles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.role { font-family: var(--text); color: var(--fg); background: var(--card); border: 0; border-radius: 18px; padding: 16px 12px; min-height: 108px; box-shadow: 0 0 0 1px var(--line) inset; cursor: pointer; display: grid; gap: 4px; justify-items: start; text-align: left; transition: background .2s, box-shadow .2s, transform .15s; }
+.role span { font-size: 24px; }
+.role b { font-size: 15px; }
+.role em { font-style: normal; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.role:hover { transform: translateY(-2px); }
+.role[aria-pressed="true"] { background: rgba(59,91,255,.22); box-shadow: 0 0 0 2px var(--blue-2) inset; }
+.role[aria-pressed="true"] em { color: var(--ice); }
+.calc-out { background: linear-gradient(180deg, #121633, #0C0E1A); border-radius: 24px; padding: 24px; box-shadow: 0 0 0 1px rgba(124,149,255,.45) inset; display: grid; gap: 8px; align-content: center; }
+.calc-out small { font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.calc-out b { font-family: var(--display); font-size: clamp(30px, 3.4vw, 46px); line-height: 1.05; }
+.calc-out span { color: var(--ice); font-size: 15px; }
+.calc-out p { color: #C3C7D6; font-size: 15px; }
+
+.gifts-wrap { position: relative; }
+.cab.veiled .gifts { filter: blur(7px); pointer-events: none; user-select: none; }
+.veil { display: none; position: absolute; inset: 0; z-index: 3; place-items: center; align-content: center; gap: 12px; text-align: center; padding: 20px; }
+.cab.veiled .veil { display: grid; }
+.veil p { color: #C3C7D6; }
+.gifts { grid-template-columns: repeat(4, 1fr); }
+.gift .ghead { display: flex; align-items: center; gap: 12px; }
+.gift .egg { font-size: 34px; }
+.gift .when { font-size: 13px; }
+.gift .val { font-size: 13px; }
+.gift .st { font-size: 13px; }
+.gift .links button { font-family: var(--text); border: 0; cursor: pointer; font-weight: 800; font-size: 14px; background: var(--blue); color: #fff; padding: 12px 16px; border-radius: 999px; min-height: 44px; }
+.gift .links a { min-height: 44px; display: inline-flex; align-items: center; }
+.gift.feature { grid-column: span 4; }
+
+.modal { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; place-items: center; padding: 20px max(16px, env(safe-area-inset-left, 0px)) 20px max(16px, env(safe-area-inset-right, 0px)); }
+.modal[hidden] { display: none !important; }
+.modal-box { position: relative; width: min(760px, 100%); max-height: min(86svh, 900px); overflow: auto; background: #0E1020; border-radius: 26px; padding: clamp(22px, 3vw, 34px); box-shadow: 0 0 0 1px rgba(124,149,255,.4) inset, 0 40px 120px rgba(0,0,0,.6); display: grid; gap: 16px; align-content: start; }
+.modal-box h3 { font-size: clamp(22px, 2.6vw, 30px); font-weight: 900; padding-right: 50px; }
+.modal-x { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 12px; border: 0; background: rgba(255,255,255,.08); color: #fff; font-size: 18px; cursor: pointer; }
+.tin { font: 600 17px var(--text); color: #fff; background: rgba(255,255,255,.06); border: 0; box-shadow: 0 0 0 1px var(--line-2) inset; border-radius: 14px; padding: 15px 16px; width: 100%; outline: none; }
+.tin:focus { box-shadow: 0 0 0 2px var(--blue-2) inset; }
+.hooks { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.hooks li { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; background: var(--card); border-radius: 14px; padding: 12px 14px; }
+.hooks li b { grid-column: 1; font-size: 16px; }
+.hooks li button, .pr button { grid-row: span 2; font-family: var(--text); font-weight: 700; font-size: 14px; border: 0; cursor: pointer; background: rgba(59,91,255,.18); color: var(--ice); border-radius: 10px; padding: 10px 14px; min-height: 44px; }
+.ht { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-2); }
+.prs { display: grid; gap: 10px; }
+.pr { background: var(--card); border-radius: 16px; padding: 16px; display: grid; gap: 8px; }
+.prh { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.pr p { font-size: 15px; color: #C3C7D6; }
+.pr button { justify-self: start; }
+.audit { display: grid; gap: 8px; }
+.arow { display: grid; grid-template-columns: 22px 1fr 72px auto; gap: 10px; align-items: center; background: var(--card); border-radius: 14px; padding: 10px 14px; font-size: 15px; cursor: pointer; }
+.arow input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--blue); }
+.arow input[type=number] { font: 600 15px var(--text); color: #fff; background: rgba(255,255,255,.06); border: 0; border-radius: 10px; padding: 10px 8px; width: 100%; box-shadow: 0 0 0 1px var(--line-2) inset; }
+.arow em { font-style: normal; font-size: 13px; color: var(--muted); }
+.aout { background: linear-gradient(90deg, rgba(59,91,255,.25), rgba(59,91,255,.06)); border-radius: 16px; padding: 18px; display: grid; gap: 6px; }
+.aout b { font-family: var(--display); font-size: 22px; }
+.aout span { color: #C3C7D6; }
+
+footer { padding-block: 44px 40px; }
+.foot { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.fcol { display: grid; gap: 8px; align-content: start; font-size: 15px; }
+.fcol b { color: #fff; font-size: 16px; }
+.fcol a { color: #B9BDCC; text-decoration: none; min-height: 32px; display: inline-flex; align-items: center; }
+.fcol a:hover { color: #fff; }
+.switch button { padding: 13px 18px; }
+.seg-tabs button { padding: 13px 18px; }
+.code button { padding: 12px 6px; }
+.nav .links a { padding-block: 12px; }
+
+@media (max-width: 1080px) { .calc { grid-template-columns: 1fr; } .gifts { grid-template-columns: repeat(2, 1fr); } .gift.feature { grid-column: span 2; } .pl-under { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) {
+  .reg { min-height: 0; }
+  .reg-grid { grid-template-columns: 1fr; grid-template-areas: "head" "form" "perks"; }
+  .rg-perks { grid-template-columns: 1fr; }
+  .calc-roles { grid-template-columns: repeat(2, 1fr); }
+  .foot { grid-template-columns: 1fr; }
+  footer { padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 600px) {
+  .player { aspect-ratio: 4/5; border-radius: 24px; }
+  .pan { width: 96px; height: 96px; }
+  .pl-under { grid-template-columns: 1fr; }
+  .gifts { grid-template-columns: 1fr; }
+  .gift.feature { grid-column: auto; }
+  .arow { grid-template-columns: 22px 1fr 64px; }
+  .arow em { display: none; }
+  .form-card h3 { padding-right: 64px; }
+}
+
 /* reveal */
 .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
 .rv.in { opacity: 1; transform: none; }
@@ -403,14 +538,17 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   html { scroll-behavior: auto; }
 }
 </style>
+</head>
+<body>
+
 
 <div class="noise" aria-hidden="true"></div>
 
 <div class="ticker" aria-hidden="true"><div class="track">
-  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
-  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
-  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
-  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> эфир прямо на этой странице <b>🍳</b> 26 ноября в 19:00 <b>🍳</b> новое блюдо каждый день <b>🍳</b> 10 ИИ-сотрудников в одном офисе <b>🍳</b></span>
 </div></div>
 
 <nav class="nav gut js-nav"><div class="wrap">
@@ -423,32 +561,93 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
 <section class="reg gut js-gate" id="reg">
   <div class="gridbg"></div>
   <div class="wrap reg-grid">
-    <div>
-      <span class="pill"><span class="dot"></span><span class="js-reg-pill">Чёрная ИИшница · финальное блюдо 26.11 в 19:00</span></span>
-      <h1>Ключи от <span class="chrome">ИИ-офиса</span> на <span class="glow">600&nbsp;000&nbsp;₽</span></h1>
-      <p class="sub js-reg-sub">10 дней я жарила себе ИИ-сотрудников в Чёрной ИИшнице. Финальный эфир пройдёт прямо на этой кухне, а до него каждый день на сковородке новое блюдо для тех, кто зарегистрировался</p>
-      <ul class="perks js-perks">
-        <li><span>🍳</span><div><b>2 готовых агента сразу</b> после регистрации</div></li>
-        <li><span>🥚</span><div><b>Новое блюдо каждый день</b> до 26 ноября</div></li>
-        <li><span>⏰</span><div><b>Цены Чёрной пятницы на час раньше</b> всех, когда бонусов ещё полно</div></li>
-      </ul>
+    <div class="rg-head">
+      <span class="pill"><span class="dot"></span><span class="js-reg-pill">Чёрная ИИшница · финальный эфир 26.11 в 19:00</span></span>
+      <h1>Финальное блюдо <span class="chrome">Чёрной ИИшницы</span> подаём <span class="glow">здесь</span></h1>
+      <p class="sub js-reg-sub">10 дней я жарила себе ИИ-сотрудников. 26 ноября в 19:00 на этой странице соберу их в один ИИ-офис в прямом эфире, а до эфира каждый день кладу на сковородку новый подарок для тех, кто зарегистрировался</p>
     </div>
-    <div class="form-card"><div class="fegg" aria-hidden="true"><i></i></div>
+    <div class="form-card">
+      <div class="fegg" aria-hidden="true"><i></i></div>
       <form class="js-form" novalidate>
-        <h3>Занять место на кухне</h3>
+        <h3>Занять место на эфире</h3>
         <label>Как вас зовут<input name="name" autocomplete="given-name" required maxlength="60" placeholder="Ольга"></label>
-        <label>Telegram или телефон<input name="contact" autocomplete="tel" required maxlength="80" placeholder="@username"></label>
-        <button class="btn btn-primary" type="submit">Забрать подарки <span class="arr">→</span></button>
-        <p class="err js-err" hidden>Заполните имя и Telegram или телефон</p>
-        <p class="fine">Один шаг, без ботов и анкет. Эфир и подарки будут на этой странице</p>
+        <label>Telegram или телефон<input name="contact" autocomplete="tel" inputmode="text" required maxlength="80" placeholder="@username или +7 900 000-00-00"></label>
+        <label class="chk"><input type="checkbox" name="pd" class="js-pd"><span>Даю согласие на <a href="privacy.html#consent" target="_blank" rel="noopener">обработку персональных данных</a> по <a href="privacy.html" target="_blank" rel="noopener">политике</a></span></label>
+        <label class="chk"><input type="checkbox" name="ads"><span>Хочу получать новости и предложения ИИшницы (<a href="privacy.html#ads" target="_blank" rel="noopener">согласие на рекламу</a>)</span></label>
+        <button class="btn btn-primary js-submit" type="submit" disabled>Забрать подарки и место <span class="arr">→</span></button>
+        <p class="err js-err" hidden>Проверьте имя и контакт: ник в Telegram от 5 символов или телефон</p>
         <p class="crowd js-crowd" hidden></p>
       </form>
       <div class="done js-done" hidden>
         <div class="ok">✓</div>
         <h3>Готово, <span class="js-uname"></span>!</h3>
-        <p>Два первых блюда уже на столе, они ниже. Сохраните страницу в закладки: каждый день здесь появляется новое</p>
-        <div class="nextbox"><small class="js-next-lbl">Следующее блюдо через</small><b class="js-next">00:00:00</b></div>
-        <a class="btn btn-ghost" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener">Канал Чёрной ИИшницы</a>
+        <p>Первые подарки уже на столе. Эфир 26 ноября в 19:00 будет прямо на этой странице, сохраните её в закладки</p>
+        <div class="nextbox"><small>Следующее блюдо через</small><b class="js-next">00:00:00</b></div>
+        <div class="row2">
+          <a class="btn btn-primary js-gcal" target="_blank" rel="noopener" href="#">Эфир в Google Календарь</a>
+          <a class="btn btn-ghost js-ics" href="#" download="efir-chernaya-iishnitsa.ics">Эфир в календарь телефона</a>
+        </div>
+      </div>
+    </div>
+    <ul class="perks rg-perks js-perks">
+      <li><span>🎬</span><div><b>Сценарист рилс</b> пишет сценарии вашим голосом</div></li>
+      <li><span>🪝</span><div><b>Генератор хуков</b> прямо на сайте</div></li>
+      <li><span>📚</span><div><b>30 промптов «ИИ-офис в кармане»</b> по 10 ролям</div></li>
+      <li><span>📊</span><div><b>Набор селлера:</b> дашборд и юнит-экономика</div></li>
+      <li><span>🧠</span><div><b>ИИ-ассистент по задачам</b> и аудит рутины</div></li>
+      <li><span>⏰</span><div><b>Цены Чёрной пятницы на час раньше</b> всех</div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="gut stream-sec js-stream" id="efir">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Эфир «Оркестратор» · 26.11 · 19:00 мск</div>
+      <h2>Эфир пройдёт <span class="glow">прямо здесь</span></h2>
+      <p>Ссылки искать не придётся: 26 ноября в 19:00 трансляция начнётся в этом окне. Соберу всех 10 агентов в один ИИ-офис, отвечу на вопросы и открою Чёрную пятницу</p>
+    </div>
+    <div class="player js-player">
+      <img class="pl-bg" src="olga-stage.jpg" alt="">
+      <span class="pl-live"><span class="dot"></span><span class="js-pl-badge">26.11 · 19:00</span></span>
+      <button class="pl-fs js-fs" type="button" aria-label="На весь экран">⛶</button>
+      <div class="pl-center">
+        <div class="pan" aria-hidden="true"><div class="pan-egg js-pan-egg"></div></div>
+        <h3 class="js-pl-h">Эфир начнётся через</h3>
+        <div class="cd js-cd"><div><b>00</b><span>дней</span></div><div><b>00</b><span>часов</span></div><div><b>00</b><span>минут</span></div><div><b>00</b><span>секунд</span></div></div>
+        <p class="js-pl-p">Яичница дожарится ровно к началу</p>
+        <a class="btn btn-primary js-pl-btn" href="#" target="_blank" rel="noopener" hidden>Смотреть эфир <span class="arr">→</span></a>
+      </div>
+      <div class="pl-lock js-pl-lock">
+        <span class="lk">🔒</span>
+        <b>Откроется после регистрации</b>
+        <a class="btn btn-primary" href="#reg">Занять место на эфире</a>
+      </div>
+    </div>
+    <div class="pl-under">
+      <div><b>01</b><span>Как 10 агентов передают друг другу задачи без меня</span></div>
+      <div><b>02</b><span>Шаблон агента-оркестратора каждому зрителю</span></div>
+      <div><b>03</b><span>Ответы на ваши вопросы в прямом эфире</span></div>
+      <div><b>04</b><span>Открытие Чёрной пятницы и бонусы первых 24 часов</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gut calc-sec js-calc-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Посчитайте сами</div>
+      <h2>Сколько стоил бы <span class="chrome">ваш офис</span></h2>
+      <p>Отметьте задачи, которые сейчас делаете сами или держите на них людей. Цифры это средние зарплаты сотрудников на такие задачи</p>
+    </div>
+    <div class="calc">
+      <div class="calc-roles js-calc"></div>
+      <div class="calc-out">
+        <small>Люди на этих задачах стоили бы</small>
+        <b class="js-calc-m">0 ₽</b>
+        <span class="js-calc-y">в месяц</span>
+        <p>На эфире покажу, как поставить на эти задачи ИИ-сотрудников</p>
+        <a class="btn btn-primary js-calc-cta" href="#reg">Занять место на эфире</a>
       </div>
     </div>
   </div>
@@ -459,12 +658,27 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
     <div class="sec-head">
       <div class="eyebrow">Меню Чёрной ИИшницы</div>
       <h2>Что подаём <span class="glow">до эфира</span></h2>
-      <p>Каждый подарок это готовый ИИ-сотрудник или инструмент, который вы забираете и запускаете у себя. Новое блюдо появляется на сковородке по расписанию, поэтому заглядывайте каждый день</p>
+      <p>Каждый подарок это готовый ИИ-сотрудник или инструмент, который вы забираете и запускаете у себя. Новое блюдо появляется по расписанию, поэтому заглядывайте каждый день</p>
     </div>
-    <div class="gifts js-gifts"></div>
-    <div class="cab-cta js-cab-cta"><a class="btn btn-primary" href="#reg">Забрать всё меню бесплатно <span class="arr">→</span></a><span class="muted">Регистрация в один шаг: имя и Telegram</span></div>
+    <div class="gifts-wrap">
+      <div class="gifts js-gifts"></div>
+      <div class="veil js-veil">
+        <span class="lk">🔒</span>
+        <b>Откроется после регистрации</b>
+        <p>Имя и Telegram, один шаг</p>
+        <a class="btn btn-primary" href="#reg">Открыть меню</a>
+      </div>
+    </div>
   </div>
 </section>
+
+<div class="modal js-modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal-x js-modal-x" type="button" aria-label="Закрыть">✕</button>
+    <h3 id="mTitle" class="js-m-title"></h3>
+    <div class="js-m-body"></div>
+  </div>
+</div>
 
 <main class="sale js-sale">
 <header class="hero gut" id="top">
@@ -474,10 +688,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
       <div>
         <span class="pill"><span class="dot"></span><span class="js-phase-pill">Финал Чёрной ИИшницы · 26 ноября в 19:00</span></span>
         <h1><span class="big">Ключи от</span><span class="big chrome">ИИ-офиса</span><span class="big">на <span class="glow">600&nbsp;000&nbsp;₽</span></span></h1>
-        <p class="sub">10 дней я собирала себе команду из 10 ИИ-сотрудников у всех на глазах. 26 ноября отдаю её вам вместе с курсами на весь 2027 год</p>
+        <p class="sub">Команда из 10 ИИ-сотрудников, которую я собрала в Чёрной ИИшнице, и мои курсы на весь 2027 год с кураторами</p>
         <div class="ctas">
           <a class="btn btn-primary js-cta" href="#lots">Забрать свой офис <span class="arr">→</span></a>
-          <a class="btn btn-ghost" href="#efir">Что будет на эфире</a>
+          <a class="btn btn-ghost" href="#bonus">Смотреть бонусы</a>
         </div>
         <div class="count">
           <div class="lbl js-cd-label">До эфира и старта продаж</div>
@@ -485,7 +699,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
         </div>
       </div>
       <div class="photo">
-        <div class="sticker" aria-hidden="true"><div><small>СКИДКА</small><strong>0%</strong></div></div>
         <div class="frame"><img src="olga-chrome.jpg" alt="Ольга Пузанова"></div>
         <div class="cap">Ольга Пузанова<small>основательница ИИшницы</small></div>
       </div>
@@ -494,7 +707,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
       <div><b>10</b><span>ИИ-сотрудников в офисе</span></div>
       <div><b>13 000+</b><span>прошли мои программы</span></div>
       <div><b>150+ ч</b><span>курсов в записи</span></div>
-      <div><b>0&nbsp;₽</b><span>зарплат каждый месяц</span></div>
+      <div><b>2027</b><span>весь год с кураторами</span></div>
     </div>
   </div>
 </header>
@@ -504,7 +717,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   <span>Ассистент <b>✦</b> Менеджер <b>✦</b> Аналитик <b>✦</b> Секретарь <b>✦</b> Автор постов <b>✦</b> Сценарист рилс <b>✦</b> Копирайтер <b>✦</b> Продавец <b>✦</b> Отзывы <b>✦</b> Входящие <b>✦</b></span>
 </div></div>
 
-<section class="gut" id="efir">
+<section class="gut" id="efir-old" hidden>
   <div class="wrap">
     <div class="sec-head rv">
       <div class="eyebrow">Эфир «Оркестратор» · 26.11 · 19:00 мск</div>
@@ -556,8 +769,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
       <div class="agent"><span class="n">10</span><span class="em">📥</span><h3>Входящие</h3><p>Срочное сразу с черновиком ответа, остальное одним дайджестом</p><span class="sal">в штате <s>40&nbsp;000&nbsp;₽</s></span></div>
     </div>
     <div class="total rv">
-      <span class="l">Команда на этих задачах в месяц</span>
-      <span class="r"><s>596&nbsp;000&nbsp;₽</s><span class="glow">0&nbsp;₽</span></span>
+      <span class="l">Столько в месяц стоили бы люди на этих задачах</span>
+      <span class="r"><span class="glow">596&nbsp;000&nbsp;₽</span></span>
     </div>
   </div>
 </section>
@@ -567,7 +780,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
     <div class="sec-head rv">
       <div class="eyebrow">Два лота · только до 30 ноября</div>
       <h2>Выберите <span class="glow">свой вход</span></h2>
-      <p>Скидок нет, как я и обещала. Вся сила в бонусах, и в царь лоте их больше всего</p>
+      <p>В царь лоте весь 2027 год с кураторами и все бонусы Чёрной пятницы. В лоте 1 записи всех курсов и ключи от офиса</p>
     </div>
     <div class="lots">
       <article class="lot rv">
@@ -583,7 +796,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
         </ul>
         <div class="price">
           <span class="soon">Цену открою на эфире 26.11</span>
-          <span class="d">Встаньте в предсписок, и я пришлю её первыми</span>
+          <span class="d">Встаньте в предсписок, и менеджер напишет вам первыми</span>
         </div>
         <a class="btn btn-ghost js-cta-lot" data-lot="1" href="https://t.me/puzanovateam" target="_blank" rel="noopener">Встать в предсписок</a>
       </article>
@@ -627,7 +840,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
       <div class="b wow rv">
         <span class="em">🏆</span>
         <h3>Розыгрыш ИИ-офиса под ключ</h3>
-        <p>Среди всех, кто заберёт царь лот до 30 ноября, разыграем внедрение ИИ-офиса под ключ. Моя команда соберёт его под ваш бизнес. Обычно такая разработка стоит от 500&nbsp;000&nbsp;₽</p>
+        <p>Среди всех, кто заберёт царь лот до 30 ноября, разыграем внедрение ИИ-офиса под ключ. Моя команда соберёт его под ваш бизнес. Обычно такая разработка стоит от 500&nbsp;000&nbsp;₽. Условия розыгрыша опубликую на эфире 26 ноября</p>
       </div>
       <div class="b rv"><span class="em">🔑</span><h3>Ключи от ИИ-офиса</h3><p>Инструкции, промпты и шаблоны всех 10 агентов. Берёте и запускаете у себя</p></div>
       <div class="b rv"><span class="em">🎞</span><h3>10 серий навсегда</h3><p>В канале серии сгорали за 24 часа. Здесь они остаются у вас</p></div>
@@ -656,7 +869,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
     <div class="seg rv" style="margin-top:14px">
       <div>
         <div class="eyebrow" style="margin-bottom:10px">Бонусы тают</div>
-        <h3 style="font-size:clamp(22px,2.4vw,30px);font-weight:900">Что вы получите, если заберёте <span class="glow js-melt-now">сейчас</span></h3>
+        <h3 style="font-size:clamp(22px,2.4vw,30px);font-weight:900">Ближайшее сгорание: <span class="glow js-melt-now">сейчас</span></h3>
       </div>
       <div class="melt js-melt">
         <div class="st" data-until="2026-11-26T16:00:00Z"><span class="pt">1</span><span class="when">До 26.11 19:00</span><span class="what">Предсписок: доступ раньше всех и дополнительный бонус</span></div>
@@ -763,9 +976,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
 
 </main>
 
-<footer class="gut"><div class="wrap">
-  <span>Чёрная ИИшница · Ольга Пузанова · ИП Пузанова О.В.</span>
-  <span><a href="https://t.me/puzanovateam" target="_blank" rel="noopener">Менеджер в Telegram: @puzanovateam</a></span>
+<footer class="gut"><div class="wrap foot">
+  <div class="fcol"><b>🍳 Чёрная ИИшница</b><span>Школа ИИшница Ольги Пузановой</span><span>ИП Пузанова Ольга Валерьевна</span></div>
+  <div class="fcol"><b>Связаться</b><a href="https://t.me/puzanovateam" target="_blank" rel="noopener">Менеджер в Telegram</a><a href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener">Канал Чёрной ИИшницы</a><a href="mailto:olgapuzanova003@yandex.ru">olgapuzanova003@yandex.ru</a></div>
+  <div class="fcol"><b>Документы</b><a href="privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a><a href="privacy.html#consent" target="_blank" rel="noopener">Согласие на обработку данных</a><a href="privacy.html#ads" target="_blank" rel="noopener">Согласие на рекламу</a></div>
 </div></footer>
 
 <div class="bar js-bar">
@@ -797,117 +1011,259 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   function phase(t) { return t < EARLY ? "pre" : t < START ? "early" : t < LIVE_END ? "live" : t <= END ? "sale" : "closed"; }
 
   // ===== Регистрация =====
+  var BASE = "https://olgapuzanova0311-art.github.io/ai-assistant-guide/";
+  var RECORD_EMBED = ""; // embed-ссылка записи эфира, тогда запись идёт прямо в плеере
   var LS = "bf_reg_v1";
   function getReg() { try { return JSON.parse(localStorage.getItem(LS) || "null"); } catch (e) { return null; } }
   var regMem = getReg();
   function isReg() { return !!regMem; }
   function setReg(o) { regMem = o; try { localStorage.setItem(LS, JSON.stringify(o)); } catch (e) {} }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
-  var CH = "https://t.me/+zhRmQVVPQIg1OTBi";
   var GIFTS = [
-    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", t: "Сценарист рилс", d: "Агент пишет сценарии рилс вашим голосом: хук на первые 3 секунды, текст на 30 секунд, идея для кадра и 3 запасных хука. Плюс промпт, который соберёт из него Telegram-бота, понимающего голосовые и ссылки на чужие ролики", val: "Сценарист в штате стоит 60 000 ₽ в месяц", links: [["Забрать агента", "../scenarist-rils/"]] },
-    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", t: "Набор селлера", d: "Промпт, который собирает дашборд продаж из отчётов Ozon, WB и Яндекс Маркета, и калькулятор юнит-экономики: показывает маржу, точку безубыточности и где утекают деньги", val: "Такие дашборды продают на заказ за 10 000-100 000 ₽", links: [["Дашборд", "https://t.me/aivwb/1361"], ["Юнит-экономика", "https://t.me/aivwb/1370"]] },
-    { at: "2026-11-24T09:00:00Z", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов, каждое утро присылает план в Telegram и пушит по тому, что горит. Тот самый, которого я собрала себе в марафоне", val: "Ассистент в штате стоит 60 000 ₽ в месяц", links: [["Забрать ассистента", "../"]] },
-    { at: "2026-11-25T09:00:00Z", t: "Все сгоревшие серии", d: "Серии Чёрной ИИшницы жили в канале 24 часа и сгорели. Здесь они откроются снова, чтобы вы успели собрать весь офис до финального эфира", val: "10 ИИ-сотрудников за один вечер", links: [["Смотреть серии", CH]] },
-    { at: "2026-11-26T15:00:00Z", t: "Цены на час раньше всех", d: "Лоты и бонусы Чёрной пятницы откроются вам в 18:00, за час до эфира. Самые сильные бонусы ограничены по местам, и у вас будет фора", val: "Первыми забирают бонусы с лимитом", links: [["Открыть лоты", "#lots"]] },
-    { at: "2026-11-26T16:00:00Z", feature: true, t: "Финальное блюдо: эфир «Оркестратор»", d: "Соединю всех 10 агентов в один офис. Каждый, кто будет на эфире, получит шаблон агента-оркестратора: вы пишете ему одну задачу, а он раздаёт её остальным сотрудникам и приносит готовый результат", val: "Ключи от ИИ-офиса на 600 000 ₽", links: [["Смотреть эфир", "#efir"]] }
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "🎬", t: "Сценарист рилс", d: "Агент пишет сценарии рилс вашим голосом: хук на первые 3 секунды, текст на 30 секунд, идея для кадра и 3 запасных хука. Плюс промпт, который соберёт из него Telegram-бота с голосовыми и ссылками на чужие ролики", val: "Сценарист в штате стоит 60 000 ₽ в месяц", links: [["Забрать агента", BASE + "scenarist-rils/"]] },
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "🪝", t: "Генератор хуков", d: "Пишете тему ролика и сразу получаете 10 первых фраз разных типов: ошибка, провокация, до/после, секрет. Работает прямо на этой странице", val: "Хук решает, досмотрят ли ролик", tool: ["Открыть генератор", "hooks"] },
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "📚", t: "30 промптов «ИИ-офис в кармане»", d: "По 3 рабочих промпта на каждого из 10 сотрудников офиса: ассистент, менеджер, аналитик, секретарь, автор постов, сценарист, копирайтер, продавец, отзывы, входящие. С поиском и копированием в один клик", val: "Готовые задачи на каждый день", tool: ["Открыть библиотеку", "prompts"] },
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", em: "📊", t: "Набор селлера", d: "Промпт, который собирает дашборд продаж из отчётов Ozon, WB и Яндекс Маркета, и калькулятор юнит-экономики: маржа, точка безубыточности и где утекают деньги", val: "Такие дашборды продают на заказ за 10 000-100 000 ₽", links: [["Дашборд", "https://t.me/aivwb/1361"], ["Юнит-экономика", "https://t.me/aivwb/1370"]] },
+    { at: "2026-11-24T09:00:00Z", em: "🧠", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов, каждое утро присылает план в Telegram и пушит по тому, что горит. Тот самый, которого я собрала себе в марафоне", val: "Ассистент в штате стоит 60 000 ₽ в месяц", links: [["Забрать ассистента", BASE]] },
+    { at: "2026-11-25T09:00:00Z", em: "🔍", t: "Аудит рутины", d: "Мини-приложение: отмечаете, что делаете руками каждую неделю, и видите, сколько часов это съедает и каких ИИ-сотрудников поставить первыми", val: "Ваш личный план офиса за 2 минуты", tool: ["Пройти аудит", "audit"] },
+    { at: "2026-11-26T15:00:00Z", em: "🔑", t: "Цены на час раньше всех", d: "Лоты и бонусы Чёрной пятницы откроются вам в 18:00, за час до эфира. Самые сильные бонусы ограничены по местам, и у вас будет фора", val: "Первыми забирают бонусы с лимитом", links: [["Открыть лоты", "#lots"]] },
+    { at: "2026-11-26T16:00:00Z", feature: true, em: "🍳", t: "Финальное блюдо: шаблон оркестратора", d: "На эфире каждый зритель получит шаблон агента-оркестратора: вы пишете ему одну задачу, а он раздаёт её остальным сотрудникам и приносит готовый результат", val: "Выдаём на эфире 26 ноября в 19:00", links: [["К эфиру", "#efir"]] }
   ];
-  function fmtWhen(ms) {
-    return new Date(ms).toLocaleString("ru-RU", { timeZone: "Europe/Moscow", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
-  }
-  function dur(ms) {
-    var s = Math.max(0, Math.floor(ms / 1000)), D = Math.floor(s / 86400), H = Math.floor(s % 86400 / 3600), M = Math.floor(s % 3600 / 60), S = s % 60;
-    return (D ? D + "д " : "") + pad(H) + ":" + pad(M) + ":" + pad(S);
-  }
+  function fmtWhen(ms) { return new Date(ms).toLocaleString("ru-RU", { timeZone: "Europe/Moscow", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }); }
+  function dur(ms) { var s = Math.max(0, Math.floor(ms / 1000)), D = Math.floor(s / 86400), H = Math.floor(s % 86400 / 3600), M = Math.floor(s % 3600 / 60), S = s % 60; return (D ? D + "д " : "") + pad(H) + ":" + pad(M) + ":" + pad(S); }
   var giftsEl = document.querySelector(".js-gifts");
   function renderGifts() {
-    var t = now(), reg = isReg(), html = "", next = null;
-    GIFTS.forEach(function (g) {
+    var t = now(), reg = isReg(), html = "";
+    GIFTS.forEach(function (g, i) {
       var at = Date.parse(g.at), open = reg && t >= at;
-      if (t < at && next === null) next = at;
-      var when = g.when || ("Подаём " + fmtWhen(at));
       var foot;
-      if (open) foot = '<div class="links">' + g.links.map(function (l) { var ext = l[1].charAt(0) !== "#"; return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + l[0] + " →</a>"; }).join("") + "</div>";
-      else if (!reg) foot = '<span class="st">🔒 откроется после регистрации</span>';
-      else foot = '<span class="st">🥚 разобьём через ' + dur(at - t) + "</span>";
+      if (open && g.tool) foot = '<div class="links"><button type="button" data-tool="' + g.tool[1] + '">' + g.tool[0] + " →</button></div>";
+      else if (open) foot = '<div class="links">' + g.links.map(function (l) { var ext = l[1].charAt(0) !== "#"; return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + l[0] + " →</a>"; }).join("") + "</div>";
+      else if (!reg) foot = '<span class="st">🔒 после регистрации</span>';
+      else foot = '<span class="st" data-i="' + i + '">🥚 разобьём через ' + dur(at - t) + "</span>";
       html += '<div class="gift ' + (open ? "open" : "locked") + (g.feature ? " feature" : "") + '">' +
-        '<div class="top"><span class="when">' + when + '</span></div>' +
-        '<span class="egg">' + (open ? "🍳" : "🥚") + "</span>" +
-        "<div style=\"display:grid;gap:10px\"><h3>" + g.t + "</h3><p>" + g.d + '</p><span class="val">' + g.val + "</span></div>" + foot + "</div>";
+        '<span class="when">' + (g.when || "Подаём " + fmtWhen(at)) + "</span>" +
+        '<div class="ghead"><span class="egg">' + (open ? g.em : "🥚") + "</span><h3>" + g.t + "</h3></div>" +
+        "<p>" + g.d + '</p><span class="val">' + g.val + "</span>" + foot + "</div>";
     });
     giftsEl.innerHTML = html;
-    var nb = document.querySelector(".js-next");
-    if (nb) nb.textContent = next ? dur(next - t) : "все открыты";
   }
-  var lastGiftKey = "";
-  function giftKey() { var t = now(), reg = isReg(); return reg + ":" + GIFTS.map(function (g) { return t >= Date.parse(g.at) ? 1 : 0; }).join(""); }
+  function giftKey() { var t = now(); return isReg() + ":" + GIFTS.map(function (g) { return t >= Date.parse(g.at) ? 1 : 0; }).join(""); }
+  function updateTimers() {
+    var t = now(), next = null;
+    GIFTS.forEach(function (g) { var at = Date.parse(g.at); if (t < at && (next === null || at < next)) next = at; });
+    giftsEl.querySelectorAll(".st[data-i]").forEach(function (st) { var at = Date.parse(GIFTS[+st.getAttribute("data-i")].at); st.textContent = "🥚 разобьём через " + dur(at - t); });
+    var nb = document.querySelector(".js-next"); if (nb) nb.textContent = next ? dur(next - t) : "все открыты";
+  }
+  giftsEl.addEventListener("click", function (e) { var b = e.target.closest("[data-tool]"); if (b) openTool(b.getAttribute("data-tool")); });
 
-  function showDone() {
-    var r = getReg() || regMem;
-    document.querySelector(".js-form").hidden = true;
-    document.querySelector(".js-done").hidden = false;
-    document.querySelector(".js-uname").textContent = (r && r.name) || "";
+  // ===== Модалка и инструменты =====
+  var modal = document.querySelector(".js-modal"), mTitle = document.querySelector(".js-m-title"), mBody = document.querySelector(".js-m-body"), lastFocus = null;
+  function openModal(title, html) { lastFocus = document.activeElement; mTitle.textContent = title; mBody.innerHTML = html; modal.hidden = false; document.body.style.overflow = "hidden"; modal.querySelector(".js-modal-x").focus(); }
+  function closeModal() { modal.hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
+  modal.addEventListener("click", function (e) { if (e.target === modal || e.target.closest(".js-modal-x")) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+  function copyText(txt, btn) {
+    function ok() { var o = btn.textContent; btn.textContent = "Скопировано ✓"; setTimeout(function () { btn.textContent = o; }, 1800); }
+    try { navigator.clipboard.writeText(txt).then(ok, function () { btn.textContent = "Выделите и скопируйте"; }); } catch (e) { btn.textContent = "Выделите и скопируйте"; }
+  }
+  mBody.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-t]"); if (b) copyText(b.getAttribute("data-copy-t"), b); });
+
+  var PROMPTS = [
+    ["Ассистент", "План дня из хаоса", "Вот всё, что у меня в голове на сегодня: [вставь голосовое или список]. Разложи по трём корзинам: сделать сегодня, можно перенести, можно не делать вовсе. В «сегодня» оставь не больше трёх задач и объясни, почему именно эти."],
+    ["Ассистент", "Задачи из переписки", "Вот переписка: [вставь]. Найди все обещания и договорённости: кто, что и до какого числа сделает. Выдай таблицей: задача, ответственный, срок, цитата из переписки."],
+    ["Ассистент", "Вечерний разбор", "Я планировала сегодня: [план]. Сделала: [факт]. Скажи честно, что пошло не так, что перенести на завтра и что убрать совсем. Коротко, без мотивационных речей."],
+    ["Менеджер", "Ответы на частые вопросы", "Вот мой прайс и условия: [вставь]. Напиши ответы на 10 самых частых вопросов клиентов моим голосом: коротко, дружелюбно, без канцелярита. Если в прайсе нет ответа, напиши «уточню и вернусь» и ничего не придумывай."],
+    ["Менеджер", "Дожим молчуна", "Клиент спросил цену и пропал 3 дня назад. Вот наша переписка: [вставь]. Напиши 3 варианта короткого сообщения, чтобы вернуть его в диалог без давления."],
+    ["Менеджер", "Ответ на «дорого»", "Клиент написал: «дорого». Мой продукт: [описание и цена]. Дай 3 ответа: через пользу, через сравнение с альтернативой и через рассрочку. Каждый до 3 предложений."],
+    ["Аналитик", "Что выросло и что упало", "Вот выгрузка продаж за две недели: [вставь таблицу]. Назови 3 позиции, которые выросли, 3, которые упали, и по одному действию на завтра для каждой. Без графиков, просто текстом."],
+    ["Аналитик", "Где утекают деньги", "Вот мои расходы и выручка за месяц: [вставь]. Найди 5 мест, где я теряю деньги, и посчитай, сколько вернётся, если закрыть каждое."],
+    ["Аналитик", "Отчёт для команды", "Сделай из этих цифр [вставь] отчёт на одну страницу для команды: главные цифры, что хорошо, что плохо, что делаем на этой неделе."],
+    ["Секретарь", "Итоги созвона", "Вот расшифровка созвона: [вставь]. Выдели: о чём договорились, кто что делает и до какого числа, какие вопросы остались открытыми. Оформи так, чтобы можно было сразу переслать участникам."],
+    ["Секретарь", "Письмо по итогам", "Напиши вежливое письмо партнёру по итогам встречи: [кратко о встрече]. Зафиксируй договорённости и следующий шаг. До 120 слов."],
+    ["Секретарь", "Повестка встречи", "Мне нужно провести встречу на тему [тема] с [кто]. Составь повестку на 30 минут: блоки, время на каждый, какой результат должен быть в конце."],
+    ["Автор постов", "Пост моим голосом", "Вот 3 моих лучших поста: [вставь]. Изучи, как я пишу: длина фраз, словечки, юмор. Напиши пост на тему [тема] так, чтобы подписчики не заметили подмены."],
+    ["Автор постов", "Контент-план на неделю", "Я занимаюсь [чем], моя аудитория [кто]. Дай 7 тем постов на неделю: польза, история, ошибка, разбор, мнение, до/после и личное. К каждой первую фразу, которая цепляет."],
+    ["Автор постов", "Из голосового в пост", "Вот расшифровка моего голосового: [вставь]. Сделай из неё пост: сохрани мои слова и мысли, убери повторы и воду, добавь цепляющую первую строку."],
+    ["Сценарист", "3 сценария на тему", "Напиши 3 сценария рилс на тему [тема] для [кто зритель]. В каждом хук до 12 слов, текст на 30 секунд, одно действие в конце и идея, что показать в кадре. Хуки разных типов."],
+    ["Сценарист", "Переделать чужой ролик", "Вот текст чужого ролика, который залетел: [вставь]. Сохрани механику и хук, но полностью замени примеры и слова под мою нишу: [ниша]. Похоже на оригинал быть не должно."],
+    ["Сценарист", "10 хуков", "Дай 10 первых фраз для рилс на тему [тема]: ошибка, цифра, провокация, до/после, вопрос с болью, секрет, личная история. Каждая до 12 слов."],
+    ["Копирайтер", "Описание карточки", "Товар: [что это]. Характеристики: [вставь]. Отзывы покупателей: [вставь 5-10]. Напиши описание для WB/Ozon: снимает страхи из отзывов, содержит ключевые запросы и читается живым человеком."],
+    ["Копирайтер", "Текст для сайта", "Напиши первый экран сайта для [услуга]: заголовок до 8 слов, подзаголовок с выгодой, 3 пункта, что человек получит, и текст кнопки."],
+    ["Копирайтер", "Рассылка по базе", "Напиши короткое сообщение для рассылки в Telegram про [повод]. Первая строка цепляет, одна мысль, одно действие в конце, до 70 слов."],
+    ["Продавец", "Квалификация лида", "Ко мне пришёл человек с сообщением: [вставь]. Задай мне 3 вопроса, которые помогут понять, готов ли он купить, и напиши первое сообщение ему."],
+    ["Продавец", "Скрипт созвона", "Составь скрипт 15-минутного созвона для продажи [продукт]: знакомство, 4 вопроса о ситуации, презентация под его боль, ответы на 3 возражения, следующий шаг."],
+    ["Продавец", "Оффер под сегмент", "Мой продукт: [описание]. Сделай 3 версии оффера для разных людей: [сегмент 1], [сегмент 2], [сегмент 3]. В каждой главная боль и почему это решение для них."],
+    ["Отзывы", "Ответ на злой отзыв", "Покупатель написал: [отзыв]. Ответь спокойно и по делу: признай проблему, предложи решение, без канцелярита и без «приносим извинения за доставленные неудобства»."],
+    ["Отзывы", "Анализ отзывов", "Вот 30 отзывов на мой товар: [вставь]. Найди 5 главных причин недовольства и 5 вещей, за которые хвалят. Что поменять в карточке и в товаре?"],
+    ["Отзывы", "Просьба оставить отзыв", "Напиши короткое сообщение покупателю через 3 дня после доставки с просьбой оставить отзыв. Тепло, без давления, до 40 слов."],
+    ["Входящие", "Дайджест дня", "Вот все сообщения за день: [вставь]. Раздели: срочно ответить сегодня (с черновиком ответа), можно завтра, просто для сведения. Срочное наверх."],
+    ["Входящие", "Черновики ответов", "Вот 10 сообщений, на которые я не ответила: [вставь]. Напиши к каждому короткий черновик ответа моим тоном. Где нужен мой выбор, оставь варианты."],
+    ["Входящие", "Фильтр важного", "Я предприниматель, мои приоритеты: [список]. Вот входящие: [вставь]. Оставь только то, что двигает эти приоритеты, остальное сверни в одну строку."]
+  ];
+
+
+  var HOOKS = [
+    ["ошибка", "Главная ошибка, из-за которой {т} не работает"],
+    ["до/после", "Раньше {т} съедало у меня вечер, теперь 10 минут"],
+    ["секрет", "Про {т} молчат даже платные курсы"],
+    ["провокация", "Если вы делаете {т} так, остановитесь"],
+    ["вопрос с болью", "Опять {т}, а результата ноль?"],
+    ["история", "Вчера мне написали про {т} то, от чего я села"],
+    ["цифра", "{Т}: 3 вещи, которые я поняла слишком поздно"],
+    ["вызов", "Спорим, вы делаете {т} не так?"],
+    ["визуал", "Смотрите, что будет, если отдать {т} нейросети"],
+    ["запрет", "Не начинайте {т}, пока не посмотрите это"]
+  ];
+  function hooksHtml(topic) {
+    var t = topic.trim(); if (!t) return '<p class="muted">Напишите тему выше, например «сторис для салона красоты» или «отчёт по продажам»</p>';
+    var T = t.charAt(0).toUpperCase() + t.slice(1);
+    return '<ol class="hooks">' + HOOKS.map(function (h) { var line = h[1].replace("{т}", t).replace("{Т}", T); return '<li><span class="ht">' + h[0] + "</span><b>" + esc(line) + '</b><button type="button" data-copy-t="' + esc(line) + '">Копировать</button></li>'; }).join("") + "</ol>" +
+      '<p class="muted">Это заготовки первой фразы. Полный сценарий с текстом, кадром и призывом пишет агент «Сценарист рилс» из подарков</p>';
+  }
+  var AUDIT = [
+    ["Отвечаю клиентам на одни и те же вопросы", 3, "Менеджер"], ["Разбираю переписки и вспоминаю, что обещала", 2, "Ассистент"], ["Собираю отчёты и смотрю в таблицы", 2, "Аналитик"],
+    ["Пишу итоги созвонов и письма", 1.5, "Секретарь"], ["Пишу посты", 3, "Автор постов"], ["Придумываю, что снять в рилс", 2, "Сценарист рилс"],
+    ["Пишу тексты для карточек, сайта, рассылок", 2, "Копирайтер"], ["Дожимаю лидов и пишу тем, кто пропал", 2, "Продавец"], ["Отвечаю на отзывы", 1.5, "Отзывы"], ["Разгребаю входящие и уведомления", 3, "Входящие"]
+  ];
+  function auditHtml() {
+    return '<p class="muted">Отметьте, что делаете сами каждую неделю, и поправьте часы, если у вас по-другому</p><div class="audit">' + AUDIT.map(function (a, i) {
+      return '<label class="arow"><input type="checkbox" data-a="' + i + '"><span>' + a[0] + '</span><input type="number" min="0" max="40" step="0.5" value="' + a[1] + '" data-h="' + i + '" aria-label="часов в неделю"><em>ч/нед</em></label>';
+    }).join("") + '</div><div class="aout js-aout"><b>0 часов в неделю</b><span>Отметьте хотя бы одну задачу</span></div>';
+  }
+  function auditCalc() {
+    var hrs = 0, who = [];
+    mBody.querySelectorAll("[data-a]").forEach(function (c) { if (c.checked) { var i = +c.getAttribute("data-a"); var h = parseFloat(mBody.querySelector('[data-h="' + i + '"]').value) || 0; hrs += h; who.push([AUDIT[i][2], h]); } });
+    who.sort(function (a, b) { return b[1] - a[1]; });
+    var o = mBody.querySelector(".js-aout"); if (!o) return;
+    o.innerHTML = "<b>" + (Math.round(hrs * 10) / 10) + " ч в неделю, это " + Math.round(hrs * 4.3) + " ч в месяц</b><span>" + (who.length ? "Первыми ставьте: " + who.slice(0, 3).map(function (w) { return w[0]; }).join(", ") + ". Всех их собираем на эфире 26.11 в 19:00" : "Отметьте хотя бы одну задачу") + "</span>";
+  }
+  mBody.addEventListener("input", function (e) {
+    if (e.target.matches(".js-hook-in")) mBody.querySelector(".js-hook-out").innerHTML = hooksHtml(e.target.value);
+    if (e.target.matches(".js-pr-in")) renderPrompts(e.target.value);
+    if (e.target.matches("[data-a],[data-h]")) auditCalc();
+  });
+  mBody.addEventListener("change", function (e) { if (e.target.matches("[data-a]")) auditCalc(); });
+  function renderPrompts(q) {
+    q = (q || "").toLowerCase();
+    var html = PROMPTS.filter(function (p) { return !q || (p[0] + " " + p[1] + " " + p[2]).toLowerCase().indexOf(q) !== -1; }).map(function (p) {
+      return '<div class="pr"><div class="prh"><span class="ht">' + p[0] + "</span><b>" + p[1] + '</b></div><p>' + esc(p[2]) + '</p><button type="button" data-copy-t="' + esc(p[2]) + '">Копировать промпт</button></div>';
+    }).join("");
+    mBody.querySelector(".js-pr-out").innerHTML = html || '<p class="muted">Ничего не нашлось, попробуйте другое слово</p>';
+  }
+  function openTool(k) {
+    if (!isReg()) { location.hash = "#reg"; return; }
+    if (k === "hooks") { openModal("🪝 Генератор хуков", '<input class="tin js-hook-in" placeholder="Тема ролика, например «отчёт по продажам»" maxlength="80"><div class="js-hook-out">' + hooksHtml("") + "</div>"); mBody.querySelector(".js-hook-in").focus(); }
+    if (k === "prompts") { openModal("📚 30 промптов «ИИ-офис в кармане»", '<input class="tin js-pr-in" placeholder="Поиск: отзывы, отчёт, пост, клиент…" maxlength="40"><div class="prs js-pr-out"></div>'); renderPrompts(""); }
+    if (k === "audit") { openModal("🔍 Аудит рутины", auditHtml()); }
   }
 
-  var form = document.querySelector(".js-form");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var name = form.name.value.trim(), contact = form.contact.value.trim();
-    var err = document.querySelector(".js-err");
-    if (name.length < 2 || contact.length < 3) { err.hidden = false; return; }
-    err.hidden = true;
-    var btn = form.querySelector("button"); btn.disabled = true; btn.textContent = "Открываю…";
-    var payload = { name: name, contact: contact, src: location.search.slice(0, 120) };
-    function finish() {
-      setReg({ name: name, at: Date.now() });
-      showDone(); applyPhase(); renderGifts(); lastGiftKey = giftKey();
-      var g = document.getElementById("gifts"); if (g && !g.hidden) setTimeout(function () { g.scrollIntoView({ behavior: "smooth", block: "start" }); }, 600);
-    }
-    if (!REG_URL) { finish(); return; }
-    var done = false; function once() { if (!done) { done = true; finish(); } }
-    setTimeout(once, 4000);
-    try {
-      fetch(REG_URL, { method: "POST", mode: "no-cors", headers: { "content-type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
-        .then(once, once);
-    } catch (x) { once(); }
+  // ===== Калькулятор офиса =====
+  var ROLES = [["🧠", "Ассистент", 60000], ["🤝", "Менеджер", 50000], ["📊", "Аналитик", 100000], ["🗂", "Секретарь", 45000], ["✍️", "Автор постов", 55000], ["🎬", "Сценарист рилс", 60000], ["🖋", "Копирайтер", 66000], ["💬", "Продавец", 80000], ["⭐", "Отзывы", 40000], ["📥", "Входящие", 40000]];
+  var calcEl = document.querySelector(".js-calc");
+  calcEl.innerHTML = ROLES.map(function (r, i) { return '<button type="button" class="role" aria-pressed="false" data-r="' + i + '"><span>' + r[0] + "</span><b>" + r[1] + "</b><em>" + r[2].toLocaleString("ru-RU") + " ₽</em></button>"; }).join("");
+  function fmtRub(n) { return n.toLocaleString("ru-RU") + " ₽"; }
+  calcEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-r]"); if (!b) return;
+    b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    var sum = 0; calcEl.querySelectorAll('[aria-pressed="true"]').forEach(function (x) { sum += ROLES[+x.getAttribute("data-r")][2]; });
+    document.querySelector(".js-calc-m").textContent = fmtRub(sum);
+    document.querySelector(".js-calc-y").textContent = sum ? "в месяц, или " + fmtRub(sum * 12) + " в год" : "в месяц";
   });
 
+  // ===== Календарь =====
+  var SITE = location.origin + location.pathname;
+  var gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("Эфир «Оркестратор» · Чёрная ИИшница") + "&dates=20261126T160000Z/20261126T180000Z&details=" + encodeURIComponent("Эфир пройдёт на странице: " + SITE) + "&location=" + encodeURIComponent(SITE);
+  var ics = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//IIshnitsa//RU\r\nBEGIN:VEVENT\r\nUID:orkestrator-20261126@iishnitsa\r\nDTSTAMP:20261123T080000Z\r\nDTSTART:20261126T160000Z\r\nDTEND:20261126T180000Z\r\nSUMMARY:Эфир «Оркестратор» · Чёрная ИИшница\r\nDESCRIPTION:Эфир пройдёт на странице " + SITE + "\r\nURL:" + SITE + "\r\nBEGIN:VALARM\r\nTRIGGER:-PT15M\r\nACTION:DISPLAY\r\nDESCRIPTION:Через 15 минут эфир\r\nEND:VALARM\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n";
+  document.querySelector(".js-gcal").href = gcal;
+  document.querySelector(".js-ics").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+  // ===== Форма =====
+  function showDone() {
+    document.querySelector(".js-form").hidden = true;
+    document.querySelector(".js-done").hidden = false;
+    document.querySelector(".js-uname").textContent = (regMem && regMem.name) || "";
+  }
+  var form = document.querySelector(".js-form"), submitBtn = document.querySelector(".js-submit"), pd = document.querySelector(".js-pd");
+  pd.addEventListener("change", function () { submitBtn.disabled = !pd.checked; });
+  function validContact(c) { var d = c.replace(/\D/g, ""); return /^@?[A-Za-z0-9_]{5,32}$/.test(c) || d.length >= 10; }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = form.name.value.trim(), contact = form.contact.value.trim(), err = document.querySelector(".js-err");
+    if (!pd.checked) return;
+    if (name.length < 2 || !validContact(contact)) { err.hidden = false; return; }
+    err.hidden = true;
+    submitBtn.disabled = true; submitBtn.textContent = "Открываю…";
+    var payload = { name: name, contact: contact, ads: !!form.ads.checked, src: location.search.slice(0, 120) };
+    var done = false;
+    function finish() { if (done) return; done = true; setReg({ name: name, at: Date.now() }); showDone(); applyPhase(); renderGifts(); lastKey = giftKey(); updateTimers();
+      setTimeout(function () { var g = document.getElementById("gifts"); if (g) g.scrollIntoView({ behavior: "smooth", block: "start" }); }, 700); }
+    if (!REG_URL) { finish(); return; }
+    setTimeout(finish, 4000);
+    try { fetch(REG_URL, { method: "POST", mode: "no-cors", headers: { "content-type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).then(finish, finish); } catch (x) { finish(); }
+  });
   function loadCrowd() {
-    try {
-      if (!REG_URL) return;
-      fetch(REG_URL + "?stats=1", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
-        if (j && j.count >= 30) { var c = document.querySelector(".js-crowd"); c.hidden = false; c.textContent = "Уже зарегистрировались: " + j.count; }
-      }).catch(function () {});
-    } catch (e) {}
+    if (!REG_URL) return;
+    try { fetch(REG_URL + "?stats=1", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { if (j && j.count >= 30) { var c = document.querySelector(".js-crowd"); c.hidden = false; c.textContent = "🔥 Уже на кухне: " + j.count + " человек"; } }).catch(function () {}); } catch (e) {}
   }
   loadCrowd();
   if (isReg()) showDone();
-  renderGifts(); lastGiftKey = giftKey();
-  setInterval(function () { var k = giftKey(); if (k !== lastGiftKey) { lastGiftKey = k; renderGifts(); } else { updateGiftTimers(); } }, 1000);
-  function updateGiftTimers() {
-    var t = now(), cards = giftsEl.querySelectorAll(".gift"), next = null;
-    GIFTS.forEach(function (g, i) { var at = Date.parse(g.at); if (t < at && next === null) next = at; var st = cards[i] && cards[i].querySelector(".st"); if (st && isReg() && t < at) st.textContent = "🥚 разобьём через " + dur(at - t); });
-    var nb = document.querySelector(".js-next"); if (nb) nb.textContent = next ? dur(next - t) : "все открыты";
-  }
+  renderGifts();
+  var lastKey = giftKey();
+  setInterval(function () { var k = giftKey(); if (k !== lastKey) { lastKey = k; renderGifts(); } updateTimers(); }, 1000);
+  updateTimers();
 
-  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  // ===== Плеер =====
+  var player = document.querySelector(".js-player");
+  document.querySelector(".js-fs").addEventListener("click", function () {
+    try { if (document.fullscreenElement) document.exitFullscreen(); else if (player.requestFullscreen) player.requestFullscreen(); else if (player.webkitRequestFullscreen) player.webkitRequestFullscreen(); } catch (e) {}
+  });
+  var PAN_FROM = Date.parse("2026-11-23T07:00:00Z");
+  function updatePlayer(ph) {
+    var reg = isReg(), t = now();
+    document.querySelector(".js-pl-lock").hidden = reg;
+    player.classList.toggle("locked", !reg);
+    var badge = document.querySelector(".js-pl-badge"), h = document.querySelector(".js-pl-h"), p = document.querySelector(".js-pl-p"), btn = document.querySelector(".js-pl-btn"), cd = player.querySelector(".js-cd");
+    var embed = "";
+    if (ph === "pre" || ph === "early") { badge.textContent = "26.11 · 19:00"; h.textContent = "Эфир начнётся через"; p.textContent = "Яичница дожарится ровно к началу"; cd.hidden = false; btn.hidden = true; }
+    else if (ph === "live") { badge.textContent = "LIVE"; h.textContent = "Мы в эфире"; p.textContent = "Подключайтесь прямо сейчас"; cd.hidden = true; embed = STREAM_EMBED; btn.hidden = !!STREAM_EMBED || !reg; btn.href = STREAM_URL || CHANNEL; btn.innerHTML = "Смотреть эфир <span class=\"arr\">→</span>"; }
+    else { badge.textContent = "ЗАПИСЬ"; h.textContent = ph === "closed" ? "Эфир прошёл" : "Запись эфира «Оркестратор»"; p.textContent = ph === "closed" ? "Спасибо, что были с нами" : "Доступна до 30 ноября"; cd.hidden = true; embed = ph === "closed" ? "" : RECORD_EMBED; btn.hidden = !!embed || !reg || ph === "closed"; btn.href = STREAM_URL || CHANNEL; btn.innerHTML = "Смотреть запись <span class=\"arr\">→</span>"; }
+    var fr = player.querySelector("iframe");
+    if (reg && embed) { if (!fr) { fr = document.createElement("iframe"); fr.allow = "autoplay; fullscreen; picture-in-picture"; fr.allowFullscreen = true; player.appendChild(fr); } if (fr.src !== embed) fr.src = embed; player.classList.add("has-video"); }
+    else { if (fr) fr.remove(); player.classList.remove("has-video"); }
+    var prog = Math.max(0, Math.min(1, (t - PAN_FROM) / (START - PAN_FROM)));
+    player.style.setProperty("--cook", prog.toFixed(3));
+  }
 
   function applyPhase() {
     var t = now(), ph = phase(t);
     var reg = isReg();
     var showSale = reg && ph !== "pre";
-    document.querySelector(".js-gate").hidden = reg && ph !== "pre";
-    document.querySelector(".js-cab").hidden = ph !== "pre";
-    document.querySelector(".js-perks").hidden = ph !== "pre";
+    var gate = document.querySelector(".js-gate"), cab = document.querySelector(".js-cab"), saleEl = document.querySelector(".js-sale"), stream = document.querySelector(".js-stream");
+    gate.hidden = reg && ph !== "pre";
+    document.querySelector(".js-calc-sec").hidden = reg && ph !== "pre";
+    document.querySelector(".js-calc-cta").hidden = reg;
+    cab.classList.toggle("veiled", !reg);
     if (ph !== "pre") {
-      document.querySelector(".js-reg-pill").textContent = ph === "closed" ? "Чёрная пятница завершилась" : ph === "early" ? "Эфир сегодня в 19:00 на этой странице" : "Эфир и Чёрная пятница идут на этой странице";
-      document.querySelector(".js-reg-sub").textContent = ph === "closed" ? "Оставьте контакт, и мы напишем о следующем запуске" : "Оставьте имя и контакт, чтобы открыть трансляцию, лоты и бонусы Чёрной пятницы";
+      document.querySelector(".js-reg-pill").textContent = ph === "closed" ? "Чёрная пятница завершилась" : ph === "early" ? "Эфир сегодня в 19:00 на этой странице" : ph === "live" ? "Мы в эфире прямо сейчас" : "Запись эфира и Чёрная пятница до 30.11";
+      document.querySelector(".js-reg-sub").textContent = ph === "closed" ? "Оставьте контакт, и мы напишем о следующем запуске" : "Оставьте имя и контакт, чтобы открыть трансляцию, подарки, лоты и бонусы Чёрной пятницы";
     }
-    document.querySelector(".js-cab").classList.toggle("veiled", !reg);
-    var saleEl = document.querySelector(".js-sale");
     saleEl.hidden = !showSale;
     saleEl.classList.toggle("early", ph === "early");
     saleEl.classList.toggle("live", ph === "live");
+    // порядок блоков: до продаж эфир и подарки идут сразу после регистрации, во время продаж эфир сверху, подарки ниже лотов
+    if (showSale) {
+      if (stream.parentNode !== saleEl) saleEl.insertBefore(stream, saleEl.firstChild);
+      var fin = saleEl.querySelector(".final");
+      if (cab.parentNode !== saleEl) saleEl.insertBefore(cab, fin);
+    } else {
+      var anchor = document.querySelector(".js-calc-sec");
+      if (stream.parentNode === saleEl) anchor.parentNode.insertBefore(stream, anchor);
+      if (cab.parentNode === saleEl) anchor.parentNode.insertBefore(cab, anchor.nextSibling);
+    }
+    updatePlayer(ph);
     document.querySelectorAll(".js-nav .links, .js-nav .btn").forEach(function (x) { x.hidden = !showSale; });
     document.querySelector(".js-bar").style.visibility = showSale ? "" : "hidden";
     var pill = document.querySelector(".js-phase-pill");
@@ -926,22 +1282,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
     lotBtns.forEach(function (b) {
       var lot = b.getAttribute("data-lot");
       b.href = MANAGER;
-      if (ph === "pre") b.innerHTML = lot === "2" ? "Встать в предсписок на царь лот <span class=\"arr\">→</span>" : "Встать в предсписок";
+      if (ph === "pre" || (lot === "1" && ph !== "sale")) b.innerHTML = lot === "2" ? "Встать в предсписок на царь лот <span class=\"arr\">→</span>" : "Встать в предсписок";
       else if (ph === "closed") b.innerHTML = "Узнать о следующем запуске";
-      else b.innerHTML = lot === "2" ? "Забрать царь лот <span class=\"arr\">→</span>" : "Забрать все записи";
+      else b.innerHTML = lot === "2" ? "Забрать царь лот <span class=\"arr\">→</span>" : "Узнать цену и забрать";
     });
-
-    // экран эфира
-    var sh = document.querySelector(".js-screen-h"), sp = document.querySelector(".js-screen-p"), lt = document.querySelector(".js-live-txt");
-    var watch = document.querySelector(".js-watch");
-    if (ph === "live") {
-      lt.textContent = "LIVE"; sh.textContent = "Мы в эфире"; sp.textContent = "Подключайтесь прямо сейчас";
-      if (STREAM_EMBED && !document.querySelector(".js-screen iframe")) { var fr = document.createElement("iframe"); fr.src = STREAM_EMBED; fr.allow = "autoplay; fullscreen; picture-in-picture"; fr.allowFullscreen = true; document.querySelector(".js-screen").appendChild(fr); }
-      watch.href = STREAM_URL || CHANNEL; watch.innerHTML = "Смотреть эфир <span class=\"arr\">→</span>";
-    } else if (ph === "sale" || ph === "closed") {
-      lt.textContent = "ЗАПИСЬ"; sh.textContent = "Запись эфира «Оркестратор»"; sp.textContent = "Доступна до 30 ноября";
-      watch.href = STREAM_URL || CHANNEL; watch.innerHTML = "Смотреть запись <span class=\"arr\">→</span>";
-    }
 
     // тающие бонусы
     var sts = document.querySelectorAll(".js-melt .st"), found = false, nowName = "сейчас";
@@ -991,7 +1335,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   document.querySelectorAll("[data-pay]").forEach(function (b) {
     b.addEventListener("click", function () {
       document.querySelectorAll("[data-pay]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-      if (b.getAttribute("data-pay") === "split") { price.innerHTML = "6 111 ₽ <small>/ месяц</small>"; priceD.textContent = "Рассрочка на 12 месяцев, это около 201 ₽ в день"; }
+      if (b.getAttribute("data-pay") === "split") { price.innerHTML = "6 111 ₽ <small>/ месяц</small>"; priceD.textContent = "Рассрочка от банка на 12 месяцев, около 201 ₽ в день. Одобрение и условия решает банк"; }
       else { price.textContent = "73 323 ₽"; priceD.textContent = "Это около 201 ₽ в день за целый год обучения"; }
     });
   });
@@ -1036,4 +1380,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
 })();
 </script>
-</body></html>
+
+</body>
+</html>
