@@ -750,6 +750,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
 (function () {
   // ===== Настройки =====
   var MANAGER = "https://t.me/puzanovateam";
+  var REG_URL = "";      // ссылка веб-приложения Google Apps Script (…/exec): регистрации падают в Google Таблицу
   var CHANNEL = "https://t.me/+zhRmQVVPQIg1OTBi";
   var STREAM_URL = "";   // ссылка на трансляцию (YouTube / VK / Telegram), появится кнопкой в блоке эфира
   var STREAM_EMBED = ""; // embed-ссылка плеера (YouTube / VK), тогда эфир идёт прямо в блоке на странице
@@ -776,8 +777,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   function setReg(o) { regMem = o; try { localStorage.setItem(LS, JSON.stringify(o)); } catch (e) {} }
 
   var GIFTS = [
-    { at: "2026-11-23T07:00:00Z", em: "🎬", t: "Сценарист рилс", d: "Агент, который пишет сценарии рилс вашим голосом, и промпт, который соберёт из него Telegram-бота", url: "/p/scenarist-rils/" },
-    { at: "2026-11-24T09:00:00Z", em: "🧠", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов и пушит по ним. Инструкция и готовый промпт", url: "/p/assistant/" },
+    { at: "2026-11-23T07:00:00Z", em: "🎬", t: "Сценарист рилс", d: "Агент, который пишет сценарии рилс вашим голосом, и промпт, который соберёт из него Telegram-бота", url: "../scenarist-rils/" },
+    { at: "2026-11-24T09:00:00Z", em: "🧠", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов и пушит по ним. Инструкция и готовый промпт", url: "../" },
     { at: "2026-11-25T09:00:00Z", em: "🎥", t: "Секретное видео", d: "Как устроен 2027 год в ИИшнице и что останется у вас на руках", url: "https://t.me/+zhRmQVVPQIg1OTBi" },
     { at: "2026-11-26T15:00:00Z", em: "🔑", t: "Цены на час раньше", d: "Лоты и бонусы Чёрной пятницы откроются вам в 18:00, за час до всех", url: "#lots" },
     { at: "2026-11-26T16:00:00Z", em: "📡", t: "Эфир «Оркестратор»", d: "Собираю 10 агентов в один офис и открываю Чёрную пятницу", url: "#efir" }
@@ -831,15 +832,19 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
       showDone(); applyPhase(); renderGifts();
       var g = document.getElementById("gifts"); if (g && !g.hidden) setTimeout(function () { g.scrollIntoView({ behavior: "smooth", block: "start" }); }, 600);
     }
+    if (!REG_URL) { finish(); return; }
+    var done = false; function once() { if (!done) { done = true; finish(); } }
+    setTimeout(once, 4000);
     try {
-      fetch("/api/reg", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) })
-        .then(function () { finish(); }, function () { finish(); });
-    } catch (x) { finish(); }
+      fetch(REG_URL, { method: "POST", mode: "no-cors", headers: { "content-type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
+        .then(once, once);
+    } catch (x) { once(); }
   });
 
   function loadCrowd() {
     try {
-      fetch("/api/stats", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!REG_URL) return;
+      fetch(REG_URL + "?stats=1", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
         if (j && j.count >= 30) { var c = document.querySelector(".js-crowd"); c.hidden = false; c.textContent = "Уже зарегистрировались: " + j.count; }
       }).catch(function () {});
     } catch (e) {}
