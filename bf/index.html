@@ -604,8 +604,8 @@ footer { padding-block: 44px 40px; }
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Эфир «Оркестратор» · 26.11 · 19:00 мск</div>
-      <h2>Эфир пройдёт <span class="glow">прямо здесь</span></h2>
-      <p>Ссылки искать не придётся: 26 ноября в 19:00 трансляция начнётся в этом окне. Соберу всех 10 агентов в один ИИ-офис, отвечу на вопросы и открою Чёрную пятницу</p>
+      <h2 class="js-st-h">Эфир пройдёт <span class="glow">прямо здесь</span></h2>
+      <p class="js-st-p">Ссылки искать не придётся: 26 ноября в 19:00 трансляция начнётся в этом окне. Соберу всех 10 агентов в один ИИ-офис, отвечу на вопросы и открою Чёрную пятницу</p>
     </div>
     <div class="player js-player">
       <img class="pl-bg" src="olga-stage.jpg" alt="">
@@ -753,7 +753,7 @@ footer { padding-block: 44px 40px; }
   <div class="wrap">
     <div class="sec-head rv">
       <div class="eyebrow">Что внутри офиса</div>
-      <h2>10 сотрудников. <span class="chrome">Ноль зарплат</span></h2>
+      <h2>10 сотрудников <span class="chrome">без найма</span></h2>
       <p>Столько стоили бы живые люди на этих задачах. Каждого агента я собрала в Чёрной ИИшнице, а вы получаете готовые ключи: инструкции, промпты и шаблоны</p>
     </div>
     <div class="office rv">
@@ -1223,6 +1223,10 @@ footer { padding-block: 44px 40px; }
   var PAN_FROM = Date.parse("2026-11-23T07:00:00Z");
   function updatePlayer(ph) {
     var reg = isReg(), t = now();
+    var stH = document.querySelector(".js-st-h"), stP = document.querySelector(".js-st-p");
+    if (ph === "live") { stH.innerHTML = 'Мы в эфире <span class="glow">прямо сейчас</span>'; stP.textContent = "Собираю 10 агентов в один ИИ-офис, отвечаю на вопросы и открываю Чёрную пятницу"; }
+    else if (ph === "sale") { stH.innerHTML = 'Запись эфира <span class="glow">«Оркестратор»</span>'; stP.textContent = "Пропустили эфир? Запись здесь до 30 ноября 23:59"; }
+    else if (ph === "closed") { stH.innerHTML = 'Эфир <span class="glow">прошёл</span>'; stP.textContent = "Спасибо всем, кто был с нами"; }
     document.querySelector(".js-pl-lock").hidden = reg;
     player.classList.toggle("locked", !reg);
     var badge = document.querySelector(".js-pl-badge"), h = document.querySelector(".js-pl-h"), p = document.querySelector(".js-pl-p"), btn = document.querySelector(".js-pl-btn"), cd = player.querySelector(".js-cd");
