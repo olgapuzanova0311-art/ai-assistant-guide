@@ -138,6 +138,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .ce.gold{background:radial-gradient(circle at 32% 24%,#fff 0 5%,#FFF3D1 12%,#FFD27A 32%,#E69A2E 58%,#8A4F0A 82%,#2d1500 100%);box-shadow:inset -12px -18px 30px rgba(40,15,0,.5),inset 8px 10px 20px rgba(255,255,255,.4),0 30px 60px -20px rgba(244,169,58,.8)}
 @keyframes egg{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(5deg) translateY(-10px)}}
 
+.reg-row{margin-top:clamp(28px,4vw,48px)}
+.reg-row .js-form{display:grid;grid-template-columns:1fr 1fr;gap:12px clamp(28px,4vw,56px);align-items:center}
+.reg-row .fcard h3{font-size:clamp(28px,3.2vw,44px)}
+.reg-row .done{max-width:620px}
+.ph-wrap{position:relative;justify-self:end;width:100%;max-width:470px}
+.ph-wrap .photo{aspect-ratio:4/5;max-height:72vh;margin-left:auto}
+.hero-cta{display:inline-flex!important;width:auto;margin-top:26px}
+.hero-bgph{display:none}
+@media (max-width:980px){.ph-wrap{justify-self:stretch;max-width:none}.ph-wrap .photo{aspect-ratio:4/4.4;max-height:none;width:100%}.ph-wrap .badge.b1{left:12px;top:14px}.ph-wrap .badge.b2{right:12px;bottom:14px}.heroegg{right:-6px;top:-24px;width:78px;height:96px}.reg-row .js-form{grid-template-columns:1fr}.hero-cta{display:flex!important;width:100%}}
 /* marquee */
 .mq{border-block:1px solid var(--line);background:linear-gradient(90deg,rgba(63,107,255,.08),rgba(63,107,255,.02));overflow:hidden;padding:18px 0}
 .mq-t{display:flex;width:max-content;animation:mq 36s linear infinite}
@@ -407,12 +416,20 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
       <span class="live-pill js-pill"><i></i>26 ноября · 19:00 мск · прямо здесь</span>
       <h1 class="js-h1"><span class="row"><span>ИИ-офис</span></span> <span class="row"><span>из 10 агентов.</span></span> <span class="row"><span class="acc">Финальный эфир</span></span></h1>
       <p class="lead js-lead">Покажу вживую, как 10 агентов работают без меня, и отдам зрителям шаблон оркестратора. Эфир прямо на этой странице, а до него каждый день новый подарок.</p>
-      <a class="btn btn-p hero-cta js-herocta" href="#regform">Занять место бесплатно <span class="arr">↓</span></a>
+      <a class="btn btn-p hero-cta js-herocta" href="#regform">Занять место и забрать подарки <span class="arr">↓</span></a>
       <div class="cd js-cd" aria-label="До эфира"><div><b>00</b><span>дней</span></div><div><b>00</b><span>часов</span></div><div><b>00</b><span>минут</span></div><div><b>00</b><span>секунд</span></div></div>
     </div>
-    <div>
+    <div class="ph-wrap">
+      <div class="photo"><img src="olga-chrome.jpg" alt="Ольга Пузанова"></div>
+      <div class="badge b1"><b>13 000+</b><span>прошли мои программы</span></div>
+      <div class="badge b2"><b>26.11 · 19:00</b><span>эфир прямо на сайте</span></div>
+      <div class="heroegg"><div class="ce"></div></div>
+    </div>
+  </div>
+  <div class="wrap reg-row">
       <div class="fcard js-fcard" id="regform">
         <form class="js-form" novalidate>
+          <div class="fl">
           <div class="host"><img src="olga-chrome.jpg" alt=""><span><b>Ольга Пузанова</b>ведущая эфира</span></div>
           <h3>Занять место <span class="acc">и забрать 3 подарка</span></h3>
           <div class="g3">
@@ -420,6 +437,8 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
             <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg>50 форматов рилс</span>
             <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>Сертификат 3 000 ₽</span>
           </div>
+          </div>
+          <div class="fr">
           <label class="fld"><span>Как вас зовут</span><input name="name" autocomplete="given-name" maxlength="60" placeholder="Ваше имя" required></label>
           <label class="fld"><span>Ник в Telegram или телефон</span><input name="contact" autocomplete="tel" maxlength="80" placeholder="@username или +7 900 000-00-00" required></label>
           <label class="chk"><input type="checkbox" name="pd" class="js-pd"><span>Согласен(на) на <a href="privacy.html#consent" target="_blank" rel="noopener">обработку персональных данных</a> по <a href="privacy.html" target="_blank" rel="noopener">политике</a></span></label>
@@ -427,6 +446,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
           <button class="btn btn-p js-submit" type="submit" disabled>Забрать подарки <span class="arr">→</span></button>
           <p class="err js-err" hidden>Проверьте имя и контакт: ник от 5 символов или номер телефона</p>
           <p class="note">Бесплатно. 30 секунд</p>
+          </div>
         </form>
         <div class="done js-done" hidden>
           <div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></div>
@@ -440,7 +460,6 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
           <button class="btn btn-g js-share" type="button" style="width:100%;margin-top:10px;min-height:48px;font-size:14px">Позвать друга на эфир</button>
         </div>
       </div>
-    </div>
   </div>
 </section>
 
