@@ -448,14 +448,14 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
 
 <section class="sec gut" id="why">
   <div class="wrap">
-    <div class="sec-head rv"><span class="kick"><span class="n">01</span>Что будет на эфире</span><h2>Зачем приходить <span class="acc">в 19:00</span></h2><p class="lead" style="margin:0">После эфира у вас будет свой первый оркестратор и понятный план, каких агентов ставить</p></div>
+    <div class="sec-head rv"><span class="kick"><span class="n">01</span>Что будет на эфире</span><h2>Что будет <span class="acc">в 19:00</span></h2><p class="lead" style="margin:0">После эфира у вас будет свой первый оркестратор и понятный план, каких агентов ставить</p></div>
     <div class="why">
       <div class="wi rv"><span class="wn">01</span><div><h3>Покажу ИИ-офис вживую</h3><p>Даю одну задачу, и 10 агентов передают её друг другу до готового результата. Без монтажа, в реальном времени</p></div><span class="wt">смотрите</span></div>
       <div class="wi rv"><span class="wn">02</span><div><h3>Отдам шаблон оркестратора</h3><p>Агент, который раздаёт задачи остальным. Получат только те, кто будет на эфире</p></div><span class="wt live">только в эфире</span></div>
       <div class="wi rv"><span class="wn">03</span><div><h3>Скажу, с какого агента начать вам</h3><p>Отвечу на вопросы в чате: какого сотрудника поставить первым в вашей нише и сколько это сэкономит часов</p></div><span class="wt">ваши вопросы</span></div>
       <div class="wi rv"><span class="wn">04</span><div><h3>Золотое яйцо и Чёрная пятница</h3><p>В конце назову кодовое слово для золотого яйца и открою лоты с бонусами первых 24 часов</p></div><span class="wt live">только в эфире</span></div>
     </div>
-    <div class="why-cta rv"><div class="cd js-cd"><div><b>00</b><span>дней</span></div><div><b>00</b><span>часов</span></div><div><b>00</b><span>минут</span></div><div><b>00</b><span>секунд</span></div></div><a class="btn btn-p js-whybtn" href="#regform">Занять место на эфире <span class="arr">→</span></a></div>
+    <div class="why-cta rv"><b class="js-crowd" hidden style="font-size:18px;letter-spacing:-.02em"></b><div class="cd js-cd"><div><b>00</b><span>дней</span></div><div><b>00</b><span>часов</span></div><div><b>00</b><span>минут</span></div><div><b>00</b><span>секунд</span></div></div><a class="btn btn-p js-whybtn" href="#regform">Занять место на эфире <span class="arr">→</span></a></div>
   </div>
 </section>
 
@@ -857,7 +857,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:4px 28px}footer .cols a,footer .col
   }
 
   /* ===== счётчик регистраций (только реальная цифра) ===== */
-  if(REG_URL){ try{ fetch(REG_URL+"?stats=1").then(function(r){return r.json()}).then(function(d){ if(d&&d.count>=150){ var n=$(".note"); if(n) n.textContent="Уже "+d.count.toLocaleString("ru-RU")+" человек с нами. Бесплатно"; } }).catch(function(){}) }catch(x){} }
+  if(REG_URL){ try{ fetch(REG_URL+"?stats=1").then(function(r){return r.json()}).then(function(d){ if(d&&d.count>=150){ var c=d.count.toLocaleString("ru-RU"); var n=$(".note"); if(n) n.textContent="Уже "+c+" человек с нами. Бесплатно"; var w=$(".js-crowd"); if(w){w.textContent="Уже "+c+" человек заняли место";w.hidden=false;} } }).catch(function(){}) }catch(x){} }
 
   /* ===== reveal + mbar ===== */
   if("IntersectionObserver" in window){ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}})},{rootMargin:"0px 0px -8% 0px"}); $$(".rv").forEach(function(el){io.observe(el)}); } else $$(".rv").forEach(function(el){el.classList.add("in")});
