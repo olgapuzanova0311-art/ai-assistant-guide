@@ -59,6 +59,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .top-cd{font:700 14px "JetBrains Mono",monospace;color:var(--muted);white-space:nowrap}
 .top-cd b{color:var(--ink)}
 .top .btn{min-height:44px;padding:0 20px;font-size:15px}
+.btn-live{background:#E5253F;color:#fff;box-shadow:0 10px 24px -10px rgba(229,37,63,.7)}
+.btn-live:hover{transform:translateY(-2px)}
+.btn-live i{width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.top-r{gap:10px}
 
 /* HERO */
 .hero{position:relative;overflow:clip;isolation:isolate;padding-block:clamp(24px,4vh,48px) clamp(48px,7vh,88px);background:var(--heroBg)}
@@ -343,7 +348,8 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
 }
 @media (max-width:640px){
   body{font-size:16px}
-  .top-cd{display:none}.top .btn{display:none}
+  .top-cd{display:none}.top .js-topbtn{display:none}.top .btn-live{min-height:40px;padding:0 14px;font-size:14px}
+  .logo{font-size:15px}
   .giant{font-size:clamp(52px,17.2vw,120px)}
   .hero .giant{font-size:clamp(40px,14vw,76px)}
   .strike{display:table;margin-left:0}
@@ -370,7 +376,7 @@ footer .cols a,footer .cols span{display:inline-flex;align-items:center;min-heig
 <header class="top gut">
   <div class="wrap">
     <a class="logo" href="#top"><span class="le"></span>Чёрная ИИшница</a>
-    <div class="top-r"><span class="top-cd js-topcd"></span><a class="btn btn-p js-topbtn" href="#reg">Занять место</a></div>
+    <div class="top-r"><span class="top-cd js-topcd"></span><a class="btn btn-live" href="#watch"><i></i>Смотреть эфир</a><a class="btn btn-p js-topbtn" href="#reg">Занять место</a></div>
   </div>
 </header>
 
