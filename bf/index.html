@@ -333,6 +333,33 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
 @media (max-width: 900px) { .reg-grid { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .gifts { grid-template-columns: 1fr; } .gift { min-height: 0; } }
 
+
+/* egg theme */
+.fegg { position: relative; height: 0; }
+.fegg i { position: absolute; right: -34px; top: -78px; width: 120px; height: 104px; border-radius: 58% 42% 55% 45% / 52% 48% 52% 48%; background: radial-gradient(circle at 46% 46%, #FFC24D 0 17%, #FF9A1F 22%, transparent 24%), radial-gradient(circle at 40% 35%, #FFFFFF, #E6EAF5 70%); box-shadow: 0 20px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.6) inset; animation: bob 5s ease-in-out infinite; transform: rotate(-12deg); }
+@keyframes bob { 50% { transform: rotate(-6deg) translateY(-8px); } }
+.form-card { position: relative; }
+.cab.veiled .gifts { filter: none; pointer-events: auto; user-select: auto; }
+.cab-cta { display: none; margin-top: 22px; align-items: center; gap: 16px; flex-wrap: wrap; }
+.cab.veiled .cab-cta { display: flex; }
+.gifts { grid-template-columns: repeat(3, 1fr); }
+.gift { min-height: 0; padding: 24px; gap: 12px; }
+.gift .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.gift .egg { font-size: 40px; line-height: 1; display: inline-block; }
+.gift.open .egg { animation: crack .7s ease both; }
+@keyframes crack { 0% { transform: scale(.6) rotate(-20deg); opacity: 0; } 60% { transform: scale(1.15) rotate(6deg); opacity: 1; } 100% { transform: none; } }
+.gift h3 { font-size: 21px; }
+.gift p { font-size: 15px; color: #B9BDCC; }
+.gift .val { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--ice); background: rgba(59,91,255,.14); border-radius: 10px; padding: 8px 10px; box-shadow: 0 0 0 1px rgba(124,149,255,.25) inset; }
+.gift .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.gift .links a { text-decoration: none; font-weight: 800; font-size: 14px; background: var(--blue); color: #fff; padding: 10px 14px; border-radius: 999px; }
+.gift .st { margin-top: auto; }
+.gift.feature { grid-column: span 3; display: grid; grid-template-columns: 1fr; gap: 14px; background: radial-gradient(100% 160% at 0% 0%, rgba(59,91,255,.45), transparent 60%), var(--card); box-shadow: 0 0 0 1px rgba(124,149,255,.5) inset; }
+.gift.feature .egg { font-size: 64px; }
+.gift.feature h3 { font-size: clamp(22px, 2.6vw, 32px); font-weight: 900; }
+@media (max-width: 1080px) { .gifts { grid-template-columns: repeat(2, 1fr); } .gift.feature { grid-column: span 2; } }
+@media (max-width: 600px) { .gifts { grid-template-columns: 1fr; } .gift.feature { grid-column: auto; grid-template-columns: 1fr; } .fegg i { width: 76px; height: 66px; right: -6px; top: -50px; } .form-card h3 { padding-right: 64px; } }
+
 /* reveal */
 .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
 .rv.in { opacity: 1; transform: none; }
@@ -380,10 +407,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
 <div class="noise" aria-hidden="true"></div>
 
 <div class="ticker" aria-hidden="true"><div class="track">
-  <span>Чёрная пятница ИИшницы <b>✦</b> 26–30 ноября <b>✦</b> Скидок нет <b>✦</b> Есть ключи от ИИ-офиса <b>✦</b> Бонусы тают каждый день <b>✦</b></span>
-  <span>Чёрная пятница ИИшницы <b>✦</b> 26–30 ноября <b>✦</b> Скидок нет <b>✦</b> Есть ключи от ИИ-офиса <b>✦</b> Бонусы тают каждый день <b>✦</b></span>
-  <span>Чёрная пятница ИИшницы <b>✦</b> 26–30 ноября <b>✦</b> Скидок нет <b>✦</b> Есть ключи от ИИ-офиса <b>✦</b> Бонусы тают каждый день <b>✦</b></span>
-  <span>Чёрная пятница ИИшницы <b>✦</b> 26–30 ноября <b>✦</b> Скидок нет <b>✦</b> Есть ключи от ИИ-офиса <b>✦</b> Бонусы тают каждый день <b>✦</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
+  <span>Чёрная ИИшница <b>🍳</b> жарим ИИ-сотрудников <b>🍳</b> финальное блюдо 26.11 в 19:00 <b>🍳</b> скидок нет <b>🍳</b> есть ключи от ИИ-офиса <b>🍳</b></span>
 </div></div>
 
 <nav class="nav gut js-nav"><div class="wrap">
@@ -397,21 +424,21 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   <div class="gridbg"></div>
   <div class="wrap reg-grid">
     <div>
-      <span class="pill"><span class="dot"></span><span class="js-reg-pill">26 ноября · 19:00 · только на этой странице</span></span>
+      <span class="pill"><span class="dot"></span><span class="js-reg-pill">Чёрная ИИшница · финальное блюдо 26.11 в 19:00</span></span>
       <h1>Ключи от <span class="chrome">ИИ-офиса</span> на <span class="glow">600&nbsp;000&nbsp;₽</span></h1>
-      <p class="sub js-reg-sub">Финальный эфир Чёрной ИИшницы пройдёт прямо здесь. Зарегистрируйтесь, и до эфира на этой странице каждый день будет открываться новый подарок</p>
+      <p class="sub js-reg-sub">10 дней я жарила себе ИИ-сотрудников в Чёрной ИИшнице. Финальный эфир пройдёт прямо на этой кухне, а до него каждый день на сковородке новое блюдо для тех, кто зарегистрировался</p>
       <ul class="perks js-perks">
-        <li><span>🎁</span><div><b>Подарок сразу</b> после регистрации</div></li>
-        <li><span>🔓</span><div><b>Новый подарок каждый день</b> до 26 ноября</div></li>
-        <li><span>⏰</span><div><b>Цены и бонусы Чёрной пятницы</b> на час раньше всех, в 18:00</div></li>
+        <li><span>🍳</span><div><b>2 готовых агента сразу</b> после регистрации</div></li>
+        <li><span>🥚</span><div><b>Новое блюдо каждый день</b> до 26 ноября</div></li>
+        <li><span>⏰</span><div><b>Цены Чёрной пятницы на час раньше</b> всех, когда бонусов ещё полно</div></li>
       </ul>
     </div>
-    <div class="form-card">
+    <div class="form-card"><div class="fegg" aria-hidden="true"><i></i></div>
       <form class="js-form" novalidate>
-        <h3>Открыть доступ</h3>
+        <h3>Занять место на кухне</h3>
         <label>Как вас зовут<input name="name" autocomplete="given-name" required maxlength="60" placeholder="Ольга"></label>
         <label>Telegram или телефон<input name="contact" autocomplete="tel" required maxlength="80" placeholder="@username"></label>
-        <button class="btn btn-primary" type="submit">Открыть доступ <span class="arr">→</span></button>
+        <button class="btn btn-primary" type="submit">Забрать подарки <span class="arr">→</span></button>
         <p class="err js-err" hidden>Заполните имя и Telegram или телефон</p>
         <p class="fine">Один шаг, без ботов и анкет. Эфир и подарки будут на этой странице</p>
         <p class="crowd js-crowd" hidden></p>
@@ -419,8 +446,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
       <div class="done js-done" hidden>
         <div class="ok">✓</div>
         <h3>Готово, <span class="js-uname"></span>!</h3>
-        <p>Первый подарок уже открыт ниже. Сохраните страницу в закладки: каждый день здесь появляется новый</p>
-        <div class="nextbox"><small class="js-next-lbl">Следующий подарок через</small><b class="js-next">00:00:00</b></div>
+        <p>Два первых блюда уже на столе, они ниже. Сохраните страницу в закладки: каждый день здесь появляется новое</p>
+        <div class="nextbox"><small class="js-next-lbl">Следующее блюдо через</small><b class="js-next">00:00:00</b></div>
         <a class="btn btn-ghost" href="https://t.me/+zhRmQVVPQIg1OTBi" target="_blank" rel="noopener">Канал Чёрной ИИшницы</a>
       </div>
     </div>
@@ -430,12 +457,12 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
 <section class="gut cab js-cab" id="gifts">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Календарь подарков</div>
-      <h2>Заходите <span class="glow">каждый день</span></h2>
-      <p>Подарки открываются по одному. Всё, что открылось, остаётся с вами до конца Чёрной пятницы</p>
+      <div class="eyebrow">Меню Чёрной ИИшницы</div>
+      <h2>Что подаём <span class="glow">до эфира</span></h2>
+      <p>Каждый подарок это готовый ИИ-сотрудник или инструмент, который вы забираете и запускаете у себя. Новое блюдо появляется на сковородке по расписанию, поэтому заглядывайте каждый день</p>
     </div>
     <div class="gifts js-gifts"></div>
-    <div class="lockveil js-veil"><span>🔒</span><b>Откроется после регистрации</b><a class="btn btn-primary" href="#reg">Зарегистрироваться</a></div>
+    <div class="cab-cta js-cab-cta"><a class="btn btn-primary" href="#reg">Забрать всё меню бесплатно <span class="arr">→</span></a><span class="muted">Регистрация в один шаг: имя и Telegram</span></div>
   </div>
 </section>
 
@@ -776,12 +803,14 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   function isReg() { return !!regMem; }
   function setReg(o) { regMem = o; try { localStorage.setItem(LS, JSON.stringify(o)); } catch (e) {} }
 
+  var CH = "https://t.me/+zhRmQVVPQIg1OTBi";
   var GIFTS = [
-    { at: "2026-11-23T07:00:00Z", em: "🎬", t: "Сценарист рилс", d: "Агент, который пишет сценарии рилс вашим голосом, и промпт, который соберёт из него Telegram-бота", url: "../scenarist-rils/" },
-    { at: "2026-11-24T09:00:00Z", em: "🧠", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов и пушит по ним. Инструкция и готовый промпт", url: "../" },
-    { at: "2026-11-25T09:00:00Z", em: "🎥", t: "Секретное видео", d: "Как устроен 2027 год в ИИшнице и что останется у вас на руках", url: "https://t.me/+zhRmQVVPQIg1OTBi" },
-    { at: "2026-11-26T15:00:00Z", em: "🔑", t: "Цены на час раньше", d: "Лоты и бонусы Чёрной пятницы откроются вам в 18:00, за час до всех", url: "#lots" },
-    { at: "2026-11-26T16:00:00Z", em: "📡", t: "Эфир «Оркестратор»", d: "Собираю 10 агентов в один офис и открываю Чёрную пятницу", url: "#efir" }
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", t: "Сценарист рилс", d: "Агент пишет сценарии рилс вашим голосом: хук на первые 3 секунды, текст на 30 секунд, идея для кадра и 3 запасных хука. Плюс промпт, который соберёт из него Telegram-бота, понимающего голосовые и ссылки на чужие ролики", val: "Сценарист в штате стоит 60 000 ₽ в месяц", links: [["Забрать агента", "../scenarist-rils/"]] },
+    { at: "2026-11-23T07:00:00Z", when: "Сразу после регистрации", t: "Набор селлера", d: "Промпт, который собирает дашборд продаж из отчётов Ozon, WB и Яндекс Маркета, и калькулятор юнит-экономики: показывает маржу, точку безубыточности и где утекают деньги", val: "Такие дашборды продают на заказ за 10 000-100 000 ₽", links: [["Дашборд", "https://t.me/aivwb/1361"], ["Юнит-экономика", "https://t.me/aivwb/1370"]] },
+    { at: "2026-11-24T09:00:00Z", t: "ИИ-ассистент по задачам", d: "Собирает задачи из чатов, календаря и зумов, каждое утро присылает план в Telegram и пушит по тому, что горит. Тот самый, которого я собрала себе в марафоне", val: "Ассистент в штате стоит 60 000 ₽ в месяц", links: [["Забрать ассистента", "../"]] },
+    { at: "2026-11-25T09:00:00Z", t: "Все сгоревшие серии", d: "Серии Чёрной ИИшницы жили в канале 24 часа и сгорели. Здесь они откроются снова, чтобы вы успели собрать весь офис до финального эфира", val: "10 ИИ-сотрудников за один вечер", links: [["Смотреть серии", CH]] },
+    { at: "2026-11-26T15:00:00Z", t: "Цены на час раньше всех", d: "Лоты и бонусы Чёрной пятницы откроются вам в 18:00, за час до эфира. Самые сильные бонусы ограничены по местам, и у вас будет фора", val: "Первыми забирают бонусы с лимитом", links: [["Открыть лоты", "#lots"]] },
+    { at: "2026-11-26T16:00:00Z", feature: true, t: "Финальное блюдо: эфир «Оркестратор»", d: "Соединю всех 10 агентов в один офис. Каждый, кто будет на эфире, получит шаблон агента-оркестратора: вы пишете ему одну задачу, а он раздаёт её остальным сотрудникам и приносит готовый результат", val: "Ключи от ИИ-офиса на 600 000 ₽", links: [["Смотреть эфир", "#efir"]] }
   ];
   function fmtWhen(ms) {
     return new Date(ms).toLocaleString("ru-RU", { timeZone: "Europe/Moscow", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
@@ -793,23 +822,25 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   var giftsEl = document.querySelector(".js-gifts");
   function renderGifts() {
     var t = now(), reg = isReg(), html = "", next = null;
-    GIFTS.forEach(function (g, i) {
+    GIFTS.forEach(function (g) {
       var at = Date.parse(g.at), open = reg && t >= at;
       if (t < at && next === null) next = at;
-      var st = !reg ? "🔒 после регистрации" : open ? "Открыто · смотреть →" : "🔒 через " + dur(at - t);
-      var tag = open ? "a" : "div";
-      var attrs = open ? ' href="' + g.url + '"' + (g.url.charAt(0) === "#" ? "" : ' target="_blank" rel="noopener"') : "";
-      html += "<" + tag + ' class="gift ' + (open ? "open" : "locked") + '"' + attrs + ">" +
-        '<span class="when">' + (i === 0 ? "Сразу" : fmtWhen(at)) + "</span>" +
-        '<span class="em">' + g.em + "</span><h3>" + g.t + "</h3><p>" + g.d + '</p><span class="st">' + st + "</span></" + tag + ">";
+      var when = g.when || ("Подаём " + fmtWhen(at));
+      var foot;
+      if (open) foot = '<div class="links">' + g.links.map(function (l) { var ext = l[1].charAt(0) !== "#"; return '<a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + l[0] + " →</a>"; }).join("") + "</div>";
+      else if (!reg) foot = '<span class="st">🔒 откроется после регистрации</span>';
+      else foot = '<span class="st">🥚 разобьём через ' + dur(at - t) + "</span>";
+      html += '<div class="gift ' + (open ? "open" : "locked") + (g.feature ? " feature" : "") + '">' +
+        '<div class="top"><span class="when">' + when + '</span></div>' +
+        '<span class="egg">' + (open ? "🍳" : "🥚") + "</span>" +
+        "<div style=\"display:grid;gap:10px\"><h3>" + g.t + "</h3><p>" + g.d + '</p><span class="val">' + g.val + "</span></div>" + foot + "</div>";
     });
     giftsEl.innerHTML = html;
     var nb = document.querySelector(".js-next");
-    if (nb) {
-      if (next) { nb.textContent = dur(next - t); document.querySelector(".js-next-lbl").textContent = "Следующий подарок через"; }
-      else { nb.textContent = "все открыты"; }
-    }
+    if (nb) nb.textContent = next ? dur(next - t) : "все открыты";
   }
+  var lastGiftKey = "";
+  function giftKey() { var t = now(), reg = isReg(); return reg + ":" + GIFTS.map(function (g) { return t >= Date.parse(g.at) ? 1 : 0; }).join(""); }
 
   function showDone() {
     var r = getReg() || regMem;
@@ -829,7 +860,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
     var payload = { name: name, contact: contact, src: location.search.slice(0, 120) };
     function finish() {
       setReg({ name: name, at: Date.now() });
-      showDone(); applyPhase(); renderGifts();
+      showDone(); applyPhase(); renderGifts(); lastGiftKey = giftKey();
       var g = document.getElementById("gifts"); if (g && !g.hidden) setTimeout(function () { g.scrollIntoView({ behavior: "smooth", block: "start" }); }, 600);
     }
     if (!REG_URL) { finish(); return; }
@@ -851,8 +882,13 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: 
   }
   loadCrowd();
   if (isReg()) showDone();
-  renderGifts();
-  setInterval(renderGifts, 1000);
+  renderGifts(); lastGiftKey = giftKey();
+  setInterval(function () { var k = giftKey(); if (k !== lastGiftKey) { lastGiftKey = k; renderGifts(); } else { updateGiftTimers(); } }, 1000);
+  function updateGiftTimers() {
+    var t = now(), cards = giftsEl.querySelectorAll(".gift"), next = null;
+    GIFTS.forEach(function (g, i) { var at = Date.parse(g.at); if (t < at && next === null) next = at; var st = cards[i] && cards[i].querySelector(".st"); if (st && isReg() && t < at) st.textContent = "🥚 разобьём через " + dur(at - t); });
+    var nb = document.querySelector(".js-next"); if (nb) nb.textContent = next ? dur(next - t) : "все открыты";
+  }
 
   function pad(n) { return (n < 10 ? "0" : "") + n; }
 
